@@ -15,7 +15,10 @@ class Author extends Eloquent {
     const SHOW_NICK = 20;
     const SHOW_BOTH = 30;
 
-    public function user()
+    /**
+     * Author belongsTo User
+     */
+        public function user()
     {
         return $this->belongsTo('User');
     }
