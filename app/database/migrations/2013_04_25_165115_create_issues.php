@@ -30,7 +30,7 @@ class CreateIssues extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('issues');
 	}
 
 }

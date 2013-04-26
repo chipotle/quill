@@ -34,7 +34,10 @@ class CreateAuthors extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('authors', function($t)
+		{
+			$t->dropForeign('authors_user_id_foreign');
+		});
 	}
 
 }
