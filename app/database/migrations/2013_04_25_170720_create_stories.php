@@ -21,8 +21,8 @@ class CreateStories extends Migration {
 			$t->text('blurb');
 			$t->timestamps();
 
-			$t->foreign('author_id')->references('id')->on('author');
-			$t->foreign('issue_id')->references('id')->on('issue');
+			$t->foreign('author_id')->references('id')->on('authors');
+			$t->foreign('issue_id')->references('id')->on('issues');
 		});
 	}
 

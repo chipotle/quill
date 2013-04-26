@@ -24,6 +24,8 @@ class CreateAuthors extends Migration {
 			$t->text('bio')->nullable();
 			$t->integer('user_id')->unsigned()->nullable();
 			$t->timestamps();
+
+			$t->foreign('user_id')->references('id')->on('users');
 		});
 	}
 
