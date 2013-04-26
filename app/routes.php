@@ -1,17 +1,6 @@
 <?php
 use Michelf\Markdown;
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
-
 Route::get('/', function()
 {
     $text = <<<EOF
@@ -24,4 +13,23 @@ EOF;
     $text = Markdown::defaultTransform($text);
     $text = SmartyPants::defaultTransform($text);
 	return View::make('hello', ['text' => $text]);
+});
+
+// Administration functions
+Route::group(['prefix' => 'sysop', 'before' => 'auth'], function()
+{
+    /**
+     * TODO define what we need to be able to edit here...
+     * - static pages
+     * - user accounts
+     * - author accounts/info
+     * - stories
+     * - issues
+     * 
+     * This should be relatively easy to manage from a UX standpoint: we
+     * should be able to add author info from the story screen, publish an
+     * individual issue and all the stories at once, get to author and story
+     * info from issue screens (and add a story explicitly to that issue),
+     * so on and so forth.
+     */
 });
