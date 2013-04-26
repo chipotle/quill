@@ -19,6 +19,7 @@ class CreateStories extends Migration {
 			$t->integer('issue_id')->unsigned();
 			$t->text('body');
 			$t->text('blurb');
+			$t->boolean('is_published')->default(false);
 			$t->timestamps();
 
 			$t->foreign('author_id')->references('id')->on('authors');

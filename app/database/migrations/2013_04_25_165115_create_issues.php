@@ -19,6 +19,7 @@ class CreateIssues extends Migration {
 			$t->integer('volume')->unsigned()->default(1);
 			$t->string('title')->nullable();
 			$t->date('pub_date');
+			$t->boolean('is_published')->default(false);
 			$t->timestamps();
 		});
 	}
