@@ -16,7 +16,7 @@ EOF;
 });
 
 // Administration functions
-Route::group(['prefix' => 'sysop', 'before' => 'auth'], function()
+Route::group(['prefix' => 'sysop', 'before' => 'auth.Basic'], function()
 {
     /**
      * TODO define what we need to be able to edit here...
@@ -32,4 +32,9 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth'], function()
      * info from issue screens (and add a story explicitly to that issue),
      * so on and so forth.
      */
+    Route::get('/', function()
+    {
+        return View::make('admin.index');
+    });
+    Route::resource('pages', 'Admin_PagesController');
 });
