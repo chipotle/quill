@@ -7,7 +7,7 @@
 {{ Form::model($page, ['url' => $url, 'method' => $method]) }}
 
 <label class="checkbox pull-right">
-    {{ Form::checkbox('is_visible') }} Visible (Published)
+  {{ Form::checkbox('is_visible') }} Visible (Published)
 </label>
 
 {{ Form::label('title', 'Page Title') }}
@@ -23,8 +23,8 @@
 {{ Form::textarea('head', null, ['class'=>'input-block-level']) }}
 
 <p>
-    {{ Form::submit('Submit', ['class'=>'btn']) }}
-    {{ Html::linkRoute('sysop.pages.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
+  {{ Form::submit('Submit', ['class'=>'btn']) }}
+  {{ Html::linkRoute('sysop.pages.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
 </p>
 
 @endsection

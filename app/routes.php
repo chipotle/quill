@@ -18,20 +18,6 @@ EOF;
 // Administration functions
 Route::group(['prefix' => 'sysop', 'before' => 'auth.Basic'], function()
 {
-    /**
-     * TODO define what we need to be able to edit here...
-     * - static pages
-     * - user accounts
-     * - author accounts/info
-     * - stories
-     * - issues
-     * 
-     * This should be relatively easy to manage from a UX standpoint: we
-     * should be able to add author info from the story screen, publish an
-     * individual issue and all the stories at once, get to author and story
-     * info from issue screens (and add a story explicitly to that issue),
-     * so on and so forth.
-     */
     Route::get('/', function()
     {
         return View::make('admin.index');
