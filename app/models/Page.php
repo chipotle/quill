@@ -7,12 +7,5 @@ class Page extends Eloquent {
      */
     protected $table = 'pages';
 
-    /**
-     * Issue hasMany Stories
-     */
-    function stories()
-    {
-        return $this->hasMany('Story');
-    }
-
+    protected $fillable = ['title', 'slug', 'body', 'head'];
 }
