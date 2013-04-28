@@ -19,6 +19,7 @@ class CreatePages extends Migration {
 			$t->string('title');
 			$t->text('body');
 			$t->text('head')->nullable();
+			$t->boolean('is_visible')->default(false);
 			$t->timestamps();
 		});
 	}

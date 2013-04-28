@@ -7,5 +7,5 @@ class Page extends Eloquent {
      */
     protected $table = 'pages';
 
-    protected $fillable = ['title', 'slug', 'body', 'head'];
+    protected $fillable = ['title', 'slug', 'body', 'head', 'is_visible'];
 }

@@ -6,6 +6,10 @@
 
 {{ Form::model($page, ['url' => $url, 'method' => $method]) }}
 
+<label class="checkbox pull-right">
+    {{ Form::checkbox('is_visible') }} Visible (Published)
+</label>
+
 {{ Form::label('title', 'Page Title') }}
 {{ Form::text('title', null, ['class'=>'input-xxlarge', 'style'=>'font-size:150%']) }}
 
