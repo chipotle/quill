@@ -1,13 +1,14 @@
 <?php
 use Michelf\Markdown;
 
-// basic auth
+// For basic auth, we want to use the username, not the email address
 Route::filter('auth.basic', function()
 {
     Config::set('auth.model', 'User');
     return Auth::basic('username');
 });
 
+// get the "index" page if we hit the main site
 Route::get('/', function()
 {
     $page = Page::where('slug', 'index')->first();
