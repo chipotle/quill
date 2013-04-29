@@ -12,10 +12,13 @@ class Page extends Eloquent {
 
     public function getContent()
     {
-        $body = Markdown::defaultTransform($this->body);
-        $body = SmartyPants::defaultTransform($body);
-        $title = SmartyPants::defaultTransform($this->title);
-        $content = ['title' => $title, 'body' => $body, 'head' => $this->head];
+        $content = Cache::rememberForever("page-{$this->id}", function() {
+            $body = Markdown::defaultTransform($this->body);
+            $body = SmartyPants::defaultTransform($body);
+            $title = SmartyPants::defaultTransform($this->title);
+            return ['title' => $title, 'body' => $body,
+                    'head' => $this->head];
+        });
         return $content;
     }
 }

@@ -124,6 +124,7 @@ class Admin_PagesController extends BaseController {
 		}
 		$page->fill($input);
 		$page->save();
+		Cache::forget("page-{$page->id}");
 		return Redirect::route('sysop.pages.index')->with('msg', "Page '{$page->slug}' updated.");
 	}
 
