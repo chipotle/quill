@@ -28,8 +28,8 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 Route::get('/page/{slug}', function($slug)
 {
     $page = Page::where('slug', $slug)->first();
-    if (empty($page)) {
-        return Response::make('Not Found', 404);
+    if (empty($page) || !$page->is_visible) {
+        return Response::make('Page not found', 404);
     }
     return View::make('page')->with($page->getContent());
 });
