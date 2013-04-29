@@ -23,6 +23,7 @@ namespace :deploy do
     transaction do
       update_code
       symlink
+      copy_config
       composer_install
       laravel_migrate
     end
@@ -30,7 +31,6 @@ namespace :deploy do
 
   task :finalize_update do
     transaction do
-      copy_config
       run "chmod -R g+w #{releases_path}/#{release_name}"
     end
   end
