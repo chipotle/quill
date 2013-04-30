@@ -25,7 +25,7 @@ class Admin_PagesController extends BaseController {
 
 	/**
 	 * Show new/edit form, depending on calling resource
-	 * 
+	 *
 	 * @return Response
 	 */
 	private function editForm($id=false)
@@ -36,7 +36,7 @@ class Admin_PagesController extends BaseController {
 				'title' => "Editing Page '{$page->slug}'",
 				'url' => URL::route('sysop.pages.update', [$page->id]),
 				'page' => $page,
-				'method' => 'put' 
+				'method' => 'put'
 			];
 		}
 		else {
@@ -45,7 +45,7 @@ class Admin_PagesController extends BaseController {
 				'title' => 'New Page',
 				'url' => URL::route('sysop.pages.store'),
 				'page' => $page,
-				'method' => 'post' 
+				'method' => 'post'
 			];
 		}
 		return View::make('admin.pages.new')->with($content);
@@ -72,6 +72,7 @@ class Admin_PagesController extends BaseController {
 		$page = new Page();
 		$validator = Validator::make($input, $this->rules);
 		if ($validator->fails()) {
+			Session::flashInput($input);
 			return Redirect::route('sysop.pages.create')->with('error', $validator->messages());
 		}
 		$page->fill($input);
@@ -120,6 +121,7 @@ class Admin_PagesController extends BaseController {
 		$page = Page::find($id);
 		$validator = Validator::make($input, $this->rules);
 		if ($validator->fails()) {
+			Session::flashInput($input);
 			return Redirect::route('sysop.pages.edit', [$id])->with('error', $validator->messages());
 		}
 		$page->fill($input);
