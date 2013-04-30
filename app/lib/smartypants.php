@@ -9,44 +9,37 @@
 # Original SmartyPants
 # Copyright (c) 2003-2004 John Gruber
 # <http://daringfireball.net>
-#
 
+define( 'SMARTYPANTS_VERSION',  "1.5.1f-wm" ); # Unreleased
 
-define( 'SMARTYPANTS_VERSION',  "1.5.1f" ); # Unreleased
-
-
-#
 # Default configuration:
 #
 #  1  ->  "--" for em-dashes; no en-dash support  
 #  2  ->  "---" for em-dashes; "--" for en-dashes  
 #  3  ->  "--" for em-dashes; "---" for en-dashes  
 #  See docs for more configuration options.
-#
-define( 'SMARTYPANTS_ATTR',    1 );
 
+define( 'SMARTYPANTS_ATTR', 1 );
 
 # SmartyPants will not alter the content of these tags:
+
 define( 'SMARTYPANTS_TAGS_TO_SKIP', 'pre|code|kbd|script|style|math');
 
-
-### Standard Function Interface ###
-
-define( 'SMARTYPANTS_PARSER_CLASS', 'SmartyPants_Parser' );
-
-#
-# SmartyPants Parser
-#
-
+/**
+ * SmartyPants Parser
+ * 
+ * @package php-smartypants
+ */
 class SmartyPants {
 
-	### Simple Function Interface ###
+	/**
+	 * Static transformation method
+	 * 
+	 * @param string $text 
+	 * @return string
+	 */
+	public static function defaultTransform($text, $attr=false) {
 
-	public static function defaultTransform($text) {
-	#
-	# Initialize the parser and return the result of its transform method.
-	# This will work fine for derived classes too.
-	#
 		# Take parser class on which this function was called.
 		$parser_class = \get_called_class();
 
@@ -54,9 +47,11 @@ class SmartyPants {
 		static $parser_list;
 		$parser =& $parser_list[$parser_class];
 
-		# create the parser it not already set
-		if (!$parser)
-			$parser = new $parser_class;
+		# create the parser if not already set
+		if (!$parser) {
+			if (!$attr) $attr=SMARTYPANTS_ATTR;
+			$parser = new $parser_class($attr);
+		}
 
 		# Transform text using parser.
 		return $parser->transform($text);
@@ -71,7 +66,7 @@ class SmartyPants {
 	var $do_stupefy   = 0;
 	var $convert_quot = 0; # should we translate &quot; entities into normal quotes?
 
-	function __construct($attr = SMARTYPANTS_ATTR) {
+	function __construct($attr=SMARTYPANTS_ATTR) {
 	#
 	# Initialize a SmartyPants_Parser with certain attributes.
 	#
