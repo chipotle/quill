@@ -15,7 +15,9 @@ Route::get('/', function()
     return View::make('page')->with($page->getContent());
 });
 
-// Administration functions
+/**
+ * Admin routes - handled by resource controllers in admin/
+ */
 Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 {
     Route::get('/', function()
@@ -25,6 +27,9 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
     Route::resource('pages', 'Admin_PagesController');
 });
 
+/**
+ * Static page controller
+ */
 Route::get('/page/{slug}', function($slug)
 {
     $page = Page::where('slug', $slug)->first();
