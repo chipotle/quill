@@ -24,13 +24,13 @@
       <td style="vertical-align:middle">{{ Html::linkRoute('sysop.pages.show', $page->title, [$page->id]) }}</td>
       <td>
 @if ($page->is_visible)
-          <i class="icon-eye-open" title="Visible"></i>
+        <i class="icon-eye-open" title="Visible"></i>
 @else
-          <i class="icon-eye-close" title="Hidden"></i>
+        <i class="icon-eye-close" title="Hidden"></i>
 @endif
       </td>
-@endforeach
     </tr>
+@endforeach
   </tbody>
 </table>
 
