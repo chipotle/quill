@@ -1,5 +1,4 @@
 <?php
-use Michelf\Markdown;
 
 // For basic auth, we want to use the username, not the email address
 Route::filter('auth.basic', function()
