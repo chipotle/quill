@@ -23,9 +23,23 @@ body {
 	margin: auto;
 }
 
-p, blockquote {
+p, blockquote, div.alert {
 	line-height: 1.5em;
 }
+
+div.alert {
+  font-family: $altFont;
+  font-size: 0.884em;
+  border: $textColor 1px solid;
+  background-color: darken($paperColor, 10%);
+  padding: 0.262em 0.884em;
+}
+
+div.error {
+    color: scale-color($textColor, $red: 60%);
+    border-color: scale-color($textColor, $red: 60%);
+  }
+
 
 a {
 	-webkit-transition: all 0.6s ease;
@@ -153,6 +167,11 @@ article {
 			float: right;
 		}
 	}
+  label {
+    font-family: $altFont;
+    font-size: 0.884em;
+    font-weight: 700;
+  }
 }
 
 article.page {
@@ -171,11 +190,11 @@ article.page {
 		max-width: 32em;
 		min-width: 0;
 	}
-	
+
 	.pithy {
 		width: 100% !important;
 	}
-	
+
 	article aside {
 		float: none;
 		width: 100% !important;

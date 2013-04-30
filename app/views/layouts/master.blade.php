@@ -10,6 +10,19 @@
 
 <body>
   <div id="content">
+    @if (Session::has('msg'))
+    <div class="alert">
+      {{ Session::get('msg') }}
+    </div>
+    @endif
+    @if (Session::has('error'))
+    <div class="alert error">
+      @foreach (Session::get('error')->all() as $err)
+      {{ $err }}<br>
+      @endforeach
+    </div>
+    @endif
+
     @yield('content')
   </div>
 </body>
