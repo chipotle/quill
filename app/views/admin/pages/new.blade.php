@@ -27,4 +27,5 @@
   {{ Html::linkRoute('sysop.pages.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
 </p>
 
+{{ Form::close() }}
 @endsection
