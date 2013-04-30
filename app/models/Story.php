@@ -23,4 +23,12 @@ class Story extends Eloquent {
         return $this->belongsTo('Author');
     }
 
+    /**
+     * Story hasOne Pitch
+     */
+    function pitch()
+    {
+        return $this->hasOne('Pitch');
+    }
+
 }

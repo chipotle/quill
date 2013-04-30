@@ -22,4 +22,21 @@ class Author extends Eloquent {
     {
         return $this->belongsTo('User');
     }
+
+    /**
+     * Author hasMany Stories
+     */
+    function stories()
+    {
+        return $this->hasMany('Story');
+    }
+
+    /**
+     * Author hasMany Pitches
+     */
+    function pitches()
+    {
+        return $this->hasMany('Pitch');
+    }
+
 }
