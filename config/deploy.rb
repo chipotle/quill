@@ -22,10 +22,11 @@ namespace :deploy do
   task :update do
     transaction do
       update_code
-      symlink
       copy_config
       composer_install
+  	  link_shared
       laravel_migrate
+  	  symlink
     end
   end
 
@@ -41,9 +42,15 @@ namespace :deploy do
     end
   end
 
+  task :link_shared do
+    transaction do
+      run "ln -nfs #{shared_path}/system #{current_release}/public/system"
+    end
+  end
+
   task :laravel_migrate do
     transaction do
-      run "php  #{deploy_to}/#{current_dir}/artisan migrate"
+      run "php  #{current_release}/artisan migrate"
     end
   end
 
@@ -65,13 +72,13 @@ namespace :deploy do
 
   task :composer_install do
     transaction do
-      run "cd #{deploy_to}/#{current_dir};/usr/local/bin/composer install"
+      run "cd #{current_release};/usr/local/bin/composer install"
     end
   end
 
   task :copy_config do
     transaction do
-      run "cp #{shared_path}/config/* #{deploy_to}/#{current_dir}/app/config/"
+      run "cp #{shared_path}/config/* #{current_release}/app/config/"
     end
   end
 
