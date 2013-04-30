@@ -21,7 +21,7 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 {
     Route::get('/', function()
     {
-        return View::make('admin.index');
+        return Redirect::route('sysop.pages.index');
     });
     Route::resource('pages', 'Admin_PagesController');
 });
