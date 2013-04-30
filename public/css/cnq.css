@@ -132,7 +132,7 @@ body { margin: 71.638px; font-family: "Lyon", "Palatino", serif; font-size: 100%
 
 p, blockquote, div.alert { line-height: 1.5em; }
 
-div.alert { font-family: "Istok Web", "Helvetica Neue", "Arial", sans-serif; font-size: 0.884em; border: #64472b 1px solid; background-color: #ede0d4; padding: 0.262em 0.884em; }
+div.alert { font-family: "Lato", "Helvetica Neue", "Arial", sans-serif; font-size: 0.884em; border: #64472b 1px solid; background-color: #ede0d4; padding: 0.262em 0.884em; }
 
 div.error { color: #c1472b; border-color: #c1472b; }
 
@@ -142,28 +142,30 @@ a:hover { background-color: white; color: blue; }
 
 header { margin: 0; }
 
-nav ul { list-style-type: none; font-family: "Istok Web", "Helvetica Neue", "Arial", sans-serif; text-align: center; margin: auto; margin-bottom: 2.25em; padding: 0; }
+nav ul { list-style-type: none; font-family: "Lato", "Helvetica Neue", "Arial", sans-serif; text-align: center; margin: auto; margin-bottom: 2.25em; padding: 0; }
 nav ul li { display: inline; font-size: 0.884em; text-transform: uppercase; letter-spacing: 1px; }
 nav a { padding: 2px 6px 1px; margin: auto 3px; }
 nav a:link, nav a:visited { color: #b78757; border: 1px solid #ddc7b1; background-color: transparent; }
 nav a:hover { color: #00C; background-color: white; border-color: #00C; }
 
-h1, h2, h3, .catstamp, .author { font-family: "Istok Web", "Helvetica Neue", "Arial", sans-serif; }
+h1, h2, h3, .catstamp, .author { font-family: "Lato", "Helvetica Neue", "Arial", sans-serif; }
 
 h1, h2 { text-rendering: optimizeLegibility; }
 
+h1 { font-weight: 300; }
+
 article h1 { font-size: 2.25em; line-height: 1em; text-align: center; margin-bottom: 0.59em; }
 article h2 { margin-top: 1em; margin-bottom: 1em; font-size: 1.327em; line-height: 0.59em; }
-article aside { width: 50%; float: right; font-family: "Istok Web", "Helvetica Neue", "Arial", sans-serif; font-size: 1.327em; line-height: 1.327em; border-top: 1px solid black; border-bottom: 1px solid black; margin-left: 1.327em; margin-right: -0.884em; padding: 0.262em; margin-bottom: 0.262em; margin-top: 0.262em; }
+article aside { width: 50%; float: right; font-family: "Lato", "Helvetica Neue", "Arial", sans-serif; font-size: 1.327em; line-height: 1.327em; border-top: 1px solid black; border-bottom: 1px solid black; margin-left: 1.327em; margin-right: -0.884em; padding: 0.262em; margin-bottom: 0.262em; margin-top: 0.262em; }
 article aside.aboutbox { font-size: 0.884em; line-height: 1.76em; width: 45%; margin-top: 1.5em; margin-right: auto; }
 article aside.left { float: left; margin-left: -0.884em; margin-right: 1.327em; }
 article .excerpt { font-style: italic; margin: auto; width: 90%; margin-bottom: 2.985em; }
 article .author { margin-top: 0; text-align: center; margin-bottom: 2.25em; }
 article .author span { font-weight: 700; }
-article .category { font-family: "Istok Web", "Helvetica Neue", "Arial", sans-serif; text-transform: uppercase; font-size: 0.884em; margin-bottom: 2.25em; }
+article .category { font-family: "Lato", "Helvetica Neue", "Arial", sans-serif; text-transform: uppercase; font-size: 0.884em; margin-bottom: 2.25em; }
 article .category span { font-weight: 700; }
 article .category time { float: right; }
-article label { font-family: "Istok Web", "Helvetica Neue", "Arial", sans-serif; font-size: 0.884em; font-weight: 700; }
+article label { font-family: "Lato", "Helvetica Neue", "Arial", sans-serif; font-size: 0.884em; font-weight: 700; }
 
 article.page h1 { margin-bottom: 1.327em; text-align: left; }
 

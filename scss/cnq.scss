@@ -6,7 +6,7 @@
 $paperColor: #FCFAF8;
 $textColor: darken($paperColor, 70%);
 $textFont: 'Lyon', 'Palatino', serif;
-$altFont: 'Istok Web', 'Helvetica Neue', 'Arial', sans-serif;
+$altFont: 'Lato', 'Helvetica Neue', 'Arial', sans-serif;
 
 html {
   background-color: $paperColor;
@@ -105,6 +105,10 @@ h1, h2, h3, .catstamp, .author {
 
 h1, h2 {
 	text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-weight: 300;
 }
 
 article {
