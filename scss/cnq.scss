@@ -3,10 +3,14 @@
 @import "normalize.scss";
 @import "lyon/stylesheet.scss";
 
-$paperColor: #fbfafa;
+$paperColor: #FCFAF8;
 $textColor: darken($paperColor, 70%);
 $textFont: 'Lyon', 'Palatino', serif;
 $altFont: 'Istok Web', 'Helvetica Neue', 'Arial', sans-serif;
+
+html {
+  background-color: $paperColor;
+}
 
 body {
 	margin: 71.638px;
@@ -48,10 +52,11 @@ a {
 	&:link, &:visited {
 		text-decoration: none;
 		color: scale-color($textColor, $blue: 60%);
+    background-color: scale-color($paperColor, $blue: -2%, $green: -2%);
 	}
 	&:hover {
-		background-color: scale-color($paperColor, $red: -5%, $green: -5%);
-		color: scale-color($textColor, $blue: 100%);
+		background-color: white;
+		color: blue;
 	}
 }
 
