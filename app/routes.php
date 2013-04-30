@@ -37,3 +37,8 @@ Route::get('/page/{slug}', function($slug)
     }
     return View::make('page')->with($page->getContent());
 });
+
+/**
+ * Pitch form
+ */
+Route::controller('pitch', 'PitchController');

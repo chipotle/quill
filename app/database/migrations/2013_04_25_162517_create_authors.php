@@ -18,7 +18,7 @@ class CreateAuthors extends Migration {
 			$t->string('name');
 			$t->string('nickname')->nullable();
 			$t->integer('show')->unsigned()->default(Author::SHOW_NAME);
-			$t->string('email')->nullable();
+			$t->string('email')->nullable()->index();
 			$t->string('website')->nullable();
 			$t->string('twitter')->nullable();
 			$t->text('bio')->nullable();

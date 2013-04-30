@@ -4,6 +4,7 @@ class Pitch extends Eloquent {
 
 	protected $table = 'pitches';
 
+	protected $fillable = ['name', 'email', 'blurb'];
 	/**
 	 * Class constants
 	 */

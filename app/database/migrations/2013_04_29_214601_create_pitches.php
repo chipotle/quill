@@ -16,7 +16,7 @@ class CreatePitches extends Migration {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('email');
-			$t->string('from');
+			$t->string('name');
 			$t->text('blurb');
 			$t->text('notes')->nullable();
 			$t->integer('status')->default(Pitch::UNSEEN)->unsigned();
