@@ -65,3 +65,16 @@ App::error(function(Exception $exception, $code)
 */
 
 require __DIR__.'/../filters.php';
+
+/**
+ * View macros
+ */
+
+Html::macro('date_fmt', function($d, $fmt='d-M-y') {
+	return date($fmt, strtotime($d));
+});
+
+Html::macro('truncate', function($t, $len=50) {
+	if (strlen($t) < $len) return($t);
+	return substr($t, 0, $len) . "&hellip;";
+});
