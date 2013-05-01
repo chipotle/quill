@@ -15,9 +15,13 @@
   <dd>{{ Pitch::$statusList[$pitch->status] }}</dd>
 </dl>
 
-<div class="well">
-  {{ $pitch->blurb }}
-</div>
+<div class="well" style="white-space:pre-line">{{ $pitch->blurb }}</div>
+
+@if ($pitch->notes)
+<h3>Notes</h3>
+<p style="white-space:pre-line">{{ $pitch->notes }}</p>
+<br>
+@endif
 
 <p>
   <a href="{{ URL::route('sysop.pitches.index') }}" class="btn"><i class="icon-backward"></i> Back</a>
