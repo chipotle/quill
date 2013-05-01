@@ -22,8 +22,8 @@
           <ul class="nav">
             <li>{{ Html::linkRoute('sysop.pages.index', 'Pages') }}</li>
             <li><a href="#">Issues</a></li>
-            <li><a href="#">Stories</a></li>
             <li><a href="#">Authors</a></li>
+            <li>{{ Html::linkRoute('sysop.pitches.index', 'Pitches') }}</li>
             <li><a href="#">Users</a></li>
           </ul>
         </div>
@@ -50,7 +50,7 @@
     <hr>
     @yield('content')
   </div>
-  
+
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   {{ HTML::script('js/bootstrap.min.js') }}
   @yield('scripts')
