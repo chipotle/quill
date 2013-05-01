@@ -7,10 +7,9 @@ class Admin_PitchesController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($show=false)
 	{
-		$show_all = (Input::get('show_all') == 1);
-		if ($show_all) {
+		if ($show) {
 			$pitches = Pitch::orderBy('updated_at', 'desc')->paginate(15);
 		}
 		else {
@@ -18,7 +17,7 @@ class Admin_PitchesController extends BaseController {
 		}
 		return View::make('admin.pitches.index')->with([
 			'pitches' => $pitches,
-			'show_all' => $show_all
+			'show' => $show
 		]);
 	}
 
@@ -52,7 +51,6 @@ class Admin_PitchesController extends BaseController {
 			'pitch' => $pitch,
 			'menu' => $menu
 		]);
-		return View::make('admin.pitches.edit')->with('pitch', $pitch);
 	}
 
 	/**

@@ -24,7 +24,11 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
         return Redirect::route('sysop.pages.index');
     });
     Route::resource('pages', 'Admin_PagesController');
-    Route::resource('pitches', 'Admin_PitchesController');
+
+    Route::get('pitches/{show?}', ['uses'=>'Admin_PitchesController@index', 'as'=>'sysop.pitches.index']);
+    Route::get('pitches/show/{id}', ['uses'=>'Admin_PitchesController@show', 'as'=>'sysop.pitches.show']);
+    Route::get('pitches/edit/{id}', ['uses'=>'Admin_PitchesController@edit', 'as'=>'sysop.pitches.edit']);
+    Route::put('pitches/update/{id}', ['uses'=>'Admin_PitchesController@update', 'as'=>'sysop.pitches.update']);
 
     Route::get('/do', function() {
     	for ($i=1; $i < 50; $i++) {

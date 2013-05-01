@@ -1,14 +1,21 @@
 @extends('layouts.admin')
 
-@section('title') Pitches @endsection
+@section('title')
+@if ($show)
+All
+@else
+Pending
+@endif
+Pitches
+@endsection
 
 @section('content')
 
 <p class="text-right">
-  @if ($show_all)
+  @if ($show)
   <a href="/sysop/pitches" class="btn">Pending Only</a>
   @else
-  <a href="/sysop/pitches?show_all=1" class="btn">Show All</a>
+  <a href="/sysop/pitches/all" class="btn">Show All</a>
   @endif
 </p>
 
@@ -33,7 +40,7 @@
       <td>{{ Html::linkRoute('sysop.pitches.show', $pitch->name, [$pitch->id]) }}</td>
       <td>{{ $pitch->email }}</td>
       <td>{{ Pitch::$statusList[$pitch->status] }}</td>
-      <td style="height:1em;overflow:hidden">{{ Html::truncate($pitch->blurb) }}</td>
+      <td style="height:1em;overflow:hidden">{{ Html::linkRoute('sysop.pitches.show', Html::truncate($pitch->blurb), [$pitch->id]) }}</td>
     </tr>
 @endforeach
   </tbody>
