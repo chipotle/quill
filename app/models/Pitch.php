@@ -4,7 +4,7 @@ class Pitch extends Eloquent {
 
 	protected $table = 'pitches';
 
-	protected $fillable = ['name', 'email', 'blurb'];
+	protected $fillable = ['name', 'email', 'blurb', 'status', 'notes', 'author_id', 'story_id'];
 	/**
 	 * Class constants
 	 */
@@ -26,7 +26,7 @@ class Pitch extends Eloquent {
 	/**
 	 * Pitch belongsTo Author
 	 */
-	function author()
+	public function author()
 	{
 		return $this->belongsTo('Author');
 	}
@@ -34,9 +34,19 @@ class Pitch extends Eloquent {
 	/**
 	 * Pitch belongsTo Story
 	 */
-	function story()
+	public function story()
 	{
 		return $this->belongsTo('Story');
+	}
+
+	public function scopePending($query)
+	{
+		return $query->whereIn('status', [
+			Pitch::UNSEEN,
+			Pitch::REVIEW,
+			Pitch::ACCEPTED,
+			Pitch::WAITING
+		]);
 	}
 
 }
