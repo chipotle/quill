@@ -21,8 +21,6 @@
 {{ Form::label('notes', 'Editorial Notes') }}
 {{ Form::textarea('notes', null, ['class'=>'input-block-level', 'rows'=>10]) }}
 
-<p><em>To Do: link author_id and story_id up here</em></p>
-
 <p>
   {{ Form::submit('Update', ['class'=>'btn btn-primary']) }}
   {{ Html::linkRoute('sysop.pitches.index', 'Back', null, ['class'=>'btn'])}}
@@ -30,3 +28,5 @@
 
 {{ Form::close() }}
 @endsection
+
+{{-- TODO way to link stories and pitches --}}
