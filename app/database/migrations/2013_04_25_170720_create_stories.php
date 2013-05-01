@@ -16,7 +16,7 @@ class CreateStories extends Migration {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->integer('author_id')->unsigned();
-			$t->integer('issue_id')->unsigned();
+			$t->integer('issue_id')->unsigned()->nullable();
 			$t->text('body');
 			$t->text('blurb');
 			$t->boolean('is_published')->default(false);
