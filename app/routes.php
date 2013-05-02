@@ -21,7 +21,7 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 {
     Route::get('/', function()
     {
-        return Redirect::route('sysop.pages.index');
+        return Redirect::route('sysop.pitches.index');
     });
     Route::resource('pages', 'Admin_PagesController');
 

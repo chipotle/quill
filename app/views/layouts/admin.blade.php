@@ -17,7 +17,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="#">Claw &amp; Quill</a>
+        {{ Html::link('sysop', 'Claw &amp; Quill', ['class'=>'brand']) }}
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li>{{ Html::linkRoute('sysop.pages.index', 'Pages') }}</li>
