@@ -1,5 +1,5 @@
 <?php
-use Michelf\Markdown, Chipotle\Smartypants;
+use Michelf\MarkdownExtra, Chipotle\Smartypants;
 
 class Page extends Eloquent {
 
@@ -13,7 +13,7 @@ class Page extends Eloquent {
     public function getContent()
     {
         $content = Cache::rememberForever("page-{$this->id}", function() {
-            $body = Markdown::defaultTransform($this->body);
+            $body = MarkdownExtra::defaultTransform($this->body);
             $body = Smartypants::defaultTransform($body);
             $title = Smartypants::defaultTransform($this->title);
             return ['title' => $title, 'body' => $body,
