@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>@yield('title')</title>
   {{ Html::style('css/cnq.css') }}
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,700">
@@ -26,5 +27,5 @@
     @yield('content')
   </div>
 </body>
-
+{{ Html::script('js/hyphenate.js') }}
 </html>
