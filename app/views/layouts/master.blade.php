@@ -27,5 +27,5 @@
     @yield('content')
   </div>
 </body>
-{{ Html::script('js/hyphenate.js') }}
+{{-- Html::script('js/hyphenate.js') --}}
 </html>
