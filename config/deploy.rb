@@ -14,7 +14,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 set :ssh_options, {:forward_agent => true}
 set :copy_exclude, [".git", ".gitignore", ".tags", ".tags_sorted_by_file"]
-set :keep_releases, 5
+set :keep_releases, 4
 
 # Laravel deployment
 namespace :deploy do
@@ -82,9 +82,6 @@ namespace :deploy do
     end
   end
 
-
 end
-
-
 
 after "deploy:rollback", "deploy:laravel_rollback"
