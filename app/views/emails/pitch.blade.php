@@ -1,4 +1,4 @@
-New pitch from {{ $pitch->author }} <{{$pitch->email }}>
+New pitch from {{ $pitch->name }}  <{{ $pitch->email }}>
 =========
 
-{{ $pitch->blurb }}
+{{ wordwrap($pitch->blurb,72) }}
