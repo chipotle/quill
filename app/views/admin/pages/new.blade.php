@@ -16,14 +16,18 @@
 {{ Form::label('slug', 'URL (slug)') }}
 {{ Form::text('slug', null, ['class'=>'input-xxlarge']) }}
 
+
 {{ Form::label('body', 'Body (Markdown)') }}
-{{ Form::textarea('body', null, ['class'=>'input-block-level', 'rows'=>20]) }}
+
+{{ Form::textarea('body', null, ['id'=>'realeditor', 'style'=>'display:none']) }}
+
+<div id="epiceditor"></div>
 
 {{ Form::label('head', 'Extra HTML for <head>') }}
 {{ Form::textarea('head', null, ['class'=>'input-block-level']) }}
 
 <p>
-  {{ Form::submit('Submit', ['class'=>'btn']) }}
+  {{ Form::submit('Submit', ['class'=>'btn', 'id'=>'submit']) }}
   {{ Html::linkRoute('sysop.pages.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
 </p>
 

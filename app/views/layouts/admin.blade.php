@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin: @yield('title')</title>
-{{ Html::style('css/bootstrap.min.css') }}
+{{ Html::style('css/admin.css') }}
 @yield('head')
 </head>
 
@@ -52,7 +52,7 @@
   </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  {{ HTML::script('js/bootstrap.min.js') }}
+  {{ HTML::script('js/admin.js') }}
   @yield('scripts')
   <body>
 </html>
