@@ -58,3 +58,11 @@ Route::get('/page/{slug}', function($slug)
  * Pitch form
  */
 Route::controller('pitch', 'PitchController');
+
+/**
+ * Queue controller
+ */
+Route::post('cnq-queue', function()
+{
+	return Queue::marshal();
+});
