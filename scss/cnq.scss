@@ -46,16 +46,16 @@ div.error {
 
 
 a {
-	-webkit-transition: all 0.6s ease;
-	-moz-transition: all 0.6s ease;
-	transition: all 0.6s ease;
+	-webkit-transition: all 0.8s ease;
+	-moz-transition: all 0.8s ease;
+	transition: all 0.8s ease;
 	&:link, &:visited {
 		text-decoration: none;
-		color: scale-color($textColor, $blue: 60%);
-    background-color: scale-color($paperColor, $blue: -2%, $green: -2%);
+		color: scale-color($textColor, $blue: 100%);
+    background-color: scale-color($paperColor, $lightness: -4%);
 	}
 	&:hover {
-		background-color: white;
+		background-color: scale-color($paperColor, $blue: 30%, $red: -10%, $green: -10%);
 		color: blue;
 	}
 }
