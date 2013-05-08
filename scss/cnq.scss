@@ -51,11 +51,11 @@ a {
 	transition: all 0.8s ease;
 	&:link, &:visited {
 		text-decoration: none;
-		color: scale-color($textColor, $blue: 100%);
-    background-color: scale-color($paperColor, $lightness: -4%);
+		color: scale-color($textColor, $blue: 80%);
+    background-color: scale-color($paperColor, $lightness: -2%);
 	}
 	&:hover {
-		background-color: scale-color($paperColor, $blue: 30%, $red: -10%, $green: -10%);
+		background-color: scale-color($paperColor, $blue: 30%, $red: -15%, $green: -15%);
 		color: blue;
 	}
 }
