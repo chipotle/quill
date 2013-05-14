@@ -23,7 +23,7 @@
 
 <p>
   {{ Form::submit('Update', ['class'=>'btn btn-primary']) }}
-  {{ Html::linkRoute('sysop.pitches.index', 'Back', null, ['class'=>'btn'])}}
+  {{ HTML::linkRoute('sysop.pitches.index', 'Back', null, ['class'=>'btn'])}}
 </p>
 
 {{ Form::close() }}

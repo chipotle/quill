@@ -36,11 +36,11 @@ Pitches
     <tr>
       <td><a href='{{ URL::route("sysop.pitches.edit", [$pitch->id]) }}' title="Edit" class="btn"><i class="icon-edit"></i></a></td>
       <td>{{ $pitch->id }}</td>
-      <td>{{ Html::date_fmt($pitch->created_at) }}</td>
-      <td>{{ Html::linkRoute('sysop.pitches.show', $pitch->name, [$pitch->id]) }}</td>
+      <td>{{ HTML::date_fmt($pitch->created_at) }}</td>
+      <td>{{ HTML::linkRoute('sysop.pitches.show', $pitch->name, [$pitch->id]) }}</td>
       <td>{{ $pitch->email }}</td>
       <td>{{ Pitch::$statusList[$pitch->status] }}</td>
-      <td style="height:1em;overflow:hidden">{{ Html::linkRoute('sysop.pitches.show', Html::truncate($pitch->blurb), [$pitch->id]) }}</td>
+      <td style="height:1em;overflow:hidden">{{ HTML::linkRoute('sysop.pitches.show', HTML::truncate($pitch->blurb), [$pitch->id]) }}</td>
     </tr>
 @endforeach
   </tbody>

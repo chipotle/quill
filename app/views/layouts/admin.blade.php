@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin: @yield('title')</title>
-{{ Html::style('css/admin.css') }}
+{{ HTML::style('css/admin.css') }}
 @yield('head')
 </head>
 
@@ -17,13 +17,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        {{ Html::link('sysop', 'Claw &amp; Quill', ['class'=>'brand']) }}
+        {{ HTML::link('sysop', 'Claw &amp; Quill', ['class'=>'brand']) }}
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li>{{ Html::linkRoute('sysop.pages.index', 'Pages') }}</li>
+            <li>{{ HTML::linkRoute('sysop.pages.index', 'Pages') }}</li>
             <li><a href="#">Issues</a></li>
             <li><a href="#">Authors</a></li>
-            <li>{{ Html::linkRoute('sysop.pitches.index', 'Pitches') }}</li>
+            <li>{{ HTML::linkRoute('sysop.pitches.index', 'Pitches') }}</li>
             <li><a href="#">Users</a></li>
           </ul>
         </div>

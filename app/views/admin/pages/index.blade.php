@@ -20,8 +20,8 @@
         <a href='{{ URL::route("sysop.pages.edit", [$page->id]) }}' title="Edit" class="btn"><i class="icon-edit"></i></a>
         <a href='{{ URL::route("sysop.pages.destroy", [$page->id]) }}' title="Delete" class="btn btn-danger delete" data-page="{{ $page->slug }}"><i class="icon-remove icon-white"></i></a>
       </td>
-      <td style="vertical-align:middle">{{ Html::linkRoute('sysop.pages.show', $page->slug, [$page->id]) }}</td>
-      <td style="vertical-align:middle">{{ Html::linkRoute('sysop.pages.show', $page->title, [$page->id]) }}</td>
+      <td style="vertical-align:middle">{{ HTML::linkRoute('sysop.pages.show', $page->slug, [$page->id]) }}</td>
+      <td style="vertical-align:middle">{{ HTML::linkRoute('sysop.pages.show', $page->title, [$page->id]) }}</td>
       <td>
 @if ($page->is_visible)
         <i class="icon-eye-open" title="Visible"></i>
