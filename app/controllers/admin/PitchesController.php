@@ -1,7 +1,13 @@
-<?php
+<?php namespace Admin;
 
-class Admin_PitchesController extends BaseController {
+class PitchesController extends \BaseController {
 
+	protected $pitch;
+
+	function __construct(\Pitch $pitch)
+	{
+		$this->pitch = $pitch;
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -10,12 +16,12 @@ class Admin_PitchesController extends BaseController {
 	public function index($show=false)
 	{
 		if ($show) {
-			$pitches = Pitch::orderBy('updated_at', 'desc')->paginate(15);
+			$pitches = $this->pitch->orderBy('updated_at', 'desc')->paginate(15);
 		}
 		else {
-			$pitches = Pitch::pending()->orderBy('updated_at', 'desc')->paginate(15);
+			$pitches = $this->pitch->pending()->orderBy('updated_at', 'desc')->paginate(15);
 		}
-		return View::make('admin.pitches.index')->with([
+		return \View::make('admin.pitches.index')->with([
 			'pitches' => $pitches,
 			'show' => $show
 		]);
@@ -29,8 +35,8 @@ class Admin_PitchesController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$pitch = Pitch::findOrFail($id);
-		return View::make('admin.pitches.show')->with('pitch', $pitch);
+		$pitch = $this->pitch->findOrFail($id);
+		return \View::make('admin.pitches.show')->with('pitch', $pitch);
 	}
 
 	/**
@@ -41,13 +47,13 @@ class Admin_PitchesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$pitch = Pitch::findOrFail($id);
-		$menu = Pitch::$statusList;
-		if ($pitch->status == Pitch::UNSEEN) {
-			unset($menu[Pitch::WAITING]);
-			unset($menu[Pitch::PUBLISHED]);
+		$pitch = $this->pitch->findOrFail($id);
+		$menu = \Pitch::$statusList;
+		if ($pitch->status == \Pitch::UNSEEN) {
+			unset($menu[\Pitch::WAITING]);
+			unset($menu[\Pitch::PUBLISHED]);
 		}
-		return View::make('admin.pitches.edit')->with([
+		return \View::make('admin.pitches.edit')->with([
 			'pitch' => $pitch,
 			'menu' => $menu
 		]);
@@ -61,24 +67,24 @@ class Admin_PitchesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = Input::all();
-		$pitch = Pitch::find($id);
-		$validator = Validator::make($input, [
+		$input = \Input::all();
+		$pitch = $this->pitch->find($id);
+		$validator = \Validator::make($input, [
 			'email' => 'required|email',
 			'name' => 'required',
 			'blurb' => 'required'
 		]);
 		if ($validator->fails()) {
-			Session::flashInput($input);
-			return Redirect::route('sysop.pitches.edit', [$id])->with('error', $validator->messages());
+			\Session::flashInput($input);
+			return \Redirect::route('sysop.pitches.edit', [$id])->with('error', $validator->messages());
 		}
 		$pitch->fill($input);
-		if ($pitch->status == Pitch::UNSEEN) {
-			$pitch->status = Pitch::REVIEW;
+		if ($pitch->status == \Pitch::UNSEEN) {
+			$pitch->status = \Pitch::REVIEW;
 		}
 		$msg = "Pitch #{$pitch->id} updated.";
-		if ($pitch->status == Pitch::ACCEPTED && !$pitch->author_id) {
-			$a = new Author();
+		if ($pitch->status == \Pitch::ACCEPTED && !$pitch->author_id) {
+			$a = \App::make('Author');
 			$a->name = $pitch->name;
 			$a->email = $pitch->email;
 			$a->save();
@@ -86,7 +92,7 @@ class Admin_PitchesController extends BaseController {
 			$msg .= "<br>Author '{$a->name}' created with ID {$a->id}.";
 		}
 		$pitch->save();
-		return Redirect::route('sysop.pitches.index')->with('msg', $msg);
+		return \Redirect::route('sysop.pitches.index')->with('msg', $msg);
 	}
 
 	/**
@@ -97,11 +103,11 @@ class Admin_PitchesController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$pitch = Pitch::find($id);
+		$pitch = $this->pitch->find($id);
 		$pitch->delete();
-		Session::flash('msg', "Pitch '{$pitch->id}' deleted!");
+		\Session::flash('msg', "Pitch '{$pitch->id}' deleted!");
 		$response = ['redirect'=>URL::route('sysop.pitches.index')];
-		return Response::json($response);
+		return \Response::json($response);
 	}
 
 }
