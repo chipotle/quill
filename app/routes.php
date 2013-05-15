@@ -31,14 +31,9 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
     Route::put('pitches/update/{id}', ['uses'=>'Admin\PitchesController@update', 'as'=>'sysop.pitches.update']);
 
     Route::get('/do', function() {
-    	for ($i=1; $i < 50; $i++) {
-    		$p = new Pitch();
-    		$p->name = "Author $i";
-    		$p->email = "author$i@gmail.com";
-    		$p->blurb = "Lorem ipsum $i et cetera herein forthwith and blah blah blah to the maximum something something furry.";
-    		$p->save();
-    	}
-    	return "Done.";
+    	$name = Config::get('quill.pitch.name');
+    	$email = Config::get('quill.pitch.email');
+    	return "Send email to $name ($email).";
     });
 });
 
