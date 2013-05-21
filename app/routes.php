@@ -14,32 +14,32 @@ Route::get('/', function()
     return View::make('page')->with($page->getContent());
 });
 
-/**
- * Admin routes - handled by resource controllers in admin/
- */
+// Admin (back end) routes
 Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 {
+	// Index
     Route::get('/', function()
     {
         return Redirect::route('sysop.pitches.index');
     });
+
+    // Static pages - REST controller
     Route::resource('pages', 'Admin\PagesController');
 
+    // Pitches - we can't use REST routes because we need to switch between
+    // showing all pitches and only pending pitches on the index page
     Route::get('pitches/{show?}', ['uses'=>'Admin\PitchesController@index', 'as'=>'sysop.pitches.index']);
     Route::get('pitches/show/{id}', ['uses'=>'Admin\PitchesController@show', 'as'=>'sysop.pitches.show']);
     Route::get('pitches/edit/{id}', ['uses'=>'Admin\PitchesController@edit', 'as'=>'sysop.pitches.edit']);
     Route::put('pitches/update/{id}', ['uses'=>'Admin\PitchesController@update', 'as'=>'sysop.pitches.update']);
 
+    // Temporary route used to do arbitrary things
     Route::get('/do', function() {
-    	$name = Config::get('quill.pitch.name');
-    	$email = Config::get('quill.pitch.email');
-    	return "Send email to $name ($email).";
+    	return "Beep!\n";
     });
 });
 
-/**
- * Static page controller
- */
+// Static page display
 Route::get('/page/{slug}', function($slug)
 {
     $page = Page::where('slug', $slug)->first();
@@ -49,14 +49,10 @@ Route::get('/page/{slug}', function($slug)
     return View::make('page')->with($page->getContent());
 });
 
-/**
- * Pitch form
- */
+// "Pitch a story" form
 Route::controller('pitch', 'PitchController');
 
-/**
- * Queue controller
- */
+// Queue postback URL (for iron.io)
 Route::post('cnq-queue', function()
 {
 	return Queue::marshal();
