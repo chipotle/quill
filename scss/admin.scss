@@ -1,13 +1,10 @@
 @import "bootstrap.min.scss";
 
-#epiceditor {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  height: 24em;
-  padding: 2px;
-  margin-bottom: 1em;
-}
 textarea {
   font-family:Inconsolata, Consolas, Menlo, 'Source Code Pro', monospace;
   font-size:16px;
+}
+
+textarea.long {
+  height: 24em;
 }

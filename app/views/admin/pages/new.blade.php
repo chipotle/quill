@@ -19,9 +19,7 @@
 
 {{ Form::label('body', 'Body (Markdown)') }}
 
-{{ Form::textarea('body', null, ['id'=>'realeditor', 'style'=>'display:none']) }}
-
-<div id="epiceditor"></div>
+{{ Form::textarea('body', null, ['class'=>'input-block-level long']) }}
 
 {{ Form::label('head', 'Extra HTML for <head>') }}
 {{ Form::textarea('head', null, ['class'=>'input-block-level']) }}
