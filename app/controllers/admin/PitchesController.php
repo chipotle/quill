@@ -106,7 +106,7 @@ class PitchesController extends \BaseController {
 		$pitch = $this->pitch->find($id);
 		$pitch->delete();
 		\Session::flash('msg', "Pitch '{$pitch->id}' deleted!");
-		$response = ['redirect'=>URL::route('sysop.pitches.index')];
+		$response = ['redirect'=>\URL::route('sysop.pitches.index')];
 		return \Response::json($response);
 	}
 
