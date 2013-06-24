@@ -1,7 +1,10 @@
-<?php
+<?php namespace Admin;
+
 use Michelf\MarkdownExtra, Chipotle\Smartypants;
 
-class Admin_PagesController extends BaseController {
+class PagesController extends \BaseController {
+
+	protected $page;
 
 	/**
 	 * Validator array for pages
@@ -12,6 +15,11 @@ class Admin_PagesController extends BaseController {
 		'body' => 'required'
 	];
 
+	function __construct(\Page $page)
+	{
+		$this->page = $page;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -19,8 +27,8 @@ class Admin_PagesController extends BaseController {
 	 */
 	public function index()
 	{
-		$pages = Page::all();
-		return View::make('admin.pages.index')->with(['pages' => $pages]);
+		$pages = $this->page->all();
+		return \View::make('admin.pages.index')->with(['pages' => $pages]);
 	}
 
 	/**
@@ -31,24 +39,24 @@ class Admin_PagesController extends BaseController {
 	private function editForm($id=false)
 	{
 		if ($id) {
-			$page = Page::find($id);
+			$page = $this->page->find($id);
 			$content = [
 				'title' => "Editing Page '{$page->slug}'",
-				'url' => URL::route('sysop.pages.update', [$page->id]),
+				'url' => \URL::route('sysop.pages.update', [$page->id]),
 				'page' => $page,
 				'method' => 'put'
 			];
 		}
 		else {
-			$page = new Page();
+			$page = $this->page;
 			$content = [
 				'title' => 'New Page',
-				'url' => URL::route('sysop.pages.store'),
+				'url' => \URL::route('sysop.pages.store'),
 				'page' => $page,
 				'method' => 'post'
 			];
 		}
-		return View::make('admin.pages.new')->with($content);
+		return \View::make('admin.pages.new')->with($content);
 	}
 
 	/**
@@ -68,16 +76,16 @@ class Admin_PagesController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$page = new Page();
-		$validator = Validator::make($input, $this->rules);
+		$input = \Input::all();
+		$page = $this->page;
+		$validator = \Validator::make($input, $this->rules);
 		if ($validator->fails()) {
-			Session::flashInput($input);
-			return Redirect::route('sysop.pages.create')->with('error', $validator->messages());
+			\Session::flashInput($input);
+			return \Redirect::route('sysop.pages.create')->with('error', $validator->messages());
 		}
 		$page->fill($input);
 		$page->save();
-		return Redirect::route('sysop.pages.index')->with('msg', "Page '{$page->slug}' created.");
+		return \Redirect::route('sysop.pages.index')->with('msg', "Page '{$page->slug}' created.");
 	}
 
 	/**
@@ -88,14 +96,14 @@ class Admin_PagesController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$page = Page::find($id);
+		$page = $this->page->find($id);
 		$body = MarkdownExtra::defaultTransform($page->body);
 		$content = [
 			'body' => Smartypants::defaultTransform($body),
 			'title' => Smartypants::defaultTransform($page->title),
 			'id' => $page->id
 		];
-		return View::make('admin.pages.show')->with($content);
+		return \View::make('admin.pages.show')->with($content);
 	}
 
 	/**
@@ -117,17 +125,17 @@ class Admin_PagesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = Input::all();
-		$page = Page::find($id);
-		$validator = Validator::make($input, $this->rules);
+		$input = \Input::all();
+		$page = $this->page->find($id);
+		$validator = \Validator::make($input, $this->rules);
 		if ($validator->fails()) {
-			Session::flashInput($input);
-			return Redirect::route('sysop.pages.edit', [$id])->with('error', $validator->messages());
+			\Session::flashInput($input);
+			return \Redirect::route('sysop.pages.edit', [$id])->with('error', $validator->messages());
 		}
 		$page->fill($input);
 		$page->save();
-		Cache::forget("page-{$page->id}");
-		return Redirect::route('sysop.pages.index')->with('msg', "Page '{$page->slug}' updated.");
+		\Cache::forget("page-{$page->id}");
+		return \Redirect::route('sysop.pages.index')->with('msg', "Page '{$page->slug}' updated.");
 	}
 
 	/**
@@ -138,12 +146,12 @@ class Admin_PagesController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$page = Page::find($id);
+		$page = $this->page->find($id);
 		$slug = $page->slug;
 		$page->delete();
-		Session::flash('msg', "Page '$slug' deleted!");
+		\Session::flash('msg', "Page '$slug' deleted!");
 		$response = ['redirect'=>URL::route('sysop.pages.index')];
-		return Response::json($response);
+		return \Response::json($response);
 	}
 
 }
