@@ -40,8 +40,8 @@ namespace :deploy do
       update_code
       copy_config
       composer_install
-  	  link_shared
-  	  fix_permissions
+      link_shared
+      fix_permissions
     end
   end
 
@@ -67,7 +67,7 @@ namespace :deploy do
 
   desc "Run migrations in Artisan."
   task :migrate do
-	run "php #{current_release}/artisan migrate"
+    run "php #{current_release}/artisan migrate"
   end
 
   desc "Set Laravel storage directory world-writable."
