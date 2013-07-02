@@ -31,7 +31,7 @@ set :copy_exclude, [".git", ".gitignore", ".tags", ".tags_sorted_by_file"]
 set :keep_releases, 4
 
 # Nginx requires the php_fpm:reload task; other servers may not
-after :deploy, "deploy:cleanup", "php_fpm:reload"
+after :deploy, "php_fpm:reload"
 
 namespace :deploy do
 
@@ -42,14 +42,13 @@ namespace :deploy do
       composer_install
   	  link_shared
   	  fix_permissions
-  	  symlink
     end
   end
 
   task :finalize_update do
     transaction do
       run "chmod -R g+w #{releases_path}/#{release_name}"
-      sym
+      symlink
     end
   end
 
