@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>@yield('title')</title>
-  {{ HTML::style('css/cnq.css') }}
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,700">
+  {{ HTML::style('css/cnq.css') }}
   @yield('head')
 </head>
 

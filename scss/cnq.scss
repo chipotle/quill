@@ -1,4 +1,4 @@
-/* http://modularscale.com/scale/?px1=16&px2=544&ra1=1.5&ra2=0 */
+/* http://modularscale.com/scale/?px1=17&px2=544&ra1=1.5&ra2=0 */
 
 @import "normalize.scss";
 @import "lyon/stylesheet.scss";
@@ -13,12 +13,13 @@ html {
 }
 
 body {
-	margin: 71.638px;
 	font-family: $textFont;
 	font-size: 100%;
+  font-size: 1.063em;
+  margin: 4.477em;
 	color: $textColor;
 	background-color: $paperColor;
-	line-height: 1em;
+	line-height: 1.327em;
 }
 
 #content {
@@ -27,9 +28,9 @@ body {
 	margin: auto;
 }
 
-p, blockquote, div.alert, ul, ol, li {
-	line-height: 1.5em;
-}
+// p, blockquote, div.alert, ul, ol, li {
+// 	line-height: 1.327em;
+// }
 
 div.alert {
   font-family: $altFont;
@@ -70,7 +71,7 @@ nav {
 		font-family: $altFont;
 		text-align: center;
 		margin: auto;
-		margin-bottom: 2.25em;
+		margin-bottom: 2.391em;
 		padding: 0;
 		li {
 			display: inline;
@@ -113,7 +114,7 @@ h1 {
 
 article {
 	h1 {
-		font-size: 2.25em;
+		font-size: 1.99em;
 		line-height: 1em;
 		text-align: center;
 		margin-bottom: 0.59em;
@@ -159,7 +160,7 @@ article {
 	.author {
 		margin-top: 0;
 		text-align: center;
-		margin-bottom: 2.25em;
+		margin-bottom: 2.391em;
 		span {
 			font-weight: 700;
 		}
@@ -168,7 +169,7 @@ article {
 		font-family: $altFont;
 		text-transform: uppercase;
 		font-size: 0.884em;
-		margin-bottom: 2.25em;
+		margin-bottom: 2.391em;
 		span {
 			font-weight: 700;
 		}
@@ -190,6 +191,7 @@ article.page {
 	}
 }
 
+/* Phone Overrides */
 @media only screen and (max-width: 480px) {
 	body {
 		margin: 48px 24px;
@@ -211,15 +213,10 @@ article.page {
 	}
 }
 
+/* Tablet Overrides */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 	#content {
 		max-width: 39em;
-		font-size: 120%;
-	}
-}
-
-@media only screen and (min-width: 1200px) {
-	#content {
-		font-size: 120%;
+		font-size: 108.854%;
 	}
 }
