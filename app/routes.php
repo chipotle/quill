@@ -23,8 +23,10 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
         return Redirect::route('sysop.pitches.index');
     });
 
-    // Static pages - REST controller
+    // REST controllers
     Route::resource('pages', 'Admin\PagesController');
+    Route::resource('issues', 'Admin\IssuesController');
+    Route::get('issues/publish/{id}', ['uses'=>'Admin\IssuesController@publish', 'as'=>'sysop.issues.publish']);
 
     // Pitches - we can't use REST routes because we need to switch between
     // showing all pitches and only pending pitches on the index page
