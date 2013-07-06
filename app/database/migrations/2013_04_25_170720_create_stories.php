@@ -23,7 +23,7 @@ class CreateStories extends Migration {
 			$t->timestamps();
 
 			$t->foreign('author_id')->references('id')->on('authors');
-			$t->foreign('issue_id')->references('id')->on('issues');
+			$t->index('issue_id');
 		});
 	}
 
@@ -37,7 +37,6 @@ class CreateStories extends Migration {
 		Schema::drop('stories', function($t)
 		{
 			$t->dropForeign('stories_author_id_foreign');
-			$t->dropForeign('stories_issue_id_foreign');
 		});
 	}
 
