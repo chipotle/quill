@@ -5450,3 +5450,6 @@ textarea {
 
 textarea.long {
   height: 24em; }
+
+td {
+  vertical-align: middle; }
