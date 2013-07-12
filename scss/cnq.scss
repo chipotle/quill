@@ -1,12 +1,14 @@
 /* http://modularscale.com/scale/?px1=17&px2=544&ra1=1.5&ra2=0 */
 
 @import "normalize.scss";
-@import "lyon/stylesheet.scss";
+// @import "lyon/stylesheet.scss";
 
 $paperColor: #FCFAF8;
 $textColor: darken($paperColor, 70%);
-$textFont: 'Lyon', 'Palatino', serif;
-$altFont: 'Lato', 'Helvetica Neue', 'Arial', sans-serif;
+// $textFont: 'Lyon', 'Palatino', serif;
+$textFont: 'freight-text-pro', 'Palatino', serif;
+// $altFont: 'Lato', 'Helvetica Neue', 'Arial', sans-serif;
+$altFont: 'freight-sans-pro', 'Helvetica Neue', 'Arial', sans-serif;
 
 html {
   background-color: $paperColor;

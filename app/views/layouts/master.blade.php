@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>@yield('title')</title>
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,700">
+  <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,700"> -->
+  <script type="text/javascript" src="//use.typekit.net/fky8rov.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   {{ HTML::style('css/cnq.css') }}
   @yield('head')
 </head>
