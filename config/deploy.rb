@@ -1,7 +1,7 @@
 # Capistrano Laravel 4 Deployment Tasks
 # Watts Martin (layotl at gmail com)
 # https://gist.github.com/chipotle/5506641
-# updated 28-May-2013
+# updated 12-Jul-2013
 
 # Assumptions:
 #
@@ -102,3 +102,55 @@ namespace :php_fpm do
   end
 end
 
+# Database dump task adapted from https://gist.github.com/rgo/318312
+namespace :db do
+  task :backup_name, :roles => :db do
+    now = Time.now
+    run "mkdir -p #{shared_path}/db_backups"
+    backup_time = [now.year, now.month, now.day, now.hour, now.min].join('-')
+    set :backup_file, "#{shared_path}/db_backups/#{database}-#{backup_time}.sql"
+  end
+
+  desc "Backup MySQL or PostgreSQL database to shared_path/db_backups"
+  task :dump, :roles => :db do
+    run("php -r '$db=include\"#{shared_path}/config/database.php\";echo json_encode($db,JSON_UNESCAPED_SLASHES);'") { |channel, stream, data| @environment_info = YAML.load(data) }
+    default = @environment_info['default']
+    connection = @environment_info['connections'][default]
+    dbuser = connection['username']
+    dbpass = connection['password']
+    database = connection['database']
+    dbhost = connection['host']
+    set :database, database
+    backup_name
+    if connection['driver'] == 'mysql'
+      run "mysqldump --add-drop-table -u #{dbuser} -h #{dbhost} -p #{database} | bzip2 -c > #{backup_file}.bz2" do |ch, stream, out |
+        ch.send_data "#{dbpass}\n" if out=~ /^Enter password:/
+      end
+    else
+      run "pg_dump -W -c -U #{dbuser} -h #{dbhost} #{database} | bzip2 -c > #{backup_file}.bz2" do |ch, stream, out |
+        ch.send_data "#{dbpass}\n" if out=~ /^Password:/
+      end
+    end
+  end
+
+  desc "Sync production database to your local workstation"
+  task :clone_to_local, :roles => :db, :only => {:primary => true} do
+    dump
+    get "#{backup_file}.bz2", "/tmp/#{application}.sql.bz2"
+    data = `php -r '$db=include"app/config/database.php";echo json_encode($db,JSON_UNESCAPED_SLASHES);'`
+    development_info = YAML.load(data)
+    default = development_info['default']
+    connection = development_info['connections'][default]
+    dbuser = connection['username']
+    dbpass = connection['password']
+    database = connection['database']
+    dbhost = connection['host']
+    if connection['driver'] == 'mysql'
+      run_str = "bzcat '/tmp/#{application}.sql.bz2' | mysql -u #{dbuser} --password='#{dbpass}' -h #{dbhost} #{database}"
+    else
+      run_str = "PGPASSWORD=#{dbpass} bzcat '/tmp/#{application}.sql.bz2' | psql -U #{dbuser} -h #{dbhost} #{database}"
+    end
+    %x!#{run_str}!
+  end
+
+end
