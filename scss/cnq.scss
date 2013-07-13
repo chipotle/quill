@@ -110,10 +110,6 @@ h1, h2 {
 	text-rendering: optimizeLegibility;
 }
 
-h1 {
-  font-weight: 300;
-}
-
 article {
   p {
     -webkit-hyphens: auto;
@@ -126,7 +122,7 @@ article {
 		font-size: 1.99em;
 		line-height: 1em;
 		text-align: center;
-		margin-bottom: 0.59em;
+    margin-bottom: 0.59em !important;
 	}
 	h2 {
 		margin-top: 1em;
@@ -140,8 +136,8 @@ article {
 		font-family: $altFont;
 		font-size: 1.327em;
 		line-height: 1.327em;
-		border-top: 1px solid black;
-		border-bottom: 1px solid black;
+		border-top: 1px solid $textColor;
+		border-bottom: 1px solid $textColor;
 		margin-left: 1.327em;
 		margin-right: -0.884em;
 		padding: 0.262em;
@@ -149,10 +145,15 @@ article {
 		margin-top: 0.262em;
 		&.aboutbox {
 			font-size: 0.884em;
-			line-height: 1.76em;
+			line-height: 1.327em;
 			width: 45%;
-			margin-top: 1.5em;
-			margin-right: auto;
+			margin-top: 1em;
+      background-color: darken($paperColor, 3%);
+      border: 1px solid $textColor;
+      padding: 0.262em 0.59em;
+      a {
+        background-color: scale-color($paperColor, $lightness: -4%);
+      }
 		}
 		&.left {
 			float: left;
@@ -170,9 +171,11 @@ article {
 		margin-top: 0;
 		text-align: center;
 		margin-bottom: 2.391em;
-		span {
-			font-weight: 700;
-		}
+    font-size: 1.327em;
+    font-style: italic;
+    span {
+      font-style: normal;
+    }
 	}
 	.category {
 		font-family: $altFont;
