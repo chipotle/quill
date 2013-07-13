@@ -115,6 +115,13 @@ h1 {
 }
 
 article {
+  p {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+  }
 	h1 {
 		font-size: 1.99em;
 		line-height: 1em;
