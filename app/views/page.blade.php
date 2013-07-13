@@ -5,7 +5,7 @@
 @section('head'){{ $head }}@endsection
 
 @section('content')
-<article class="page hyphenate">
+<article class="page">
 {{ $body }}
 </article>
 @endsection
