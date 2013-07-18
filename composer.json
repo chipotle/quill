@@ -1,4 +1,16 @@
 {
+  "name": "chipotle/quill",
+  "description": "Quill online magazine platform",
+  "type": "project",
+  "version": "0.0.1-dev",
+  "license": "BSD-2-Clause",
+  "authors": [
+    {
+      "name": "Watts Martin",
+      "email": "layotl@gmail.com",
+      "role": "developer"
+    }
+  ],
 	"repositories": [
 		{
 			"type": "vcs",
