@@ -38,7 +38,7 @@ Pitches
       <td>{{ $pitch->id }}</td>
       <td>{{ HTML::date_fmt($pitch->created_at) }}</td>
       <td>{{ HTML::linkRoute('sysop.pitches.show', $pitch->name, [$pitch->id]) }}</td>
-      <td>{{ $pitch->email }}</td>
+      <td>{{ HTML::mailto($pitch->email) }}</td>
       <td>{{ Pitch::$statusList[$pitch->status] }}</td>
       <td style="height:1em;overflow:hidden">{{ HTML::linkRoute('sysop.pitches.show', HTML::truncate($pitch->blurb), [$pitch->id]) }}</td>
     </tr>

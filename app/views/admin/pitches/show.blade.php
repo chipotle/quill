@@ -6,7 +6,7 @@
 
 <dl class="dl-horizontal">
   <dt>From</dt>
-  <dd>{{ $pitch->name }} &lt;{{ $pitch->email }}&gt;</dd>
+  <dd>{{ $pitch->name }} &lt;{{ HTML::mailto($pitch->email) }}&gt;</dd>
   <dt>Submitted</dt>
   <dd>{{ HTML::date_fmt($pitch->created_at, 'd-M-y H:i') }}</dd>
   <dt>Updated</dt>
