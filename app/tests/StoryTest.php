@@ -8,4 +8,14 @@ class StoryTest extends TestCase {
     	$this->assertBelongsTo('issue', 'Story');
     }
 
+    public function testBelongsToAuthor()
+    {
+    	$this->assertBelongsTo('author', 'Story');
+    }
+
+    public function testHasOnePitch()
+    {
+    	$this->assertHasOne('pitch', 'Story');
+    }
+
 }
