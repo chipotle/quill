@@ -25,7 +25,8 @@
 	},
   "require-dev": {
     "way/generators": "dev-master",
-    "way/laravel-test-helpers": "dev-master"
+    "way/laravel-test-helpers": "dev-master",
+    "mockery/mockery": "dev-master"
   },
 	"autoload": {
 		"classmap": [
