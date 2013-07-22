@@ -7,6 +7,8 @@ class Author extends Eloquent {
 	 */
 	protected $table = 'authors';
 
+	protected $guarded = ['id'];
+
 	/**
 	 * Class Constants
 	 */

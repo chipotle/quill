@@ -7,6 +7,8 @@ class Story extends Eloquent {
      */
     protected $table = 'stories';
 
+    protected $guarded = ['id'];
+
     /**
      * Story belongsTo Issue
      */
