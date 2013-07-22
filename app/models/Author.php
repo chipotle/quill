@@ -1,13 +1,19 @@
 <?php
 
-class Author extends Eloquent {
+class Author extends BaseModel {
 
 	/**
 	 * Database table used by model
 	 */
 	protected $table = 'authors';
 
-	protected $guarded = ['id'];
+	public static $rules = [
+		'name' => 'required',
+		'show' => 'required|integer',
+		'email' => 'email',
+		'website' => 'url',
+		'twitter' => 'alpha_dash',
+	];
 
 	/**
 	 * Class Constants

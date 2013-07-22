@@ -4,14 +4,6 @@ class AuthorsController extends \BaseController {
 
 	protected $author;
 
-	protected $rules = [
-		'name' => 'required',
-		'show' => 'required|integer',
-		'email' => 'email',
-		'website' => 'url',
-		'twitter' => 'alpha_dash',
-	];
-
 	function __construct(\Author $author)
 	{
 		$this->author = $author;
@@ -61,16 +53,13 @@ class AuthorsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = \Input::all();
-		$author = $this->author;
-		$validator = \Validator::make($input, $this->rules);
-		if ($validator->fails()) {
-			\Session::flashInput($input);
-			return \Redirect::route('sysop.authors.create')->with('error', $validator->messages());
+		$author = $this->author->fill(\Input::all());
+		if ($author->validate()) {
+			$author->save();
+			return \Redirect::route('sysop.authors.index')->with('msg', "Author '{$author->name}' created.");
 		}
-		$author->fill($input);
-		$author->save();
-		return \Redirect::route('sysop.authors.index')->with('msg', "Author '{$author->name}' created.");
+		\Session::flashInput($input);
+		return \Redirect::route('sysop.authors.create')->with('error', $author->errors);
 	}
 
 	/**
@@ -93,16 +82,14 @@ class AuthorsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$input = \Input::all();
 		$author = $this->author->findOrFail($id);
-		$validator = \Validator::make($input, $this->rules);
-		if ($validator->fails()) {
-			\Session::flashInput($input);
-			return \Redirect::route('sysop.authors.edit', $author->id)->with('error', $validator->messages());
+		$author->fill(\Input::all());
+		if ($author->validate()) {
+			$author->save();
+			return \Redirect::route('sysop.authors.index')->with('msg', "Author '{$author->name}' updated.");
 		}
-		$author->fill($input);
-		$author->save();
-		return \Redirect::route('sysop.authors.index')->with('msg', "Author '{$author->name}' updated.");
+		\Session::flashInput($input);
+		return \Redirect::route('sysop.authors.edit')->with('error', $author->errors);
 	}
 
 	/**

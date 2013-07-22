@@ -4,12 +4,6 @@ class IssuesController extends \BaseController {
 
 	protected $issue;
 
-	protected $rules = [
-		'number' => 'required|numeric|min:1',
-		'volume' => 'required|numeric|min:1',
-		'pub_date' => 'required|date_format:Y-m-d',
-	];
-
 	function __construct(\Issue $issue)
 	{
 		$this->issue = $issue;
@@ -60,16 +54,13 @@ class IssuesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = \Input::all();
-		$issue = $this->issue;
-		$validator = \Validator::make($input, $this->rules);
-		if ($validator->fails()) {
-			\Session::flashInput($input);
-			return \Redirect::route('sysop.issues.create')->with('error', $validator->messages());
+		$issue = $this->issue->fill(\Input::all());
+		if ($issue->validate()) {
+			$issue->save();
+			return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->volume}.{$issue->number} created.");
 		}
-		$issue->fill($input);
-		$issue->save();
-		return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->volume}.{$issue->number} created.");
+		\Session::flashInput($input);
+		return \Redirect::route('sysop.issues.create')->with('error', $issue->errors);
 	}
 
 	/**
@@ -92,18 +83,15 @@ class IssuesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$input = \Input::all();
 		$issue = $this->issue->findOrFail($id);
-		$validator = \Validator::make($input, $this->rules);
-		if ($validator->fails()) {
-			\Session::flashInput($input);
-			return \Redirect::route('sysop.issues.edit', $issue->id)->with('error', $validator->messages());
-		}
-		$issue->fill($input);
+		$issue->fill(\Input::all());
 		if (!\Input::has('is_published')) $issue->is_published = false;
-		$msg = "Issue {$issue->volume}.{$issue->number} updated.";
-		$issue->save();
-		return \Redirect::route('sysop.issues.index')->with('msg', $msg);
+		if ($issue->validate()) {
+			$issue->save();
+			return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->volume}.{$issue->number} updated.");
+		}
+		\Session::flashInput($input);
+		return \Redirect::route('sysop.issues.error')->with('error', $issue->errors);
 	}
 
 	/**

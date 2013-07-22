@@ -1,10 +1,15 @@
 <?php
 
-class Pitch extends Eloquent {
+class Pitch extends BaseModel {
 
 	protected $table = 'pitches';
 
-	protected $fillable = ['name', 'email', 'blurb', 'status', 'notes', 'author_id', 'story_id'];
+	public static $rules = [
+		'email' => 'required|email',
+		'name' => 'required',
+		'blurb' => 'required'
+	];
+
 	/**
 	 * Class constants
 	 */
