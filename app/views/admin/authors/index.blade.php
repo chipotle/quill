@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title') Issues @endsection
+@section('title') Authors @endsection
 
 @section('content')
 

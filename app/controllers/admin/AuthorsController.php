@@ -42,7 +42,7 @@ class AuthorsController extends \BaseController {
 		$author->show = \Author::SHOW_NAME;
 		$user = \App::make('User');
 		$userlist = $user->lists('username', 'id');
-		$users = array_merge([null => '(None)'], $userlist);
+		$users = [null => '(None)'] + $userlist;
 		return \View::make('admin.authors.new')->with(['author' => $author, 'users' => $users]);
 	}
 
@@ -58,7 +58,7 @@ class AuthorsController extends \BaseController {
 			$author->save();
 			return \Redirect::route('sysop.authors.index')->with('msg', "Author '{$author->name}' created.");
 		}
-		\Session::flashInput($input);
+		\Session::flashInput(\Input::all());
 		return \Redirect::route('sysop.authors.create')->with('error', $author->errors);
 	}
 
@@ -88,7 +88,7 @@ class AuthorsController extends \BaseController {
 			$author->save();
 			return \Redirect::route('sysop.authors.index')->with('msg', "Author '{$author->name}' updated.");
 		}
-		\Session::flashInput($input);
+		\Session::flashInput($author->getAttributes());
 		return \Redirect::route('sysop.authors.edit')->with('error', $author->errors);
 	}
 

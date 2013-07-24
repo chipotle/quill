@@ -23,7 +23,7 @@
             <li>{{ HTML::linkRoute('sysop.pages.index', 'Pages') }}</li>
             <li><a href="#">Stories</a></li>
             <li>{{ HTML::linkRoute('sysop.issues.index', 'Issues') }}</li>
-            <li><a href="#">Authors</a></li>
+            <li>{{ HTML::linkRoute('sysop.authors.index', 'Authors') }}</li>
             <li>{{ HTML::linkRoute('sysop.pitches.index', 'Pitches') }}</li>
             <li><a href="#">Users</a></li>
           </ul>
