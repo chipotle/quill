@@ -28,6 +28,7 @@ class Pitch extends BaseModel {
 		Pitch::WAITING   => 'Waiting for Rev',
 		Pitch::PUBLISHED => 'Published'
 	];
+
 	/**
 	 * Pitch belongsTo Author
 	 */
