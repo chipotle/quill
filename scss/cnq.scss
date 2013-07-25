@@ -1,14 +1,11 @@
 /* http://modularscale.com/scale/?px1=17&px2=544&ra1=1.5&ra2=0 */
 
 @import "normalize.scss";
-// @import "lyon/stylesheet.scss";
 
 $paperColor: #FCFAF8;
 $textColor: darken($paperColor, 70%);
-// $textFont: 'Lyon', 'Palatino', serif;
-$textFont: 'freight-text-pro', 'Palatino', serif;
-// $altFont: 'Lato', 'Helvetica Neue', 'Arial', sans-serif;
-$altFont: 'freight-sans-pro', 'Helvetica Neue', 'Arial', sans-serif;
+$textFont: 'freight-text-pro', 'Palatino', 'Liberation Serif', serif;
+$altFont: 'freight-sans-pro', 'Helvetica Neue', 'Liberation Sans', 'Arial', sans-serif;
 
 html {
   background-color: $paperColor;
@@ -30,10 +27,6 @@ body {
 	margin: auto;
 }
 
-// p, blockquote, div.alert, ul, ol, li {
-// 	line-height: 1.327em;
-// }
-
 div.alert {
   font-family: $altFont;
   font-size: 0.884em;
@@ -47,161 +40,7 @@ div.error {
     border-color: scale-color($textColor, $red: 60%);
   }
 
-
-a {
-	-webkit-transition: all 0.8s ease;
-	-moz-transition: all 0.8s ease;
-	transition: all 0.8s ease;
-	&:link, &:visited {
-		text-decoration: none;
-		color: scale-color($textColor, $blue: 80%);
-    background-color: scale-color($paperColor, $lightness: -2%);
-	}
-	&:hover {
-		background-color: scale-color($paperColor, $blue: 30%, $red: -15%, $green: -15%);
-		color: blue;
-	}
-}
-
-header {
-	margin: 0;
-}
-
-nav {
-	ul {
-		list-style-type: none;
-		font-family: $altFont;
-		text-align: center;
-		margin: auto;
-		margin-bottom: 2.391em;
-		padding: 0;
-		li {
-			display: inline;
-			font-size: 0.884em;
-			text-transform: uppercase;
-			letter-spacing: 1px;
-		}
-	}
-	a {
-		padding: 2px 6px 1px;
-		margin: auto 3px;
-		&:link, &:visited {
-			// color: $paperColor;
-			// background-color: darken($paperColor, 20%);
-			color: lighten($textColor, 25%);
-			border: 1px solid lighten($textColor, 50%);
-			background-color: transparent;
-		}
-		&:hover {
-			// color: $textColor;
-			// background-color: darken($paperColor, 10%);
-			color: #00C;
-			background-color: white;
-			border-color: #00C;
-		}
-	}
-}
-
-h1, h2, h3, .catstamp, .author {
-	font-family: $altFont;
-}
-
-h1, h2 {
-	text-rendering: optimizeLegibility;
-}
-
-article {
-  p {
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    -o-hyphens: auto;
-    hyphens: auto;
-  }
-	h1 {
-		font-size: 1.99em;
-		line-height: 1em;
-		text-align: center;
-    margin-bottom: 0.59em !important;
-	}
-	h2 {
-		margin-top: 1em;
-		margin-bottom: 1em;
-		font-size: 1.327em;
-		line-height: 0.59em;
-	}
-	aside {
-		width: 50%;
-		float: right;
-		font-family: $altFont;
-		font-size: 1.327em;
-		line-height: 1.327em;
-		border-top: 1px solid $textColor;
-		border-bottom: 1px solid $textColor;
-		margin-left: 1.327em;
-		margin-right: -0.884em;
-		padding: 0.262em;
-		margin-bottom: 0.262em;
-		margin-top: 0.262em;
-		&.aboutbox {
-			font-size: 0.884em;
-			line-height: 1.327em;
-			width: 45%;
-			margin-top: 1em;
-      background-color: darken($paperColor, 3%);
-      border: 1px solid $textColor;
-      padding: 0.262em 0.59em;
-      a {
-        background-color: scale-color($paperColor, $lightness: -4%);
-      }
-		}
-		&.left {
-			float: left;
-			margin-left: -0.884em;
-			margin-right: 1.327em;
-		}
-	}
-	.excerpt {
-		font-style: italic;
-		margin: auto;
-		width: 90%;
-		margin-bottom: 2.985em;
-	}
-	.author {
-		margin-top: 0;
-		text-align: center;
-		margin-bottom: 2.391em;
-    font-size: 1.327em;
-    font-style: italic;
-    span {
-      font-style: normal;
-    }
-	}
-	.category {
-		font-family: $altFont;
-		text-transform: uppercase;
-		font-size: 0.884em;
-		margin-bottom: 2.391em;
-		span {
-			font-weight: 700;
-		}
-		time {
-			float: right;
-		}
-	}
-  label {
-    font-family: $altFont;
-    font-size: 0.884em;
-    font-weight: 700;
-  }
-}
-
-article.page {
-	h1 {
-		margin-bottom: 1.327em;
-		text-align: left;
-	}
-}
+@import "cnq-include.scss";
 
 /* Phone Overrides */
 @media only screen and (max-width: 480px) {

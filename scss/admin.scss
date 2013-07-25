@@ -1,5 +1,10 @@
 @import "bootstrap.min.scss";
 
+$textFont: 'freight-text-pro', 'Palatino', 'Liberation Serif', serif;
+$altFont: 'freight-sans-pro', 'Helvetica Neue', 'Liberation Sans', 'Arial', sans-serif;
+$textColor: black;
+$paperColor: white;
+
 textarea {
   font-family:Inconsolata, Consolas, Menlo, 'Source Code Pro', monospace;
   font-size:16px;
@@ -11,4 +16,13 @@ textarea.long {
 
 td {
   vertical-align: middle;
+}
+
+#preview {
+  font-family: $textFont;
+  font-size: 100%;
+  font-size: 1.063em;
+  margin: 4.477em;
+  line-height: 1.327em;
+  @import "cnq-include.scss";
 }
