@@ -27,7 +27,7 @@ class AuthorsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$author = $this->author->findOrFail($id);
+		$author = $this->author->with('stories', 'pitches')->findOrFail($id);
 		return \View::make('admin.authors.show')->with('author', $author);
 	}
 
