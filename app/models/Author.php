@@ -47,4 +47,23 @@ class Author extends BaseModel {
 		return $this->hasMany('Pitch');
 	}
 
+	function getPreferredName()
+	{
+		switch ($this->show) {
+			case Author::SHOW_NAME:
+				$name = $this->name;
+				break;
+			case Author::SHOW_NICK:
+				$name = $this->nickname;
+				break;
+			case Author::SHOW_BOTH:
+				$name = "{$this->nickname} ({$this->name})";
+				break;
+			default:
+				throw new UnexpectedValueException("Invalid show value of {$this->show} on Author {$this->id}");
+				break;
+		}
+		return $name;
+	}
+
 }
