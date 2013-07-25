@@ -26,6 +26,7 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
     // REST controllers
     Route::resource('pages', 'Admin\PagesController');
     Route::resource('authors', 'Admin\AuthorsController');
+    Route::resource('stories', 'Admin\StoriesController');
     Route::resource('issues', 'Admin\IssuesController');
     Route::get('issues/publish/{id}', ['uses'=>'Admin\IssuesController@publish', 'as'=>'sysop.issues.publish']);
 
