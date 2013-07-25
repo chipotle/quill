@@ -1,65 +1,31 @@
 @extends('layouts.admin')
 
-@section('title') New Author @endsection
+@section('title') Edit Story @endsection
 
 @section('content')
 
-{{ Form::model($author, array('route' => 'sysop.authors.update')) }}
-  <div>
-    {{ Form::label('name', 'Name:') }}
-    {{ Form::text('name') }}
-  </div>
+{{ Form::model($story, array('route' => ['sysop.stories.update', $story->id], 'method' => 'put')) }}
 
-  <div>
-    {{ Form::label('nickname', 'Nickname:') }}
-    {{ Form::text('nickname', null, ['placeholder' => '(Optional)']) }}
-  </div>
+  {{ Form::label('title', 'Title') }}
+  {{ Form::text('title', null, ['class' => 'input-xxlarge']) }}
 
-  <div>
-    <label class="radio inline">
-      {{ Form::radio('show', Author::SHOW_NAME) }}
-      Show name
-    </label>
-    <label class="radio inline">
-      {{ Form::radio('show', Author::SHOW_NICK) }}
-      Show nickname
-    </label>
-    <label class="radio inline">
-      {{ Form::radio('show', Author::SHOW_BOTH) }}
-      Show both
-    </label>
-  </div>
-  <br>
+  {{ Form::label('subhead', 'Subhead') }}
+  {{ Form::text('subhead', null, ['class' => 'input-xxlarge', 'placeholder' => '(Optional)']) }}
 
-  <div>
-    {{ Form::label('email', 'Email:') }}
-    {{ Form::email('email') }}
-  </div>
 
-  <div>
-    {{ Form::label('website', 'Website:') }}
-    {{ Form::input('url', 'website', null, ['placeholder' => '(Optional)']) }}
-  </div>
+  {{ Form::label('slug', 'Slug (must be unique within issue)') }}
+  {{ Form::text('slug', null, ['class'=>'input-xxlarge']) }}
 
-  <div>
-    {{ Form::label('twitter', 'Twitter:') }}
-    {{ Form::text('twitter', null, ['placeholder' => '(Optional)']) }}
-  </div>
+  {{ Form::label('blurb', 'Blurb or Excerpt (Markdown)') }}
+  {{ Form::textarea('blurb', null, ['class'=>'input-block-level']) }}
 
-  <div>
-    {{ Form::label('bio', 'Bio:') }}
-    {{ Form::textarea('bio', null, ['class' => 'input-xxlarge']) }}
-  </div>
+  {{ Form::label('body', 'Body (Markdown)') }}
+  {{ Form::textarea('body', null, ['class'=>'input-block-level long']) }}
 
-  <div>
-    {{ Form::label('user_id', 'Existing Quill User?') }}
-    {{ Form::select('user_id', $users) }}
-  </div>
-
-  <div>
-      {{ Form::submit('Submit', ['class'=>'btn', 'id'=>'submit']) }}
-      {{ HTML::linkRoute('sysop.authors.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
-  </div>
+  <p>
+    {{ Form::submit('Submit', ['class'=>'btn', 'id'=>'submit']) }}
+    {{ HTML::linkRoute('sysop.pages.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
+</p>
 {{ Form::close() }}
 
 @endsection
