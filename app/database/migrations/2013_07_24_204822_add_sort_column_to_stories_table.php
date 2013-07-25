@@ -13,7 +13,7 @@ class AddSortColumnToStoriesTable extends Migration {
     public function up()
     {
         Schema::table('stories', function(Blueprint $table) {
-            $table->integer('sort')->unsigned()->default(1);
+            $table->smallInteger('sort')->unsigned()->default(1);
             $table->unique(['sort', 'issue_id']);
         });
     }
