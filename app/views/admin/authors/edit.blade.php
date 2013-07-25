@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
-@section('title') New Author @endsection
+@section('title') Edit Author @endsection
 
 @section('content')
 
-{{ Form::model($author, array('route' => 'sysop.authors.update')) }}
+{{ Form::model($author, array('route' => ['sysop.authors.update', $author->id], 'method' => 'put')) }}
   <div>
     {{ Form::label('name', 'Name:') }}
     {{ Form::text('name') }}
