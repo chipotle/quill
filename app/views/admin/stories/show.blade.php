@@ -14,7 +14,7 @@
     <h1>{{ $story->title }}</h1>
 
     @if ($story->subhead)
-    <h2>{{ $story->subhead }}</h2>
+    <p class="subhead">{{ $story->subhead }}</p>
     @endif
 
     <p class="author">{{ $story->author->getPreferredName() }}</p>
