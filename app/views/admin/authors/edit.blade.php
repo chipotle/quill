@@ -52,11 +52,6 @@
   </div>
 
   <div>
-    {{ Form::label('user_id', 'Existing Quill User?') }}
-    {{ Form::select('user_id', $users) }}
-  </div>
-
-  <div>
       {{ Form::submit('Submit', ['class'=>'btn', 'id'=>'submit']) }}
       {{ HTML::linkRoute('sysop.authors.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
   </div>

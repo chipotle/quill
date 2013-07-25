@@ -41,9 +41,7 @@ class AuthorsController extends \BaseController {
 		$author = $this->author;
 		$author->show = \Author::SHOW_NAME;
 		$user = \App::make('User');
-		$userlist = $user->lists('username', 'id');
-		$users = [null => '(None)'] + $userlist;
-		return \View::make('admin.authors.new')->with(['author' => $author, 'users' => $users]);
+		return \View::make('admin.authors.new')->with('author', $author);
 	}
 
 	/**

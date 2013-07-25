@@ -15,7 +15,7 @@ class ChangeIndexOnAuthorTable extends Migration {
         Schema::table('authors', function(Blueprint $table) {
         	$table->dropForeign('authors_user_id_foreign');
         	$table->dropIndex('authors_user_id_foreign');
-        	$table->index('user_id');
+        	$table->dropColumn('user_id');
         });
     }
 
@@ -27,8 +27,9 @@ class ChangeIndexOnAuthorTable extends Migration {
     public function down()
     {
         Schema::table('authors', function(Blueprint $table) {
-        	$table->dropIndex('authors_user_id_index');
-        	$table->foreign('user_id')->references('id')->on('users');
+			$table->integer('user_id')->unsigned()->nullable();
+
+			$table->foreign('user_id')->references('id')->on('users');
         });
     }
 
