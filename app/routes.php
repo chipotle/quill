@@ -38,7 +38,7 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 
     // Temporary route used to do arbitrary things
     Route::get('/do', function() {
-    	return "Beep!\n";
+    	return '<pre>Environment: ' . App::environment() . "</pre>\n";
     });
 });
 
@@ -60,3 +60,9 @@ Route::post('cnq-queue', function()
 {
 	return Queue::marshal();
 });
+if (Request::has('debug') && App::environment() == 'local') {
+	Event::listen('illuminate.query', function($sql)
+	{
+		echo "<pre>$sql</pre>\n";
+	});
+}
