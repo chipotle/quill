@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'The Special Secret Key For Claw & Quill',
+	'key' => 'xxThe Special Secret Key For C&Q',
 
 	/*
 	|--------------------------------------------------------------------------
