@@ -12,6 +12,9 @@
   {{ Form::label('subhead', 'Subhead') }}
   {{ Form::text('subhead', null, ['class' => 'input-xxlarge', 'placeholder' => '(Optional)']) }}
 
+  <p>Author<br>
+    <a href="{{ URL::route('sysop.authors.edit', [$story->author->id]) }}" title="Author Record"><strong>{{ $story->author->name }}</strong> <i class="icon-circle-arrow-right"></i></a>
+  </p>
 
   {{ Form::label('slug', 'Slug (must be unique within issue)') }}
   {{ Form::text('slug', null, ['class'=>'input-xxlarge']) }}
