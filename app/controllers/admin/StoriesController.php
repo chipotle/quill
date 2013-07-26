@@ -29,7 +29,7 @@ class StoriesController extends \BaseController {
 	public function show($id)
 	{
 		$story = $this->story->findOrFail($id);
-		return \View::make('admin.stories.show')->with('story', $story);
+		return \View::make('admin.stories.show')->with($story->getContent());
 	}
 
 	/**

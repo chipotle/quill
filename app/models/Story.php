@@ -1,13 +1,18 @@
 <?php
+use Michelf\MarkdownExtra, Chipotle\Smartypants;
 
-class Story extends Eloquent {
+class Story extends BaseModel {
 
 	/**
 	 * Database table used by model
 	 */
 	protected $table = 'stories';
 
-	protected $guarded = ['id'];
+	public static $rules = [
+		'title' => 'required',
+		'slug' => 'required:size:4|alpha_dash',
+		'body' => 'required'
+	];
 
 	/**
 	 * Story belongsTo Issue
@@ -41,10 +46,13 @@ class Story extends Eloquent {
 		parent::boot();
 
 		self::saving(function($story) {
-			\Cache::forget("story-{$story->id}");
+			Cache::forget("story-{$story->id}");
 		});
 	}
 
+	/**
+	 * Retrieve Markdownified content, from cache if appropriate
+	 */
 	public function getContent()
 	{
 		$content = Cache::rememberForever("story-{$this->id}", function() {
@@ -53,8 +61,14 @@ class Story extends Eloquent {
 			$body = MarkdownExtra::defaultTransform($this->body);
 			$body = Smartypants::defaultTransform($body);
 			$title = Smartypants::defaultTransform($this->title);
-			return ['title' => $title, 'body' => $body,
-					'blurb' => $this->blurb];
+			return [
+				'title' => $title,
+				'body' => $body,
+				'blurb' => $blurb,
+				'author' => $this->author->getPreferredName(),
+				'subhead' => $this->subhead,
+				'id' => $this->id
+			];
 		});
 		return $content;
 	}
