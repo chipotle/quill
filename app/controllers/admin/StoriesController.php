@@ -87,10 +87,10 @@ class StoriesController extends \BaseController {
 		$story->fill(\Input::all());
 		if ($story->validate()) {
 			$story->save();
-			return \Redirect::route('sysop.stories.index')->with('msg', "Story '{$story->name}' updated.");
+			return \Redirect::route('sysop.stories.index')->with('msg', "Story '{$story->title}' updated.");
 		}
 		\Session::flashInput($story->getAttributes());
-		return \Redirect::route('sysop.stories.edit')->with('error', $story->errors);
+		return \Redirect::route('sysop.stories.edit', [$id])->with('error', $story->errors);
 	}
 
 	/**
@@ -104,11 +104,11 @@ class StoriesController extends \BaseController {
 		$story = $this->story->find($id);
 		if (count($story->stories) > 0) {
 			\Session::flash('error', "{$story->name} has stories in the database and cannot be deleted.");
-			$response = ['reload'=>\URL::route('admin.stories.index')];
+			$response = ['reload'=>\URL::route('sysop.stories.index')];
 		}
 		$story->delete();
 		\Session::flash('msg', "{$story->name} deleted!");
-		$response = ['redirect'=>\URL::route('admin.stories.index')];
+		$response = ['redirect'=>\URL::route('sysop.stories.index')];
 		return \Response::json($response);
 	}
 
