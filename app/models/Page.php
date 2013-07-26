@@ -21,7 +21,7 @@ class Page extends BaseModel {
 	{
 		parent::boot();
 
-		self::saving(function($page) {
+		static::saving(function($page) {
 			Cache::forget("page-{$page->id}");
 		});
 	}

@@ -45,7 +45,7 @@ class Story extends BaseModel {
 	{
 		parent::boot();
 
-		self::saving(function($story) {
+		static::saving(function($story) {
 			Cache::forget("story-{$story->id}");
 		});
 	}
