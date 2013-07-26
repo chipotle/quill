@@ -68,13 +68,13 @@ article {
     font-size: 1.99em;
     line-height: 1em;
     text-align: center;
-    margin-bottom: 0.59em !important;
+    margin-bottom: 0.262em;
   }
   h2 {
     margin-top: 1em;
-    margin-bottom: 1em;
+    line-height: 1em;
     font-size: 1.327em;
-    line-height: 0.59em;
+    margin-bottom: 0.59em;
   }
   aside {
     width: 50%;
@@ -109,22 +109,22 @@ article {
   }
   .excerpt {
     font-style: italic;
-    margin: auto;
+    margin: 0 auto 2.391em;
     width: 90%;
-    margin-bottom: 2.985em;
   }
   .subhead {
+    font-family: $altFont;
+    text-align: center;
     margin-top: 0;
     font-size: 1.327em;
     font-weight: 700;
-    margin-bottom: 0.59em;
+    margin-bottom: 0.262em;
   }
   .author {
-    margin-top: 0;
+    margin-top: 0.884em;
     text-align: center;
     margin-bottom: 2.391em;
     font-size: 1.327em;
-    font-style: italic;
     span {
       font-style: normal;
     }

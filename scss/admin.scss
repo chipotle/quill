@@ -25,6 +25,10 @@ td {
   line-height: 1.327em;
   max-width: 36em;
   min-width: 28em;
+  p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
   @import "cnq-include.scss";
 }
 
