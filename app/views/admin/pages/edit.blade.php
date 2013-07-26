@@ -4,7 +4,7 @@
 
 @section('content')
 
-{{ Form::model($page, ['method' => 'post', 'route' => 'sysop.pages.store']) }}
+{{ Form::model($page, ['method' => 'post', 'route' => ['sysop.pages.update', $page->id], 'method' => 'put']) }}
 
 <label class="checkbox pull-right">
   {{ Form::checkbox('is_visible') }} Visible (Published)

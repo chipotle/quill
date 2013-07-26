@@ -1,15 +1,34 @@
 <?php
 use Michelf\MarkdownExtra, Chipotle\Smartypants;
 
-class Page extends Eloquent {
+class Page extends BaseModel {
 
 	/**
 	 * Database table used by model
 	 */
 	protected $table = 'pages';
 
-	protected $fillable = ['title', 'slug', 'body', 'head', 'is_visible'];
+	public static $rules = [
+		'title' => 'required',
+		'slug' => 'required:size:4|alpha_dash',
+		'body' => 'required'
+	];
 
+	/**
+	 * Register event listener to clear cache on model save
+	 */
+	public static function boot()
+	{
+		parent::boot();
+
+		self::saving(function($page) {
+			Cache::forget("page-{$page->id}");
+		});
+	}
+
+	/**
+	 * Retrieve Markdownified content, from cache if appropriate
+	 */
 	public function getContent()
 	{
 		$content = Cache::rememberForever("page-{$this->id}", function() {

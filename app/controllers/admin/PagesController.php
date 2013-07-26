@@ -6,22 +6,13 @@ class PagesController extends \BaseController {
 
 	protected $page;
 
-	/**
-	 * Validator array for pages
-	 */
-	protected $rules = [
-		'title' => 'required',
-		'slug' => 'required:size:4|alpha_dash',
-		'body' => 'required'
-	];
-
 	function __construct(\Page $page)
 	{
 		$this->page = $page;
 	}
 
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of the pages.
 	 *
 	 * @return Response
 	 */
@@ -32,64 +23,34 @@ class PagesController extends \BaseController {
 	}
 
 	/**
-	 * Show new/edit form, depending on calling resource
-	 *
-	 * @return Response
-	 */
-	private function editForm($id=false)
-	{
-		if ($id) {
-			$page = $this->page->find($id);
-			$content = [
-				'title' => "Editing Page '{$page->slug}'",
-				'url' => \URL::route('sysop.pages.update', [$page->id]),
-				'page' => $page,
-				'method' => 'put'
-			];
-		}
-		else {
-			$page = $this->page;
-			$content = [
-				'title' => 'New Page',
-				'url' => \URL::route('sysop.pages.store'),
-				'page' => $page,
-				'method' => 'post'
-			];
-		}
-		return \View::make('admin.pages.new')->with($content);
-	}
-
-	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new page.
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		return $this->editForm();
+		$page = $this->page;
+		return \View::make('admin.pages.new')->with('page', $page);
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created page in storage.
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		$input = \Input::all();
-		$page = $this->page;
-		$validator = \Validator::make($input, $this->rules);
-		if ($validator->fails()) {
-			\Session::flashInput($input);
-			return \Redirect::route('sysop.pages.create')->with('error', $validator->messages());
+		$page = $this->page->fill(\Input::all());
+		if ($page->validate()) {
+			$page->save();
+			return \Redirect::route('sysop.pages.index')->with('msg', "Page '{$page->slug}' created.");
 		}
-		$page->fill($input);
-		$page->save();
-		return \Redirect::route('sysop.pages.index')->with('msg', "Page '{$page->slug}' created.");
+		\Session::flashInput(\Input::all());
+		return \Redirect::route('sysop.pages.create')->with('error', $page->errors);
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified page.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -107,35 +68,33 @@ class PagesController extends \BaseController {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the specified page.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function edit($id)
 	{
-		return $this->editForm($id);
+		$page = $this->page->findOrFail($id);
+		return \View::make('admin.pages.edit')->with('page', $page);
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified page in storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update($id)
 	{
-		$input = \Input::all();
-		$page = $this->page->find($id);
-		$validator = \Validator::make($input, $this->rules);
-		if ($validator->fails()) {
-			\Session::flashInput($input);
-			return \Redirect::route('sysop.pages.edit', [$id])->with('error', $validator->messages());
+		$page = $this->page->findOrFail($id);
+		$page->fill(\Input::all());
+		if ($page->validate()) {
+			$page->save();
+			return \Redirect::route('sysop.pages.index')->with('msg', "Page '{$page->slug}' updated.");
 		}
-		$page->fill($input);
-		$page->save();
-		\Cache::forget("page-{$page->id}");
-		return \Redirect::route('sysop.pages.index')->with('msg', "Page '{$page->slug}' updated.");
+		\Session::flashInput(\Input::all());
+		return \Redirect::route('sysop.pages.edit')->with('error', $page->errors);
 	}
 
 	/**
