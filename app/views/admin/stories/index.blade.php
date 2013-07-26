@@ -18,10 +18,9 @@
     <tr>
       <td style="width:10%;white-space:nowrap">
         <a href='{{ URL::route("sysop.stories.edit", [$story->id]) }}' title="Edit" class="btn"><i class="icon-edit"></i></a>
-        <a href='{{ URL::route("sysop.stories.show", [$story->id]) }}' title="Preview" class="btn"><i class="icon-eye-open"></i></a>
       </td>
       <td>{{ $story->number }}</td>
-      <td>{{ $story->title }}</td>
+      <td>{{ HTML::linkRoute('sysop.stories.show', $story->title, [$story->id]) }}</td>
       <td>{{ HTML::mailto($story->email, $story->name) }}</td>
     </tr>
 @endforeach
