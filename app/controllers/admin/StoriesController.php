@@ -40,11 +40,7 @@ class StoriesController extends \BaseController {
 	public function create()
 	{
 		$story = $this->story;
-		$story->show = \Story::SHOW_NAME;
-		$user = \App::make('User');
-		$userlist = $user->lists('username', 'id');
-		$users = [null => '(None)'] + $userlist;
-		return \View::make('admin.stories.new')->with(['story' => $story, 'users' => $users]);
+		return \View::make('admin.stories.new')->with('story', $story);
 	}
 
 	/**
@@ -55,6 +51,8 @@ class StoriesController extends \BaseController {
 	public function store()
 	{
 		$story = $this->story->fill(\Input::all());
+		unset($story->author);
+		$story->sort = $story->whereNull('issue_id')->max('sort') ?: 1;
 		if ($story->validate()) {
 			$story->save();
 			return \Redirect::route('sysop.stories.index')->with('msg', "Story '{$story->name}' created.");
