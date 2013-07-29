@@ -7,11 +7,13 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 	// Index
 	Route::get('/', 'Admin\PitchesController@index');
 
+	Route::get('authors/search', 'Admin\AuthorsController@search');
+	Route::get('issues/publish/{id}', ['uses'=>'Admin\IssuesController@publish', 'as'=>'sysop.issues.publish']);
+
 	Route::resource('pages', 'Admin\PagesController');
 	Route::resource('authors', 'Admin\AuthorsController');
 	Route::resource('stories', 'Admin\StoriesController');
 	Route::resource('issues', 'Admin\IssuesController');
-	Route::get('issues/publish/{id}', ['uses'=>'Admin\IssuesController@publish', 'as'=>'sysop.issues.publish']);
 
 	// Pitches need to switch between showing all and pending
 	Route::get('pitches/{show?}', ['uses'=>'Admin\PitchesController@index', 'as'=>'sysop.pitches.index']);
@@ -21,7 +23,9 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 
 	// Temporary route used to do arbitrary things
 	Route::get('/do', function() {
-		return '<pre>Environment: ' . App::environment() . "</pre>\n";
+		$a = Author::where('name', 'like', '%watts%')->get();
+		$a = (string) $a;
+		echo "<pre>"; print_r($a); echo "</pre>";
 	});
 });
 
