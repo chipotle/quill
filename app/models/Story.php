@@ -11,7 +11,12 @@ class Story extends BaseModel {
 	public static $rules = [
 		'title' => 'required',
 		'slug' => 'required:size:4|alpha_dash',
-		'body' => 'required'
+		'body' => 'required',
+		'author_id' => 'required|exists:authors,id'
+	];
+
+	public static $messages = [
+		'author_id.required' => 'The author field is required.'
 	];
 
 	/**
