@@ -27,7 +27,7 @@
 
   <p>
     {{ Form::submit('Submit', ['class'=>'btn', 'id'=>'submit']) }}
-    {{ HTML::linkRoute('sysop.pages.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
+    {{ HTML::linkRoute('sysop.stories.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
 </p>
 {{ Form::close() }}
 
