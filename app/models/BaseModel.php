@@ -9,9 +9,11 @@ class BaseModel extends Eloquent {
 
 	public $errors;
 
+	public static $messages = array();
+
 	public function validate()
 	{
-		$v = Validator::make($this->attributes, static::$rules);
+		$v = Validator::make($this->attributes, static::$rules, static::$messages);
 		if ($v->passes()) return true;
 		$this->errors = $v->messages();
 		return false;
