@@ -109,4 +109,19 @@ class AuthorsController extends \BaseController {
 		return \Response::json($response);
 	}
 
+	public function search()
+	{
+		$term = \Input::get('term');
+		$authors = $this->author->where('name', 'like', "%$term%")
+			->orWhere('nickname', 'like', "%$term%")->get();
+		$names = [];
+		foreach ($authors as $author) {
+			$name = ($author->nickname) ?
+					"{$author->name} ({$author->nickname})" :
+					$author->name;
+			$names[$name] = $author->id;
+		}
+		return $names;
+	}
+
 }
