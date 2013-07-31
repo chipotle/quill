@@ -24,7 +24,7 @@ class PitchController extends BaseController {
 			Queue::push('PitchNotify', ['pitch' => $pitch->id]);
 			return View::make('gotpitch')->with('pitch', $pitch);
 		}
-		Session::flashInput($input);
+		Session::flashInput(Input::all());
 		return Redirect::to('pitch')->with('error', $pitch->errors);
 	}
 }
