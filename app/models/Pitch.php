@@ -10,6 +10,10 @@ class Pitch extends BaseModel {
 		'blurb' => 'required'
 	];
 
+	public static $messages = [
+		'blurb.required' => 'The story idea is required.'
+	];
+
 	/**
 	 * Class constants
 	 */
