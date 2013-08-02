@@ -13,8 +13,8 @@
   {{ Form::text('subhead', null, ['class' => 'input-xxlarge', 'placeholder' => '(Optional)']) }}
 
   <div id="author-control" class="control-group">
-  {{ Form::label('author', 'Author') }}
-  {{ Form::text('author', null, ['class' => 'input-xlarge', 'autocomplete' => 'off']) }}
+    {{ Form::label('author', 'Author') }}
+    {{ Form::text('author', null, ['class' => 'input-xxlarge', 'autocomplete' => 'off']) }} <a href='{{ URL::route("sysop.authors.create") }}' class="btn btn-success" target="_blank" title="Opens in new window/tab" style="margin-top:-10px;margin-left:1em;color:white"><i class="icon-plus icon-white"></i> New</a>
   </div>
 
   {{ Form::hidden('author_id', null, ['id' => 'author_id', 'data-return' => 'x']) }}
@@ -43,16 +43,8 @@ $(function() {
     source: function getTypeahead(query, process) {
       return $.get('/sysop/authors/search', { term: query }, function(data) {
         var keys = Object.keys(data);
-        if (keys.length == 1) {
-          var name = Object.keys(data)[0];
-          $('#author').val(name);
-          $("#author_id").val(data[name]);
-          $('#author-control').addClass('success');
-          $('#author-control').removeClass('error');
-        }
-        else {
+        if (keys.length > 0) {
           $('#author_id').data('return', data);
-          $('#author_id').val('');
         }
         return process(keys);
       });
@@ -68,6 +60,7 @@ $(function() {
       $('#author-control').removeClass('error');
     }
     else {
+      $('#author_id').val('');
       $('#author-control').addClass('error');
       $('#author-control').removeClass('success');
     }
