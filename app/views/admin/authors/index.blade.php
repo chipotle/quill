@@ -18,9 +18,8 @@
     <tr>
       <td style="width:10%;white-space:nowrap">
         <a href='{{ URL::route("sysop.authors.edit", [$author->id]) }}' title="Edit Info" class="btn"><i class="icon-edit"></i></a>
-        <a href='{{ URL::route("sysop.authors.show", [$author->id]) }}' title="Show Stories" class="btn"><i class="icon-list"></i></a>
       </td>
-      <td>{{ $author->name }}</td>
+      <td>{{ HTML::linkRoute('sysop.authors.show', $author->name, [$author->id], ['title'=>'Show stories/pitches']) }}</td>
       <td>{{ $author->nickname }}</td>
       <td>{{ HTML::mailto($author->email) }}</td>
     </tr>
