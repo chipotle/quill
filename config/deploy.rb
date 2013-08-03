@@ -1,7 +1,7 @@
 # Capistrano Laravel 4 Deployment Tasks
 # Watts Martin (layotl at gmail com)
 # https://gist.github.com/chipotle/5506641
-# updated 30-Jul-2013
+# updated 02-Aug-2013
 
 # Assumptions:
 #
@@ -65,9 +65,19 @@ namespace :deploy do
     end
   end
 
-  desc "Run migrations in Artisan."
+  desc "Run Artisan migrate task."
   task :migrate do
     run "php #{current_release}/artisan migrate"
+  end
+
+  desc "Deploy and execute pending migrations."
+  task :migrations do
+    update_code
+    copy_config
+    composer_install
+    link_shared
+    fix_permissions
+    migrate
   end
 
   desc "Set Laravel storage directory world-writable."
