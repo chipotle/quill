@@ -40,7 +40,20 @@ class StoriesController extends \BaseController {
 	public function create()
 	{
 		$story = $this->story;
-		return \View::make('admin.stories.new')->with('story', $story);
+		return \View::make('admin.stories.new')->with(['story' => $story, 'author_name' => null]);
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function createWithAuthor($author_id)
+	{
+		$story = $this->story;
+		$story->author_id = $author_id;
+		$author_name = \App::make('author')->find($author_id)->getFormName();
+		return \View::make('admin.stories.new')->with(['story' => $story, 'author_name' => $author_name]);
 	}
 
 	/**

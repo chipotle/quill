@@ -14,7 +14,11 @@
 
   <div id="author-control" class="control-group">
     {{ Form::label('author', 'Author') }}
+    @if ($author_name)
+    {{ Form::text('author', $author_name, ['class' => 'input-xxlarge disabled', 'autocomplete' => 'off', 'disabled'=>true]) }}
+    @else
     {{ Form::text('author', null, ['class' => 'input-xxlarge', 'autocomplete' => 'off']) }} <a href='{{ URL::route("sysop.authors.create") }}' class="btn btn-success" target="_blank" title="Opens in new window/tab" style="margin-top:-10px;margin-left:1em;color:white"><i class="icon-plus icon-white"></i> New</a>
+    @endif
   </div>
 
   {{ Form::hidden('author_id', null, ['id' => 'author_id', 'data-return' => 'x']) }}
@@ -30,7 +34,11 @@
 
   <p>
     {{ Form::submit('Submit', ['class'=>'btn', 'id'=>'submit']) }}
-    {{ HTML::linkRoute('sysop.pages.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
+    @if ($author_name)
+    {{ HTML::linkRoute('sysop.authors.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
+    @else
+    {{ HTML::linkRoute('sysop.stories.index', 'Cancel', null, ['class'=>'btn btn-danger'])}}
+    @endif
 </p>
 {{ Form::close() }}
 

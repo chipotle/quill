@@ -7,6 +7,7 @@
 <div class="row">
   <div class="span6">
     <h2>Stories</h2>
+    <a href='{{ URL::route("sysop.stories.createwith", [$author->id]) }}' class="btn btn-success" style="color:white"><i class="icon-plus icon-white"></i> New Story</a>
     <ul>
       @foreach ($author->stories as $story)
       <li>{{ $story->title }}</li>
