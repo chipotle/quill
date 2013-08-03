@@ -9,6 +9,7 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 
 	Route::get('authors/search', 'Admin\AuthorsController@search');
 	Route::get('issues/publish/{id}', ['uses'=>'Admin\IssuesController@publish', 'as'=>'sysop.issues.publish']);
+	Route::get('stories/createby/{author_id}', ['uses'=>'Admin\StoriesController@createWithAuthor', 'as'=>'sysop.stories.createwith']);
 
 	Route::resource('pages', 'Admin\PagesController');
 	Route::resource('authors', 'Admin\AuthorsController');
