@@ -79,4 +79,14 @@ class AuthorTest extends TestCase {
 		$foo = $author->getPreferredName();
 	}
 
+	public function testGetFormName()
+	{
+		$author = Factory::make('author');
+		$expected = "{$author->name} ({$author->nickname})";
+		$this->assertEquals($expected, $author->getFormName());
+		$author->nickname = null;
+		$expected = $author->name;
+		$this->assertEquals($expected, $author->getFormName());
+	}
+
 }
