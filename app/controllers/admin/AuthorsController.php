@@ -9,7 +9,7 @@ class AuthorsController extends \BaseController {
 		$this->author = $author;
 	}
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of authors.
 	 *
 	 * @return Response
 	 */
@@ -20,7 +20,7 @@ class AuthorsController extends \BaseController {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified author, with their stories and pitches.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -32,7 +32,7 @@ class AuthorsController extends \BaseController {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new author resource.
 	 *
 	 * @return Response
 	 */
@@ -45,7 +45,7 @@ class AuthorsController extends \BaseController {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created author in storage.
 	 *
 	 * @return Response
 	 */
@@ -61,7 +61,7 @@ class AuthorsController extends \BaseController {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the specified author.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -73,7 +73,7 @@ class AuthorsController extends \BaseController {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified author in storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -109,6 +109,11 @@ class AuthorsController extends \BaseController {
 		return \Response::json($response);
 	}
 
+	/**
+	 * Return an array of authors in JSON format based on a query string.
+	 *
+	 * @return string
+	 */
 	public function search()
 	{
 		$term = \Input::get('term');
@@ -116,9 +121,7 @@ class AuthorsController extends \BaseController {
 			->orWhere('nickname', 'like', "%$term%")->get();
 		$names = [];
 		foreach ($authors as $author) {
-			$name = ($author->nickname) ?
-					"{$author->name} ({$author->nickname})" :
-					$author->name;
+			$name = $author->getFormName();
 			$names[$name] = $author->id;
 		}
 		return $names;
