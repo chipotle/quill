@@ -43,10 +43,12 @@ div.error {
 @import "cnq-include.scss";
 
 /* Phone Overrides */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-device-width: 568px) {
 	body {
 		margin: 48px 24px;
 	}
+
+  img { max-width: 100%; }
 
 	#content {
 		max-width: 32em;
