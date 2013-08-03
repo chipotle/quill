@@ -26,7 +26,7 @@ class Author extends BaseModel {
 	/**
 	 * Author belongsTo User
 	 */
-		public function user()
+	public function user()
 	{
 		return $this->belongsTo('User');
 	}
@@ -34,7 +34,7 @@ class Author extends BaseModel {
 	/**
 	 * Author hasMany Stories
 	 */
-	function stories()
+	public function stories()
 	{
 		return $this->hasMany('Story');
 	}
@@ -42,12 +42,12 @@ class Author extends BaseModel {
 	/**
 	 * Author hasMany Pitches
 	 */
-	function pitches()
+	public function pitches()
 	{
 		return $this->hasMany('Pitch');
 	}
 
-	function getPreferredName()
+	public function getPreferredName()
 	{
 		switch ($this->show) {
 			case Author::SHOW_NAME:
@@ -64,6 +64,11 @@ class Author extends BaseModel {
 				break;
 		}
 		return $name;
+	}
+
+	public function getFormName()
+	{
+		return ($this->nickname) ? "{$this->name} ({$this->nickname})" : $this->name;
 	}
 
 }
