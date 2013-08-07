@@ -59,7 +59,7 @@ class IssuesController extends \BaseController {
 			$issue->save();
 			return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->volume}.{$issue->number} created.");
 		}
-		\Session::flashInput($input);
+		\Session::flashInput(\Input::all());
 		return \Redirect::route('sysop.issues.create')->with('error', $issue->errors);
 	}
 
@@ -90,7 +90,7 @@ class IssuesController extends \BaseController {
 			$issue->save();
 			return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->volume}.{$issue->number} updated.");
 		}
-		\Session::flashInput($input);
+		\Session::flashInput(\Input::all());
 		return \Redirect::route('sysop.issues.error')->with('error', $issue->errors);
 	}
 
