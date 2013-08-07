@@ -28,7 +28,8 @@ class IssuesController extends \BaseController {
 	public function show($id)
 	{
 		$issue = $this->issue->findOrFail($id);
-		return \View::make('admin.issues.show')->with('issue', $issue);
+		$unassigned = \App::make('story')->whereNull('issue_id')->get();
+		return \View::make('admin.issues.show')->with(['issue' => $issue, 'unassigned' => $unassigned]);
 	}
 
 	/**
