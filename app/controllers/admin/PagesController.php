@@ -109,7 +109,7 @@ class PagesController extends \BaseController {
 		$slug = $page->slug;
 		$page->delete();
 		\Session::flash('msg', "Page '$slug' deleted!");
-		$response = ['redirect'=>URL::route('sysop.pages.index')];
+		$response = ['redirect'=>\URL::route('sysop.pages.index')];
 		return \Response::json($response);
 	}
 
