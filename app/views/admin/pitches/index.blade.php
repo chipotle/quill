@@ -19,7 +19,7 @@ Pitches
   @endif
 </p>
 
-<table class="table table-striped">
+<table class="table table-striped center-row">
   <thead>
     <tr>
       <th>&nbsp;</th>

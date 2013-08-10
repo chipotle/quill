@@ -4,7 +4,7 @@
 
 @section('content')
 
-<table class="table table-striped">
+<table class="table table-striped center-row">
   <thead>
     <tr>
       <th>Action</th>
