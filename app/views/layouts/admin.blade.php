@@ -52,7 +52,7 @@
     @yield('content')
   </div>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   {{ HTML::script('js/admin.js') }}
   @yield('scripts')
   <body>
