@@ -9,19 +9,18 @@ class StoriesController extends \BaseController {
 		$this->story = $story;
 	}
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of the story.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		// $stories = $this->story->with('author', 'issue')->get(); //->paginate(30);
 		$stories = \DB::table('stories')->join('authors', 'authors.id', '=', 'stories.author_id')->leftJoin('issues', 'issues.id', '=', 'stories.issue_id')->select('stories.id', 'stories.title', 'issues.number', 'authors.email', 'authors.name')->orderBy('authors.name', 'asc')->paginate(30);
 		return \View::make('admin.stories.index')->with('stories', $stories);
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified story.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -33,7 +32,7 @@ class StoriesController extends \BaseController {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new story.
 	 *
 	 * @return Response
 	 */
@@ -44,7 +43,7 @@ class StoriesController extends \BaseController {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new story.
 	 *
 	 * @return Response
 	 */
@@ -57,7 +56,7 @@ class StoriesController extends \BaseController {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created story in storage.
 	 *
 	 * @return Response
 	 */
@@ -75,7 +74,7 @@ class StoriesController extends \BaseController {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the specified story.
 	 *
 	 * @param  int  $id
 	 * @return Response
