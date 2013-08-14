@@ -21,4 +21,9 @@ class Issue extends BaseModel {
         return $this->hasMany('Story');
     }
 
+    function volnum()
+    {
+    	return (Config::get('quill.use_volumes') ? "{$this->volume}.{$this->number}" : $this->number);
+    }
+
 }
