@@ -125,4 +125,33 @@ class IssuesController extends \BaseController {
 		return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->volume}.{$issue->number} published!");
 	}
 
+	/**
+	 * Commit the contents of an issue.
+	 *
+	 * @return Response
+	 */
+	public function commit()
+	{
+		$contents = \Input::get('contents') ?: array();
+		$issue_id = \Input::get('issue');
+		$issue = $this->issue->findOrFail($issue_id);
+		$story = \App::make('story');
+		$current = $story->where('issue_id', $issue_id)->lists('id');
+		$removed = array_diff($current, $contents);
+		$order = 1;
+		foreach ($contents as $story_id) {
+			$item = $story->findOrFail($story_id);
+			$item->sort = $order++;
+			$item->issue()->associate($issue);
+			$item->save();
+		}
+		foreach ($removed as $story_id) {
+			$item = $story->findOrFail($story_id);
+			$item->sort = null;
+			$item->issue_id = null;
+			$item->save();
+		}
+		return \Response::make('OK', 200);
+	}
+
 }
