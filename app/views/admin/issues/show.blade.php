@@ -6,18 +6,25 @@
 
 @if ($issue->is_published)
 
-<p><i>The contents cannot be edited once an issue is published.</i></p>
+<h2>Stories</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach ($issue->stories as $story)
+    <tr>
+      <td>{{ HTML::linkRoute('sysop.stories.show', $story->title, [$story->id]) }}</td>
+      <td>{{ HTML::linkRoute('sysop.authors.show', $story->author->name, [$story->author->id]) }}</td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
 
-<div class="row">
-  <div class="span6">
-    <h2>Stories</h2>
-    <ol>
-      @foreach ($issue->stories as $story)
-      <li><b>{{ $story->title }}</b> {{ $story->author->name }}</li>
-      @endforeach
-    </ol>
-  </div>
-</div>
+<p><a href='{{ URL::route("sysop.issues.edit", [$issue->id]) }}' title="Edit Metadata" class="btn"><i class="icon-edit"></i> Edit</a></p>
 
 @else
 
