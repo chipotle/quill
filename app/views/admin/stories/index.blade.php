@@ -19,9 +19,17 @@
       <td style="width:10%;white-space:nowrap">
         <a href='{{ URL::route("sysop.stories.edit", [$story->id]) }}' title="Edit" class="btn"><i class="icon-edit"></i></a>
       </td>
-      <td>{{ $story->number }}</td>
+      @if ($story->issue_id)
+        @if (Config::get('quill.use_volumes'))
+        <td>{{ HTML::linkRoute('sysop.issues.show', $story->volume . '.' . $story->number, [$story->issue_id]) }}</td>
+        @else
+        <td>{{ HTML::linkRoute('sysop.issues.show', $story->number, [$story->issue_id]) }}</td>
+        @endif
+      @else
+        <td>&mdash;</td>
+      @endif
       <td>{{ HTML::linkRoute('sysop.stories.show', $story->title, [$story->id]) }}</td>
-      <td>{{ HTML::mailto($story->email, $story->name) }}</td>
+      <td>{{ HTML::linkRoute('sysop.authors.show', $story->name, [$story->author_id]) }}</td>
     </tr>
 @endforeach
   </tbody>

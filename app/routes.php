@@ -25,8 +25,7 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 
 	// Temporary route used to do arbitrary things
 	Route::get('/do', function() {
-		// $a = DB::table('stories')->where('issue_id', 1)->lists('id');
-		$a = Story::where('issue_id', 1)->lists('id');
+		$a = \DB::table('stories')->join('authors', 'authors.id', '=', 'stories.author_id')->leftJoin('issues', 'issues.id', '=', 'stories.issue_id')->select('stories.id', 'stories.title', 'issues.volume', 'issues.number', 'authors.email', 'authors.name', 'author_id', 'issue_id')->orderBy('authors.name', 'asc')->get();
 		echo "<pre>"; print_r($a); echo "</pre>";
 	});
 });
