@@ -4,7 +4,7 @@
 
 @section('content')
 
-@if ($issue->published)
+@if ($issue->is_published)
 
 <p><i>The contents cannot be edited once an issue is published.</i></p>
 
@@ -50,7 +50,7 @@
 @endsection
 
 @section('scripts')
-@if ( ! $issue->published)
+@if ( ! $issue->is_published)
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script>
 $(function() {
