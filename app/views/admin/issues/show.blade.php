@@ -28,17 +28,19 @@
 
 @else
 
-<p>
-  <button class="btn btn-primary" id="action">Publish</button>
-  <button class="btn btn-danger" id="revert" style="display:none">Revert</button>
+<p id="publishctrl"><button class="btn btn-primary" id="publish">Publish</button></p>
+<p id="changectrls">
+  <button class="btn btn-warning" id="commit">Commit</button>
+  <button class="btn btn-danger" id="revert">Revert</button>
 </p>
+
 
 <div class="row">
   <div class="span6">
     <h2>Stories</h2>
     <ul id="toc" class="connectedSortable">
       @foreach ($issue->stories as $story)
-      <li class="draggable"><b>{{ $story->title }}</b> {{ $story->author->name }}</li>
+      <li class="draggable" data-id="{{ $story->id }}"><b>{{ $story->title }}</b> {{ $story->author->name }}</li>
       @endforeach
     </ul>
   </div>
@@ -46,7 +48,7 @@
     <h2>Unassigned Stories</h2>
     <ul id="unassigned" class="connectedSortable">
       @foreach ($unassigned as $story)
-      <li class="draggable"><b>{{ $story->title }}</b> {{ $story->author->name }}</li>
+      <li class="draggable" data-id="{{ $story->id }}"><b>{{ $story->title }}</b> {{ $story->author->name }}</li>
       @endforeach
     </ul>
   </div>
@@ -61,23 +63,54 @@
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script>
 $(function() {
+
+  function setPublishButton(test) {
+    if (test.length == 0) {
+      $('#publish').attr('disabled', 'disabled');
+    }
+    else {
+      $('#publish').removeAttr('disabled');
+    }
+  }
+
   $('#toc, #unassigned').sortable({
     connectWith: '.connectedSortable',
     update: function(event, ui) {
-      $('#action').removeClass('btn-primary').addClass('btn-warning').text('Commit');
-      $('#action').removeAttr('disabled');
-      $('#revert').show();
+      $('#publishctrl').hide();
+      $('#changectrls').show('bounce');
     }
   }).disableSelection();
-  $('#revert').on('click', function() { location.reload(); })
-  $('#action').on('click', function() {
-    var type = $(this).text();
-    alert(type);
-    return false;
-  })
-  if ($('#toc li').length == 0) {
-    $('#action').attr('disabled', 'disabled');
-  }
+
+  $('#revert').on('click', function() { location.reload(); });
+
+  $('#commit').on('click', function() {
+    var toc = [];
+    $('#toc li').each(function(i, li) {
+      toc.push($(li).data('id'));
+    });
+    $.post(
+      '{{ URL::route("sysop.issues.commit") }}',
+      {contents: toc, issue: {{ $issue->id }} }
+    ).fail(function(jqxhr) {
+      var rt = jqxhr.responseText;
+      if (rt.error) {
+        alert(rt.message);
+      }
+      else {
+        alert(rt);
+      }
+    });
+    console.log(toc);
+    setPublishButton(toc);
+    $('#changectrls').hide();
+    $('#publishctrl').show('bounce');
+  });
+
+  $('#publish').on('click', function() {
+    location.href = "{{ URL::route('sysop.issues.publish', [$issue->id]) }}";
+  });
+
+  setPublishButton($('#toc li'));
 });
 </script>
 @endif
