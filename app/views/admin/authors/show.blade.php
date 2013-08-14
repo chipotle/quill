@@ -11,7 +11,12 @@
     <h2>Stories</h2>
     <ul>
       @foreach ($author->stories as $story)
-      <li>{{ HTML::linkRoute('sysop.stories.show', $story->title, [$story->id]) }}</li>
+      <li>
+        {{ HTML::linkRoute('sysop.stories.show', $story->title, [$story->id]) }}
+        @if ($story->issue_id)
+        ({{ HTML::linkRoute('sysop.issues.show', 'Issue ' . $story->issue->volnum(), [$story->issue_id]) }})
+        @endif
+      </li>
       @endforeach
     </ul>
   </div>
