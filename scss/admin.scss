@@ -2,8 +2,8 @@
 
 $textFont: 'freight-text-pro', 'Palatino', 'Liberation Serif', serif;
 $altFont: 'freight-sans-pro', 'Helvetica Neue', 'Liberation Sans', 'Arial', sans-serif;
-$textColor: black;
-$paperColor: white;
+$textColor: #523b22;
+$paperColor: #fcfaf8;
 
 textarea {
   font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
@@ -46,4 +46,24 @@ header.preview {
   text-align: center;
   font-weight: bold;
   font-size: 120%;
+}
+
+li.draggable {
+  margin-left: -1.5em;
+  margin-bottom: 3px;
+  list-style-type: none;
+  text-indent: 0;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: darken($paperColor, 5%);
+  border: 1px solid darken($paperColor, 10%);
+}
+
+li.end {
+  background-color: $textColor;
+  color: $paperColor;
+}
+
+#toc, #unassigned {
+  min-height: 10ex;
 }
