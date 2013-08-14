@@ -9,6 +9,7 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 
 	Route::get('authors/search', 'Admin\AuthorsController@search');
 	Route::get('issues/publish/{id}', ['uses'=>'Admin\IssuesController@publish', 'as'=>'sysop.issues.publish']);
+	Route::post('issues/commit', ['uses'=>'Admin\IssuesController@commit', 'as'=>'sysop.issues.commit']);
 	Route::get('stories/createby/{author_id}', ['uses'=>'Admin\StoriesController@createWithAuthor', 'as'=>'sysop.stories.createwith']);
 
 	Route::resource('pages', 'Admin\PagesController');
@@ -24,8 +25,8 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 
 	// Temporary route used to do arbitrary things
 	Route::get('/do', function() {
-		$a = Author::where('name', 'like', '%watts%')->get();
-		$a = (string) $a;
+		// $a = DB::table('stories')->where('issue_id', 1)->lists('id');
+		$a = Story::where('issue_id', 1)->lists('id');
 		echo "<pre>"; print_r($a); echo "</pre>";
 	});
 });
