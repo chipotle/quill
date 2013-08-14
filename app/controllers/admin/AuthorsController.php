@@ -27,7 +27,10 @@ class AuthorsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$author = $this->author->with('stories', 'pitches')->findOrFail($id);
+		$author = $this->author->with('stories')->findOrFail($id);
+		$author->load(['pitches' => function($q) {
+			$q->pending();
+		}]);
 		return \View::make('admin.authors.show')->with('author', $author);
 	}
 
