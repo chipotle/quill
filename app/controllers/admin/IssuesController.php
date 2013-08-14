@@ -9,7 +9,7 @@ class IssuesController extends \BaseController {
 		$this->issue = $issue;
 	}
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of the issues.
 	 *
 	 * @return Response
 	 */
@@ -20,7 +20,7 @@ class IssuesController extends \BaseController {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified issue.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -36,7 +36,7 @@ class IssuesController extends \BaseController {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new issue.
 	 *
 	 * @return Response
 	 */
@@ -52,7 +52,7 @@ class IssuesController extends \BaseController {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created issue in storage.
 	 *
 	 * @return Response
 	 */
@@ -68,7 +68,7 @@ class IssuesController extends \BaseController {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the specified issue.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -80,7 +80,7 @@ class IssuesController extends \BaseController {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified issue in storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -99,7 +99,7 @@ class IssuesController extends \BaseController {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified issue from storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
