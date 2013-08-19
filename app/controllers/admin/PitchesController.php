@@ -49,7 +49,7 @@ class PitchesController extends \BaseController {
 	{
 		$pitch = $this->pitch->findOrFail($id);
 		$menu = \Pitch::$statusList;
-		if ($pitch->status == \Pitch::UNSEEN) {
+		if ( ! in_array($pitch->status, [\Pitch::ACCEPTED, \Pitch::WAITING, \Pitch::PUBLISHED])) {
 			unset($menu[\Pitch::WAITING]);
 			unset($menu[\Pitch::PUBLISHED]);
 		}
@@ -83,15 +83,28 @@ class PitchesController extends \BaseController {
 			$pitch->status = \Pitch::REVIEW;
 		}
 		$msg = "Pitch #{$pitch->id} updated.";
-		if ($pitch->status == \Pitch::ACCEPTED && !$pitch->author_id) {
-			$a = \App::make('Author');
-			$a->name = $pitch->name;
-			$a->email = $pitch->email;
-			$a->save();
-			$pitch->author_id = $a->id;
-			$msg .= "<br>Author '{$a->name}' created with ID {$a->id}.";
+		$to_story = false;
+		if ($pitch->status == \Pitch::ACCEPTED) {
+			if ( ! $pitch->author_id) {
+				$a = \App::make('Author')->create(['name' => $pitch->name,
+					'email' => $pitch->email]);
+				$pitch->author_id = $a->id;
+				$msg .= " Author {$a->name} created.";
+			}
+			if ( ! $pitch->story_id) {
+				$s = \App::make('Story')->create([
+					'title' => "{$pitch->name}'s New Story",
+					'author_id' => $pitch->author_id,
+					'blurb' => $pitch->blurb, 'body' => 'Lorem ipsum']);
+				$pitch->story_id = $s->id;
+				$msg .= " Story created.";
+				$to_story = true;
+			}
 		}
 		$pitch->save();
+		if ($to_story) {
+			return \Redirect::route('sysop.stories.edit', [$pitch->story_id])->with('msg', $msg);
+		}
 		return \Redirect::route('sysop.pitches.index')->with('msg', $msg);
 	}
 
