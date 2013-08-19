@@ -87,10 +87,6 @@ require app_path().'/filters.php';
  * View macros
  */
 
-HTML::macro('date_fmt', function($d, $fmt='d-M-y') {
-	return date($fmt, strtotime($d));
-});
-
 HTML::macro('truncate', function($t, $len=50) {
 	if (strlen($t) < $len) return($t);
 	return substr($t, 0, $len) . "&hellip;";
