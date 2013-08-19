@@ -1,7 +1,7 @@
 # Capistrano Laravel 4 Deployment Tasks
 # Watts Martin (layotl at gmail com)
 # https://gist.github.com/chipotle/5506641
-# updated 02-Aug-2013
+# updated 14-Aug-2013
 
 # Assumptions:
 #
@@ -90,7 +90,7 @@ namespace :deploy do
   desc "Install dependencies with Composer"
   task :composer_install do
     transaction do
-      run "cd #{current_release};/usr/local/bin/composer install --no-dev"
+      run "cd #{current_release};/usr/local/bin/composer install --no-dev --no-progress"
     end
   end
 
