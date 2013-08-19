@@ -36,7 +36,7 @@ Pitches
     <tr>
       <td><a href='{{ URL::route("sysop.pitches.edit", [$pitch->id]) }}' title="Edit" class="btn"><i class="icon-edit"></i></a></td>
       <td>{{ $pitch->id }}</td>
-      <td>{{ HTML::date_fmt($pitch->created_at) }}</td>
+      <td>{{ $pitch->created_at->toDateString() }}</td>
       @if ($pitch->author_id)
       <td><b>{{ HTML::linkRoute('sysop.authors.show', $pitch->author->name, [$pitch->author_id]) }}</b></td>
       @else
