@@ -5,8 +5,8 @@
 @section('content')
 
 <p>
-  {{ HTML::mailTo($author->email, 'Send Mail', ['class'=>'btn']) }}
-  <a href='{{ URL::route("sysop.stories.createwith", [$author->id]) }}' class="btn btn-success" style="color:white">New Story</a>
+  <a href='{{ URL::route("sysop.authors.edit", [$author->id]) }}' class="btn"><i class="icon-edit"></i> Edit</a>
+  <a href='mailto:{{ $author->email }}' class="btn"><i class="icon-envelope"></i> Mail</a>
 </p>
 
 <div class="row">
@@ -35,6 +35,7 @@
         @endforeach
       </tbody>
     </table>
+    <a href='{{ URL::route("sysop.stories.createwith", [$author->id]) }}' class="btn btn-success" style="color:white"><i class="icon-plus icon-white"></i> New</a>
   </div>
 
   <div class="span6">
