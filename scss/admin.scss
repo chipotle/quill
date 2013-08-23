@@ -2,8 +2,8 @@
 
 $textFont: 'freight-text-pro', 'Palatino', 'Liberation Serif', serif;
 $altFont: 'freight-sans-pro', 'Helvetica Neue', 'Liberation Sans', 'Arial', sans-serif;
-$textColor: #523b22;
 $paperColor: #fcfaf8;
+$textColor: darken($paperColor, 70%);
 
 textarea {
   font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
@@ -20,15 +20,20 @@ textarea.long {
 
 #preview {
   font-family: $textFont;
-  font-size: 17px; // Not kosher, but necessary
+  font-size: 18px; // Not kosher, but necessary
   margin: auto;
-  line-height: 1.327em;
+  line-height: 1.414;
   max-width: 36em;
   min-width: 28em;
   p {
     margin-top: 1em;
     margin-bottom: 1em;
   }
+  -moz-font-feature-settings:"kern" 1, "liga" 1;
+  -ms-font-feature-settings:"kern" 1, "liga" 1;
+  -o-font-feature-settings:"kern" 1, "liga" 1;
+  -webkit-font-feature-settings:"kern" 1, "liga" 1;
+  font-feature-settings:"kern" 1, "liga" 1;
   @import "cnq-include.scss";
 }
 
