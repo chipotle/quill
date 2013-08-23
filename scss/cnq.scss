@@ -1,4 +1,5 @@
 /* http://modularscale.com/scale/?px1=17&px2=544&ra1=1.5&ra2=0 */
+/* http://modularscale.com/scale/?px1=18&px2=45&ra1=1.414&ra2=0 */
 
 @import "normalize.scss";
 
@@ -14,11 +15,16 @@ html {
 body {
 	font-family: $textFont;
 	font-size: 100%;
-  font-size: 1.063em;
-  margin: 4.477em;
+  font-size: 1.125em;
+  margin: 5em;
 	color: $textColor;
 	background-color: $paperColor;
-	line-height: 1.327em;
+	line-height: 1.414;
+  -moz-font-feature-settings:"kern" 1, "liga" 1;
+  -ms-font-feature-settings:"kern" 1, "liga" 1;
+  -o-font-feature-settings:"kern" 1, "liga" 1;
+  -webkit-font-feature-settings:"kern" 1, "liga" 1;
+  font-feature-settings:"kern" 1, "liga" 1;
 }
 
 #content {
@@ -32,7 +38,7 @@ div.alert {
   font-size: 0.884em;
   border: $textColor 1px solid;
   background-color: darken($paperColor, 10%);
-  padding: 0.262em 0.884em;
+  padding: 0.313em 0.884em;
 }
 
 div.error {
