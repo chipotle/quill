@@ -8,6 +8,8 @@ Issue {{ $issue->volnum() }}
 
 @if ($issue->is_published)
 
+<p class="alert alert-info">This issue&rsquo;s contents are frozen. If you need to change the contents, {{ HTML::linkRoute('sysop.issues.edit', 'edit the metadata', [$issue->id]) }} and uncheck &ldquo;Published.&rdquo;</p>
+
 <h2>Stories</h2>
 <table class="table table-striped">
   <thead>
