@@ -15,5 +15,13 @@ class IssueTest extends TestCase {
         $expected = (Config::get('quill.use_volumes') ? "{$issue->volume}.{$issue->number}" : $issue->number);
         $this->assertEquals($expected, $issue->volnum());
     }
+	public function testHasManyImages()
+	{
+		$this->assertRespondsTo('images', 'Issue');
+		$class = Mockery::mock('Issue[morphMany]');
+		$class->shouldReceive('morphMany')->with('Images', 'imageable')->once();
+		$class->images();
+	}
+
 
 }
