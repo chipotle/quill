@@ -7,7 +7,7 @@
 
 @section('content')
 
-<header class="preview">{{ $title }}</header>
+<header class="preview">{{ $title }} (Preview)</header>
 
 <div id="preview">
   <article class="page">
