@@ -5,14 +5,15 @@ a {
   &:link, &:visited {
     text-decoration: none;
     color: scale-color($textColor, $blue: 80%);
-    background-color: scale-color($paperColor, $lightness: -2%);
+    background-color: scale-color($paperColor, $lightness: -3%);
+    border-radius: 3px;
   }
   &:hover {
     background-color: scale-color($paperColor, $blue: 30%, $red: -15%, $green: -15%);
     color: blue;
   }
 }
-a[href^=mailto], a[href*="twitter.com"], .nohyphen {
+a[href^=mailto], a[href*="twitter.com"], .excerpt *, .nohyphen {
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
@@ -72,16 +73,15 @@ article {
     hyphens: auto;
   }
   h1 {
-    font-size: 2em;
+    font-size: 1.768em;
     line-height: 1em;
     text-align: center;
-    margin-bottom: 0.313em;
+    margin-bottom: 0.25em;
   }
   h2 {
-    margin-top: 1em;
+    margin-top: 1.414em;
     line-height: 1em;
-    font-size: 1.414em;
-    margin-bottom: 0.625em;
+    font-size: 1.06em;
   }
   aside {
     width: 50%;
@@ -118,23 +118,22 @@ article {
     font-style: italic;
     margin: 0 auto 2.5em;
     width: 90%;
+    border-top: 1px solid $textColor;
+    border-bottom: 1px solid $textColor;
   }
   .subhead {
     font-family: $altFont;
     text-align: center;
     margin-top: 0;
-    font-size: 1.414em;
+    font-size: 1.25em;
     font-weight: 700;
-    margin-bottom: 0.313em;
+    margin-bottom: 0.25em;
   }
   .author {
-    margin-top: 0.884em;
+    margin-top: 0.5em;
     text-align: center;
-    margin-bottom: 2.5em;
-    font-size: 1.414em;
-    span {
-      font-style: normal;
-    }
+    margin-bottom: 1.25em;
+    font-size: 1.25em;
   }
   .category {
     font-family: $altFont;
@@ -157,7 +156,7 @@ article {
 
 article.page {
   h1 {
-    margin-bottom: 1.414em;
     text-align: left;
+    margin-bottom: 0.884em;
   }
 }
