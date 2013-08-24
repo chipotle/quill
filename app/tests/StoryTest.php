@@ -26,6 +26,14 @@ class StoryTest extends TestCase {
     	$author->show = Author::SHOW_NICK;
     	$story = Factory::make('story', [
     		'author' => $author,
+	public function testHasManyImages()
+	{
+		$this->assertRespondsTo('images', 'Story');
+		$class = Mockery::mock('Story[morphMany]');
+		$class->shouldReceive('morphMany')->with('Images', 'imageable')->once();
+		$class->images();
+	}
+
 			'id' => 'x',
 			'blurb' => 'This is a "thing"',
 	   		'body' => "Lorem _ipsum_ dolor amet\n\nLorem--ipsum",
