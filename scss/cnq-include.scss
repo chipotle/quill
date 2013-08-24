@@ -120,6 +120,10 @@ article {
     width: 90%;
     border-top: 1px solid $textColor;
     border-bottom: 1px solid $textColor;
+    i, em {
+      font-style: normal;
+      font-weight: 700;
+    }
   }
   .subhead {
     font-family: $altFont;
