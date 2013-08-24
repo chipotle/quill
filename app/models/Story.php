@@ -44,6 +44,14 @@ class Story extends BaseModel {
 	}
 
 	/**
+	 * Story hasMany Images (polymorphic)
+	 */
+	public function images()
+	{
+		return $this->morphMany('Images', 'imageable');
+	}
+
+	/**
 	 * Register event listener to clear cache on model save
 	 */
 	public static function boot()
