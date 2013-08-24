@@ -25,5 +25,12 @@ class Issue extends BaseModel {
     {
     	return (Config::get('quill.use_volumes') ? "{$this->volume}.{$this->number}" : $this->number);
     }
+	/**
+	 * Issue hasMany Images (polymorphic)
+	 */
+	public function images()
+	{
+		return $this->morphMany('Images', 'imageable');
+	}
 
 }
