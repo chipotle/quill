@@ -4,17 +4,11 @@ use Way\Tests\Factory;
 class IssueTest extends TestCase {
 	use Way\Tests\ModelHelpers;
 
-    public function testHasManyStories()
-    {
-    	$this->assertHasMany('stories', 'Issue');
-    }
+	public function testHasManyStories()
+	{
+		$this->assertHasMany('stories', 'Issue');
+	}
 
-    public function testVolNum()
-    {
-        $issue = Factory::make('issue');
-        $expected = (Config::get('quill.use_volumes') ? "{$issue->volume}.{$issue->number}" : $issue->number);
-        $this->assertEquals($expected, $issue->volnum());
-    }
 	public function testHasManyImages()
 	{
 		$this->assertRespondsTo('images', 'Issue');
@@ -23,5 +17,11 @@ class IssueTest extends TestCase {
 		$class->images();
 	}
 
+	public function testVolNum()
+	{
+		$issue = Factory::make('issue');
+		$expected = (Config::get('quill.use_volumes') ? "{$issue->volume}.{$issue->number}" : $issue->number);
+		$this->assertEquals($expected, $issue->volnum());
+	}
 
 }
