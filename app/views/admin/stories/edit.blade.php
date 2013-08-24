@@ -7,7 +7,7 @@
 {{ Form::model($story, array('route' => ['sysop.stories.update', $story->id], 'method' => 'put')) }}
 
   {{ Form::label('title', 'Title') }}
-  {{ Form::text('title', null, ['class' => 'input-xxlarge']) }}
+  {{ Form::text('title', null, ['id'=>'title', 'class' => 'input-xxlarge']) }}
 
   {{ Form::label('subhead', 'Subhead') }}
   {{ Form::text('subhead', null, ['class' => 'input-xxlarge', 'placeholder' => '(Optional)']) }}
@@ -17,7 +17,7 @@
   </p>
 
   {{ Form::label('slug', 'Slug (must be unique within issue)') }}
-  {{ Form::text('slug', null, ['class'=>'input-xxlarge']) }}
+  {{ Form::text('slug', null, ['id'=>'slug', 'class'=>'input-xxlarge']) }}
 
   {{ Form::label('blurb', 'Blurb or Excerpt (Markdown)') }}
   {{ Form::textarea('blurb', null, ['class'=>'input-block-level']) }}
@@ -31,4 +31,26 @@
 </p>
 {{ Form::close() }}
 
+@endsection
+
+@section('scripts')
+<script>
+$(function() {
+  $('#title').on('blur', function() {
+    var title = $('#title').val();
+    var slug = $('#slug').val();
+    if (title.length > 0 && slug.length == 0) {
+      $('#slug').val(makeSlug(title));
+    }
+  })
+
+});
+
+function makeSlug(slug) {
+  slug = slug.toLowerCase().replace(/\ba\b/g, '').replace(/\bthe\b/g, '').trim();
+  slug = slug.replace(/\s+/g, '-').replace('/_/g', '-').replace(/[^a-z0-9-]/g, '');
+  slug = slug.replace(/-{2,}/g, '-');
+  return slug;
+}
+</script>
 @endsection

@@ -7,7 +7,7 @@
 {{ Form::model($story, array('route' => 'sysop.stories.store')) }}
 
   {{ Form::label('title', 'Title') }}
-  {{ Form::text('title', null, ['class' => 'input-xxlarge']) }}
+  {{ Form::text('title', null, ['id'=>'title', 'class' => 'input-xxlarge']) }}
 
   {{ Form::label('subhead', 'Subhead') }}
   {{ Form::text('subhead', null, ['class' => 'input-xxlarge', 'placeholder' => '(Optional)']) }}
@@ -17,14 +17,14 @@
     @if ($author_name)
     {{ Form::text('author', $author_name, ['class' => 'input-xxlarge disabled', 'autocomplete' => 'off', 'disabled'=>true]) }}
     @else
-    {{ Form::text('author', null, ['class' => 'input-xxlarge', 'autocomplete' => 'off']) }} <a href='{{ URL::route("sysop.authors.create") }}' class="btn btn-success" target="_blank" title="Opens in new window/tab" style="margin-top:-10px;margin-left:1em;color:white"><i class="icon-plus icon-white"></i> New</a>
+    {{ Form::text('author', null, ['class' => 'input-xxlarge', 'autocomplete' => 'off']) }} <a href='{{ URL::route("sysop.authors.create") }}' class="btn btn-success buttonfix" target="_blank" title="Opens in new window/tab" style="color:white"><i class="icon-plus icon-white"></i> New</a>
     @endif
   </div>
 
   {{ Form::hidden('author_id', null, ['id' => 'author_id', 'data-return' => 'x']) }}
 
   {{ Form::label('slug', 'Slug (must be unique within issue)') }}
-  {{ Form::text('slug', null, ['class'=>'input-xxlarge']) }}
+  {{ Form::text('slug', null, ['id'=>'slug', 'class'=>'input-xxlarge']) }}
 
   {{ Form::label('blurb', 'Blurb or Excerpt (Markdown)') }}
   {{ Form::textarea('blurb', null, ['class'=>'input-block-level']) }}
@@ -73,7 +73,21 @@ $(function() {
       $('#author-control').removeClass('success');
     }
   });
+
+  $('#title').on('blur', function() {
+    var title = $('#title').val();
+    if (title.length > 0) {
+      $('#slug').val(makeSlug(title));
+    }
+  })
+
 });
+
+function makeSlug(slug) {
+  slug = slug.toLowerCase().replace(/\ba\b/g, '').replace(/\bthe\b/g, '').trim();
+  slug = slug.replace(/\s+/g, '-').replace('/_/g', '-').replace(/[^a-z0-9-]/g, '');
+  slug = slug.replace(/-{2,}/g, '-');
+  return slug;
+}
 </script>
 @endsection
-
