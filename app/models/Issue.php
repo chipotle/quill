@@ -40,4 +40,25 @@ class Issue extends BaseModel {
 		return (Config::get('quill.use_volumes') ? "{$this->volume}.{$this->number}" : $this->number);
 	}
 
+	public function getLast($published=true)
+	{
+		$vol = \DB::table('issues')->max('volume');
+		if (empty($vol)) {
+			$vol = $num = 0;
+		}
+		else {
+			$num = \DB::table('issues')->where('volume', $vol)->
+				max('number');
+			if (empty($num)) $num = 0;
+		}
+		if ($published) {
+			if ($vol == 0 || $num == 0) return false;
+			return $this->where('volume', $vol)->
+				where('number', $num)->
+				where('is_published', true)->
+				first();
+		}
+		return [$vol, $num];
+	}
+
 }
