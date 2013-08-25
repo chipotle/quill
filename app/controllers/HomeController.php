@@ -1,12 +1,14 @@
 <?php
 
-class StaticController extends BaseController {
+class HomeController extends BaseController {
 
 	protected $page;
+	protected $issue;
 
-	function __construct(Page $page)
+	function __construct(Page $page, Issue $issue)
 	{
 		$this->page = $page;
+		$this->issue = $issue;
 	}
 
 	public function showPage($slug)
@@ -20,7 +22,11 @@ class StaticController extends BaseController {
 
 	public function index()
 	{
-		return $this->showPage('index');
+		$issue = $this->issue->getLast();
+		if ( ! $issue) {
+			return $this->showPage('index');
+		}
+		return "Returned issue {$issue->id}\n";
 	}
 
 }
