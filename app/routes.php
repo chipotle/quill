@@ -30,9 +30,11 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 	});
 });
 
-// Static page display
-Route::get('/page/{slug}', 'StaticController@showPage');
-Route::get('/', 'StaticController@index');
+// Home page display
+Route::get('/', 'HomeController@index');
+
+// Other static pages
+Route::get('/page/{slug}', 'HomeController@showPage');
 
 // "Pitch a story" form
 Route::controller('pitch', 'PitchController');
@@ -43,7 +45,7 @@ Route::post('cnq-queue', function()
 	return Queue::marshal();
 });
 
-// Debugging stuff
+// Allow SQL debugging
 if (Request::has('debug') && App::environment() == 'local') {
 	Event::listen('illuminate.query', function($sql)
 	{
