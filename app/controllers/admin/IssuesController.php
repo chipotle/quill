@@ -43,10 +43,9 @@ class IssuesController extends \BaseController {
 	public function create()
 	{
 		$issue = $this->issue;
-		$vol = \DB::table('issues')->max('volume');
+		list($vol, $num) = $issue->getLast(false);
 		if (empty($vol)) $vol = 1;
 		$issue->volume = $vol;
-		$num = \DB::table('issues')->where('volume', $vol)->max('number');
 		$issue->number = $num + 1;
 		return \View::make('admin.issues.new')->with('issue', $issue);
 	}
