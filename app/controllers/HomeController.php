@@ -22,7 +22,7 @@ class HomeController extends BaseController {
 
 	public function index()
 	{
-		$issue = $this->issue->getLast();
+		$issue = $this->issue->getCurrent();
 		if ( ! $issue) {
 			return $this->showPage('index');
 		}
