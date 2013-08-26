@@ -46,6 +46,32 @@ div.error {
     border-color: scale-color($textColor, $red: 60%);
   }
 
+#header {
+  display: table;
+  border-bottom: 1px $textColor solid;
+  margin-bottom: 2.5em;
+  clear: both;
+  img {
+    width: 302px;
+    height: 86px;
+  }
+  h1 {
+    font-weight: normal;
+    font-size: 1.14em;
+    line-height: 1.14em;
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    span {
+      font-weight: 700;
+      font-size: 80%;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+}
+
 @import "cnq-include.scss";
 
 /* Phone Overrides */
