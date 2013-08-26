@@ -10,8 +10,14 @@ class Issue extends BaseModel {
 	public static $rules = [
 		'number' => 'required|numeric|min:1',
 		'volume' => 'required|numeric|min:1',
-		'pub_date' => 'required|date_format:Y-m-d',
+		'pub_date' => 'required',
 	];
+
+	public function getDates()
+	{
+		return array_merge(parent::getDates(), ['pub_date']);
+	}
+
 
 	/**
 	 * Issue hasMany Stories
