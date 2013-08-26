@@ -94,7 +94,7 @@ class IssuesController extends \BaseController {
 			return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->volume}.{$issue->number} updated.");
 		}
 		\Session::flashInput(\Input::all());
-		return \Redirect::route('sysop.issues.error')->with('error', $issue->errors);
+		return \Redirect::route('sysop.issues.edit', [$issue->id])->with('error', $issue->errors);
 	}
 
 	/**
