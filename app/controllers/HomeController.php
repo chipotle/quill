@@ -26,7 +26,7 @@ class HomeController extends BaseController {
 		if ( ! $issue) {
 			return $this->showPage('index');
 		}
-		return "Returned issue {$issue->id}\n";
+		return View::make('cover')->with('issue', $issue);
 	}
 
 }
