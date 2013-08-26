@@ -31,7 +31,7 @@
 
 <div class="control-group">
   <label for="pub_date" class="control-label">Publication Date</label>
-  <div class="controls">{{ Form::text('pub_date', null, ['class' => 'input-small', 'placeholder' => 'YYYY-MM-DD']) }}</div>
+  <div class="controls">{{ Form::text('pub_date', $issue->pub_date->toDateString(), ['class' => 'input-small', 'placeholder' => 'YYYY-MM-DD']) }}</div>
 </div>
 
 <p>
