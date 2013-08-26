@@ -164,3 +164,14 @@ article.page {
     margin-bottom: 0.884em;
   }
 }
+
+#footnotediv {
+  background-color: $paperColor;
+  padding: 0.442em 0.707em;
+  border: 1px solid darken($paperColor, 30%);
+  border-radius: 10px;
+  box-shadow: #666 0 0 8px;
+  a.footnote-backref {
+    display: none;
+  }
+}
