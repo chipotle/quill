@@ -17,6 +17,8 @@ class CreateImagesTable extends Migration {
 			$table->string('path');
 			$table->integer('imageable_id')->unsigned();
 			$table->string('imageable_type');
+			$table->string('caption')->nullable();
+			$table->string('alt_text')->nullable();
 			$table->timestamps();
 
 			$table->index(['imageable_id', 'imageable_type']);
