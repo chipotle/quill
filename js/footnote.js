@@ -27,18 +27,22 @@ var Footnotes = {
 		div.bind('mouseout',Footnotes.footnoteoout);
 
 		var el = document.getElementById(id);
-		div.html($(el).html());
+		var fntext = $(el).html();
+		var width = Math.floor((fntext.length - 180) / 36 + 18);
+		if (width < 18) { width = 18; }
+		if (width > 24) { width = 24; }
+		div.html(fntext);
 
 		div.css({
-			position:'absolute',
-			width:'18em',
+			position: 'absolute',
+			width: width + 'em',
 			opacity: 0.95
 		});
 		$(document.body).append(div);
 
 		var left = position.left;
-		if(left + 420  > $(window).width() + $(window).scrollLeft()) {
-			left = $(window).width() - 420 + $(window).scrollLeft();
+		if(left + width*24  > $(window).width() + $(window).scrollLeft()) {
+			left = $(window).width() - width*24 + $(window).scrollLeft();
 		}
 		var top = position.top+20;
 		if(top + div.height() > $(window).height() + $(window).scrollTop()) {
