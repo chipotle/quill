@@ -22,7 +22,7 @@
 		"michelf/php-markdown": "1.3.*@dev",
 		"chipotle/php-smartypants": "dev-master",
 		"iron-io/iron_mq": "dev-master",
-    "codeguy/upload": "*"
+    "sybio/image-workshop": "dev-master"
 	},
   "require-dev": {
     "way/generators": "dev-master",
