@@ -9,6 +9,6 @@
 
 As written, **Quill** makes the following deployment assumptions: the production and staging server are both a shared Linode VPS running Nginx and PHP-FPM on Arch Linux, and deployment is handled via Capistrano. The Capistrano configurations are in the repository.
 
-Javascript and SCSS files in the `/js` and `scss/` directories repsectively are compiled to the `public/` directory using [CodeKit][ck]. Import the `codekit-config.json` file to use the same settings.
+Javascript and SCSS files in the `/js` and `scss/` directories respectively are compiled to the `public/` directory using [CodeKit][ck]. Import the `codekit-config.json` file to use the same settings.
 
 [ck]: http://incident57.com/codekit/
