@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title') Authors @endsection
+@section('title') Images @endsection
 
 @section('content')
 
@@ -9,23 +9,22 @@
     <tr>
       <th style="width:10%">Action</th>
       <th>Name</th>
-      <th>Nickname</th>
-      <th>Email</th>
+      <th>Alt Text</th>
     </tr>
   </thead>
   <tbody>
-@foreach ($authors as $author)
+@foreach ($images as $image)
     <tr>
       <td style="width:10%;white-space:nowrap">
-        <a href='{{ URL::route("sysop.authors.edit", [$author->id]) }}' title="Edit Info" class="btn"><i class="icon-edit"></i></a>
+        <a href='{{ URL::route("sysop.images.edit", [$image->id]) }}' title="Edit Info" class="btn"><i class="icon-edit"></i></a>
       </td>
-      <td>{{ HTML::linkRoute('sysop.authors.show', $author->name, [$author->id], ['title'=>'Show stories/pitches']) }}</td>
-      <td>{{ $author->nickname }}</td>
-      <td>{{ HTML::mailto($author->email) }}</td>
+      <td>{{ HTML::linkRoute('sysop.images.show', $image->name, [$image->id]) }}</td>
+      <td>{{ $image->name }}</td>
+      <td>{{ $image->alt_text }}</td>
     </tr>
 @endforeach
   </tbody>
 </table>
 
-<a href='{{ URL::route("sysop.authors.create") }}' class="btn btn-success" style="color:white"><i class="icon-plus icon-white"></i> New</a>
+<a href='{{ URL::route("sysop.images.create") }}' class="btn btn-success" style="color:white"><i class="icon-plus icon-white"></i> New</a>
 @endsection
