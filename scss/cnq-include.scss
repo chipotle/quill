@@ -72,6 +72,15 @@ article {
     -o-hyphens: auto;
     hyphens: auto;
   }
+  blockquote {
+    border-left: 1px solid lighten($textColor, 25%);
+  }
+  blockquote, blockquote p, li {
+    line-height: 1.414em;
+  }
+  ul li {
+    list-style-type: square;
+  }
   h1 {
     font-size: 1.768em;
     line-height: 1em;
@@ -156,6 +165,9 @@ article {
     font-size: 0.884em;
     font-weight: 700;
   }
+  .footnotes {
+    font-size: 0.884em;
+  }
 }
 
 article.page {
@@ -174,4 +186,12 @@ article.page {
   a.footnote-backref {
     display: none;
   }
+}
+
+hr {
+  width: 80%;
+  border-top: none;
+  border-bottom: 1px solid lighten($textColor, 25%);
+  margin: 1.768em auto;
+  text-align: center;
 }
