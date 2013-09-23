@@ -85,7 +85,10 @@ class Story extends BaseModel {
 				'blurb' => $blurb,
 				'author' => $this->author->getPreferredName(),
 				'subhead' => $this->subhead,
-				'id' => $this->id
+				'id' => $this->id,
+				'issue_id' => $this->issue_id,
+				'volnum' => $this->issue->volnum(),
+				'date' => $this->issue->pub_date->toFormattedDateString()
 			];
 		});
 		return $content;
