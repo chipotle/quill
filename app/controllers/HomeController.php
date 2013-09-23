@@ -26,7 +26,7 @@ class HomeController extends BaseController {
 		if ( ! $issue) {
 			return $this->showPage('index');
 		}
-		$issue->load('stories');
+		$issue->load('stories.author');
 		return View::make('cover')->with('issue', $issue);
 	}
 

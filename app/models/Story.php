@@ -63,14 +63,19 @@ class Story extends BaseModel {
 		});
 	}
 
+	public function getBlurb()
+	{
+		$blurb = MarkdownExtra::defaultTransform($this->blurb);
+		return Smartypants::defaultTransform($blurb);
+	}
+
 	/**
 	 * Retrieve Markdownified content, from cache if appropriate
 	 */
 	public function getContent()
 	{
 		$content = Cache::rememberForever("story-{$this->id}", function() {
-			$blurb = MarkdownExtra::defaultTransform($this->blurb);
-			$blurb = Smartypants::defaultTransform($blurb);
+			$blurb = $this->getBlurb();
 			$body = MarkdownExtra::defaultTransform($this->body);
 			$body = Smartypants::defaultTransform($body);
 			$title = Smartypants::defaultTransform($this->title);
