@@ -19,7 +19,6 @@
         <a href='{{ URL::route("sysop.images.edit", [$image->id]) }}' title="Edit Info" class="btn"><i class="icon-edit"></i></a>
       </td>
       <td>{{ HTML::linkRoute('sysop.images.show', $image->name, [$image->id]) }}</td>
-      <td>{{ $image->name }}</td>
       <td>{{ $image->alt_text }}</td>
     </tr>
 @endforeach

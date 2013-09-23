@@ -25,6 +25,7 @@
             <li>{{ HTML::linkRoute('sysop.issues.index', 'Issues') }}</li>
             <li>{{ HTML::linkRoute('sysop.authors.index', 'Authors') }}</li>
             <li>{{ HTML::linkRoute('sysop.pitches.index', 'Pitches') }}</li>
+            <li>{{ HTML::linkRoute('sysop.images.index', 'Images') }}</li>
             <li><a href="#">Users</a></li>
           </ul>
         </div>

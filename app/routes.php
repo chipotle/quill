@@ -16,6 +16,7 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 	Route::resource('authors', 'Admin\AuthorsController');
 	Route::resource('stories', 'Admin\StoriesController');
 	Route::resource('issues', 'Admin\IssuesController');
+	Route::resource('images', 'Admin\ImagesController');
 
 	// Pitches need to switch between showing all and pending
 	Route::get('pitches/{show?}', ['uses'=>'Admin\PitchesController@index', 'as'=>'sysop.pitches.index']);

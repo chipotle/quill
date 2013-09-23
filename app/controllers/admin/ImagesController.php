@@ -4,7 +4,7 @@ class ImagesController extends \BaseController {
 
 	protected $image;
 
-	function construct(\Image $image)
+	function __construct(\Image $image)
 	{
 		$this->image = $image;
 	}
@@ -16,7 +16,7 @@ class ImagesController extends \BaseController {
 	 */
 	public function index()
 	{
-		if (Request::ajax()) {
+		if (\Request::ajax()) {
 			$images = $this->image->orderBy('updated_at', 'desc');
 			return $images;
 		} else {
@@ -42,13 +42,19 @@ class ImagesController extends \BaseController {
 	 */
 	public function store()
 	{
+		$file = \Input::file('file');
+		if ($file === null) {
+			return \Redirect::route('sysop.images.create')->with('msg', 'No file given');
+		}
 		$image = $this->image;
-		list($ok, $result) = $image->manage(Input::file('file'), Input::get('params'));
+		$retina = $image->updateModel(\Input::get('params'));
+		$ok = $image->updateFile($file, $retina);
 		if ($ok) {
+			$image->save();
 			return \Redirect::route('sysop.images.index')->with('msg', 'Image uploaded.');
 		}
 		\Session::flashInput(\Input::all());
-		return \Redirect::route('sysop.images.create')->with('error', $result);
+		return \Redirect::route('sysop.images.create')->with('msg', 'Error uploading file.');
 	}
 
 
@@ -73,7 +79,7 @@ class ImagesController extends \BaseController {
 	public function edit($id)
 	{
 		$image = $this->image->findOrFail($id);
-		return \View::make('admin.images.edit')->with('images', $image);
+		return \View::make('admin.images.edit')->with('image', $image);
 	}
 
 	/**
@@ -85,16 +91,19 @@ class ImagesController extends \BaseController {
 	public function update($id)
 	{
 		$image = $this->image->findOrFail($id);
-		if (Input::has('file')) {
-			list($ok, $result) = $image->manage(Input::file('file'), Input::get('params'));
+		$retina = $image->updateModel(\Input::get('params'));
+		$file = \Input::file('file');
+		if ($file !== null) {
+			$ok = $image->updateFile($file, $retina);
 		} else {
-			list($ok, $result) = $image->updateModel(Input::get('params'));
+			$ok = true;
 		}
 		if ($ok) {
+			$image->save();
 			return \Redirect::route('sysop.images.index')->with('msg', 'Image updated.');
 		}
 		\Session::flashInput(\Input::all());
-		return \Redirect::route('sysop.images.edit')->with('error', $result);
+		return \Redirect::route('sysop.images.edit')->with('msg', 'Error uploading file.');
 	}
 
 	/**

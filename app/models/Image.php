@@ -1,5 +1,6 @@
 <?php
-use PHPImageWorkshop\ImageWorkshop;
+use PHPImageWorkshop\ImageWorkshop,
+	Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Image extends BaseModel {
 
@@ -18,15 +19,12 @@ class Image extends BaseModel {
 		return $this->morphTo();
 	}
 
-	public function manage(UploadedFile $file, $params)
-	{
-		$params = array_intersect_key($params, array_flip($this->params));
-		$retina = (isset($params['make_retina']) && $params['make_retina'] == true);
-		$name = strtolower($file->getClientOriginalName());
-		$this->updateFile($file, $name, $retina);
-		return $this->updateModel($params);
-	}
-
+	/**
+	 * Updates the image model fields from a parameter array
+	 *
+	 * @param array $params values for model fields
+	 * @return boolean $retina true if make_retina was set to true
+	 */
 	public function updateModel($params)
 	{
 		$params = array_intersect_key($params, array_flip($this->params));
@@ -45,33 +43,69 @@ class Image extends BaseModel {
 					break;
 			}
 		}
-		if ($this->validate()) {
-			return [true, $this->save()];
-		}
-		return [false, $this->errors];
+		return $retina;
 	}
 
-	public function updateFile(UploadedFile $file, $name, $retina=false)
+	/**
+	 * Update the image file associated with this model.
+	 *
+	 * @param UploadedFile $file file uploaded
+	 * @param boolean $retina true to create retina image
+	 */
+	public function updateFile(UploadedFile $file, $retina=false)
 	{
-		$name = strtolower($name);
-		$this->name = ($retina) ? "$name@2x" : $name;
-		$this->path = sprintf(Config::get('quill.upload_dir'), date('Y'));
-		$file->move($this->path, $this->name);
-		if ($retina) {
-			$layer = $this->getLayer();
+		if ( ! $file->isValid()) {
+			$err = $file->getError();
+			throw \RuntimeException("File $name invalid ($err)");
+		}
+		$this->name = strtolower($file->getClientOriginalName());
+		$name = $this->getName($retina);
+		$this->path = $this->path ?: sprintf(Config::get('quill.upload_dir'), date('Y'));
+		if ( ! is_dir($this->path)) {
+			if (mkdir($this->path, 0777, true) === false) {
+				throw \RuntimeException("Directory {$this->path} could not be created");
+			}
+		}
+		// UploadedFile::move() fails without a useful error message, so we're bailing and using PHP's native function instead
+		// $file->move($this->path, $name);
+		$ok = move_uploaded_file($_FILES['file']['tmp_name'], $this->path . $name);
+		if ($ok && $retina) {
+			$layer = $this->getLayer(true);
 			$layer->resizeInPercent(50, null, true);
-			$layer->save($this->path, $name);
+			$iq = (substr($this->name, -3) == 'jpg') ? 75 : 100;
+			$layer->save($this->path, $this->name, true, null, $iq);
 		}
+		return $ok;
 	}
 
-	public function getFilePath()
+	public function getName($retina=false)
 	{
-		return $this->path . '/' . $this->name;
+		if ($retina) {
+			$path_parts = pathinfo($this->name);
+			return $path_parts['filename'] . '@2x.' . $path_parts['extension'];
+		}
+		return $this->name;
 	}
 
-	public function getLayer()
+	/**
+	 * Get the file system path for the associated image
+	 *
+	 * @param boolean $retina true to return path to retina imageable
+	 */
+	public function getFilePath($retina=false)
 	{
-		return ImageWorkshop::initFromPath($this->getFilePath());
+		return $this->path . $this->getName($retina);
+	}
+
+	public function getFileURL($retina=false)
+	{
+		$public_pos = strpos($this->path, '/public');
+		return substr($this->path, $public_pos + 7) . $this->getName($retina);
+	}
+
+	public function getLayer($retina=false)
+	{
+		return ImageWorkshop::initFromPath($this->getFilePath($retina));
 	}
 
 	public function getSize()
@@ -83,7 +117,7 @@ class Image extends BaseModel {
 	public function makeThumb($size=64)
 	{
 		$layer = $this->getLayer();
-		$layer->resizeByLargestSizeInPixel($size, true);
+		$layer->resizeByLargestSideInPixel($size, true);
 		$layer->save($this->path . '/thumb', $this->name);
 	}
 }
