@@ -27,5 +27,6 @@
 
     @yield('content')
   </div>
+  {{ HTML::script('js/cnq.js') }}
 </body>
 </html>
