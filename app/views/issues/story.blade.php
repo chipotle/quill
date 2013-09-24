@@ -3,6 +3,7 @@
 @section('title')C&amp;Q #{{ $volnum}}: {{ $title }}@endsection
 
 @section('head')
+<link rel="canonical" href="{{ URL::action('IssueController@showStory', [$issue_id, $slug]) }}">
 @endsection
 
 @section('content')
