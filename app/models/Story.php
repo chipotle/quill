@@ -86,9 +86,11 @@ class Story extends BaseModel {
 				'author' => $this->author->getPreferredName(),
 				'subhead' => $this->subhead,
 				'id' => $this->id,
-				'issue_id' => $this->issue_id,
-				'volnum' => $this->issue->volnum(),
-				'date' => $this->issue->pub_date->toFormattedDateString()
+				'issue_id' => ($this->issue_id) ? $this->issue_id : 0,
+				'volnum' => ($this->issue_id) ? $this->issue->volnum() : 0,
+				'date' => ($this->issue_id) ?
+					$this->issue->pub_date->toFormattedDateString() :
+					\Carbon\Carbon::now()->toFormattedDateString()
 			];
 		});
 		return $content;
