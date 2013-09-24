@@ -122,13 +122,18 @@ article {
     border-top: 1px solid $textColor;
     border-bottom: 1px solid $textColor;
     margin-left: 1.414em;
-    // margin-right: -0.884em;
     margin-right: -1.414em;
     padding: 0.313em;
     margin-bottom: 0.313em;
     margin-top: 0.313em;
+    p {
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      -ms-hyphens: none;
+      -o-hyphens: none;
+      hyphens: none;
+    }
     &.aboutbox {
-      // font-size: 0.884em;
       font-size: 1em;
       line-height: 1.414em;
       width: 45%;

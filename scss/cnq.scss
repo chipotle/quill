@@ -93,6 +93,7 @@ article.toc {
     display: inline;
     list-style-type: none;
     font-family: $altFont;
+    font-size: 0.884em;
     font-weight: normal;
     &:before {
       content: '§ ';
