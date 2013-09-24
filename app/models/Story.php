@@ -96,4 +96,9 @@ class Story extends BaseModel {
 		return $content;
 	}
 
+	public function scopeInIssue($query, $issue)
+	{
+		return $query->where('issue_id', $issue)->orderBy('sort');
+	}
+
 }
