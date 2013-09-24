@@ -27,6 +27,14 @@ class Issue extends BaseModel {
 		return $this->hasMany('Story');
 	}
 
+	public function storiesSorted()
+	{
+		$this->load('stories.author');
+		return $this->stories->sortBy(function($s) {
+			return $s->sort;
+		});
+	}
+
 	/**
 	 * Issue hasMany Images (polymorphic)
 	 */
