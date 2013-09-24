@@ -35,12 +35,16 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 Route::get('/', 'HomeController@index');
 
 // Other static pages
-Route::get('/page/{slug}', 'HomeController@showPage');
+Route::get('/page/{slug}', ['uses' => 'HomeController@showPage', 'as' => 'page']);
 
 // Issue contents
 Route::get('/issue/{id}/{slug}', 'IssueController@showStory');
 Route::get('/issue/{id}', 'IssueController@showIssue');
 Route::get('/issue', 'IssueController@getIndex');
+
+// Author pages
+// Route::get('/author/{id}', 'AuthorController@showBio');
+// Route::get('/author', 'AuthorController@getIndex');
 
 // "Pitch a story" form
 Route::controller('pitch', 'PitchController');
