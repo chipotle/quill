@@ -1,16 +1,9 @@
 <?php
 
 // Admin (back end) routes
-
 Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 {
-	// Index
 	Route::get('/', 'Admin\PitchesController@index');
-
-	Route::get('authors/search', 'Admin\AuthorsController@search');
-	Route::get('issues/publish/{id}', ['uses'=>'Admin\IssuesController@publish', 'as'=>'sysop.issues.publish']);
-	Route::post('issues/commit', ['uses'=>'Admin\IssuesController@commit', 'as'=>'sysop.issues.commit']);
-	Route::get('stories/createby/{author_id}', ['uses'=>'Admin\StoriesController@createWithAuthor', 'as'=>'sysop.stories.createwith']);
 
 	Route::resource('pages', 'Admin\PagesController');
 	Route::resource('authors', 'Admin\AuthorsController');
@@ -24,11 +17,11 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 	Route::get('pitches/edit/{id}', ['uses'=>'Admin\PitchesController@edit', 'as'=>'sysop.pitches.edit']);
 	Route::put('pitches/update/{id}', ['uses'=>'Admin\PitchesController@update', 'as'=>'sysop.pitches.update']);
 
-	// Temporary route used to do arbitrary things
-	Route::get('/do', function() {
-		$a = Input::get('params');
-		echo "<pre>"; print_r($a); echo "</pre>";
-	});
+	// special callbacks
+	Route::get('authors/search', 'Admin\AuthorsController@search');
+	Route::get('issues/publish/{id}', ['uses'=>'Admin\IssuesController@publish', 'as'=>'sysop.issues.publish']);
+	Route::post('issues/commit', ['uses'=>'Admin\IssuesController@commit', 'as'=>'sysop.issues.commit']);
+	Route::get('stories/createby/{author_id}', ['uses'=>'Admin\StoriesController@createWithAuthor', 'as'=>'sysop.stories.createwith']);
 });
 
 // Home page display
@@ -43,8 +36,8 @@ Route::get('/issue/{id}', 'IssueController@showIssue');
 Route::get('/issue', 'IssueController@getIndex');
 
 // Author pages
-// Route::get('/author/{id}', 'AuthorController@showBio');
-// Route::get('/author', 'AuthorController@getIndex');
+Route::get('/author/{id}', 'AuthorController@showBio');
+Route::get('/author', 'AuthorController@getIndex');
 
 // "Pitch a story" form
 Route::controller('pitch', 'PitchController');
