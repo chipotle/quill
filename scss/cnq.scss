@@ -46,36 +46,41 @@ div.error {
   }
 
 #header {
-  display: table;
+  height: 90px;
   border-bottom: 1px $textColor solid;
   margin-bottom: 2.5em;
   clear: both;
+  div {
+    float: right;
+  }
   img {
     width: 302px;
     height: 86px;
   }
   h1 {
+    padding-top: 37px;
     font-weight: normal;
     font-size: 1.25em;
     line-height: 1.25em;
     text-align: left;
-    display: table-cell;
-    vertical-align: middle;
     width: 100%;
-    span {
-      font-weight: 700;
-      font-size: 88%;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
   }
 }
 
 @import "cnq-include.scss";
 
 article.toc {
+  h1 {
+    font-family: $altFont;
+    font-weight: 700;
+    // text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: left;
+    font-size: 1.25em;
+  }
   h2 {
     margin-bottom: 0;
+    line-height: 1.414em;
   }
   .author {
     font-size: inherit;
@@ -121,6 +126,21 @@ footer.toc {
 
   img { max-width: 100%; }
 
+  #header {
+    height: auto;
+    margin-bottom: 1em;
+    div {
+      float: none;
+      text-align: center;
+      margin: 0;
+    }
+    h1 {
+      padding-top: auto;
+      font-size: 1em;
+      line-height: 1em;
+    }
+  }
+
 	#content {
 		max-width: 32em;
 		min-width: 0;
@@ -130,9 +150,27 @@ footer.toc {
 		width: 100% !important;
 	}
 
-	article aside {
-		float: none;
-		width: 100% !important;
-		margin-left: inherit !important;
-	}
+	article {
+      aside {
+        float: none;
+        width: 100% !important;
+        margin-left: inherit !important;
+        margin-right: inherit !important;
+        &.aboutbox {
+          border: none;
+          background-color: inherit;
+        }
+      }
+      img {
+        margin-left: -0.707em;
+        margin-right: 0.707em;
+        max-width: 50% !important;
+        max-height: 50% !important;
+      }
+      img.right {
+        margin-left: 0.707em;
+        margin-right: -0.707em;
+      }
+  }
+
 }

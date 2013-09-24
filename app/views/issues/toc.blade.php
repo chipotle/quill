@@ -6,8 +6,8 @@ Claw &amp; Quill: No. {{ $issue->volnum() }}
 
 @section('content')
 <header id="header">
+  <div><a class="image" href="/"><img src="/img/cnq-logo.png" alt="Claw &amp; Quill"></a></div>
   <h1>No. {{ $issue->volnum() }} &middot; {{ $issue->pub_date->toFormattedDateString() }} @if ($issue->title) <br><span>{{ $issue->title }}</span> @endif </h1>
-  <img src="/img/cnq-logo.png" alt="Claw &amp; Quill">
 </header>
 
 <article class="toc">

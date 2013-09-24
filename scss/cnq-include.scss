@@ -13,6 +13,14 @@ a {
     color: blue;
   }
 }
+a.image {
+  background-color: inherit;
+  border: none;
+  &:link, &:visited, &:hover {
+    background-color: inherit;
+    color: inherit;
+  }
+}
 a[href^=mailto], a[href*="twitter.com"], .excerpt *, .nohyphen {
   -webkit-hyphens: none;
   -moz-hyphens: none;
@@ -80,9 +88,6 @@ article {
     -ms-hyphens: auto;
     -o-hyphens: auto;
     hyphens: auto;
-  }
-  blockquote {
-    border-left: 1px solid lighten($textColor, 25%);
   }
   blockquote, blockquote p, li {
     line-height: 1.414em;

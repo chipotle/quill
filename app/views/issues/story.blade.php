@@ -8,7 +8,7 @@
 
 @section('content')
 <header class="story">
-  <p>Claw &amp; Quill &middot; Issue #{{ $volnum }} &middot; {{ $date }}</p>
+  <p>{{ HTML::link('/', 'Claw &amp; Quill') }} &middot; {{ HTML::linkAction('IssueController@showIssue', "Issue #$volnum", [$issue_id]) }} &middot; {{ $date }}</p>
 </header>
 
 <article>

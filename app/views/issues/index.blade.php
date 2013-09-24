@@ -6,8 +6,8 @@ Claw &amp; Quill: Issues
 
 @section('content')
 <header id="header">
+  <div><a class="image" href="/"><img src="/img/cnq-logo.png" alt="Claw &amp; Quill"></a></div>
   <h1>Claw &amp; Quill Issue Index</h1>
-  <img src="/img/cnq-logo.png" alt="Claw &amp; Quill">
 </header>
 
 <article class="toc">
