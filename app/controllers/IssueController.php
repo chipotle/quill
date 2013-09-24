@@ -13,19 +13,22 @@ class IssueController extends BaseController {
 
 	public function getIndex()
 	{
-		// produce paginated index of past issues
+		$issues = $this->issue->orderBy('number', 'desc')->paginate(15);
+		return View::make('issues.index')->with('issues', $issues);
 	}
 
 	public function showIssue($id)
 	{
-		// show TOC for a specified issue
+		$issue = $this->issue->findOrFail($id);
+		$stories = $this->story->inIssue($issue->id)->with('author')->get();
+		return View::make('issues.toc')->with(['issue' => $issue, 'stories' => $stories]);
 	}
 
 	public function showStory($id, $slug)
 	{
 		$story = $this->story->where('issue_id', $id)->where('slug', $slug)->first();
 		if ($story) {
-			return View::make('story')->with($story->getContent());
+			return View::make('issues.story')->with($story->getContent());
 		}
 		return Response::make('Page not found', 404);
 	}
