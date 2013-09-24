@@ -86,6 +86,7 @@ class Story extends BaseModel {
 				'author' => $this->author->getPreferredName(),
 				'subhead' => $this->subhead,
 				'id' => $this->id,
+				'slug' => $this->slug,
 				'issue_id' => ($this->issue_id) ? $this->issue_id : 0,
 				'volnum' => ($this->issue_id) ? $this->issue->volnum() : 0,
 				'date' => ($this->issue_id) ?
