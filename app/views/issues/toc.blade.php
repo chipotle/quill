@@ -11,7 +11,7 @@ Claw &amp; Quill: No. {{ $issue->volnum() }}
 </header>
 
 <article class="toc">
-@foreach ($stories as $story)
+@foreach ($issue->storiesSorted() as $story)
 <h2>{{ HTML::linkAction('IssueController@showStory', $story->title, [$issue->id, $story->slug]) }} <span class="author">{{ $story->author->getPreferredName() }}</span></h2>
 {{ $story->getBlurb() }}
 @endforeach
