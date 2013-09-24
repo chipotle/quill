@@ -7,10 +7,13 @@ Claw &amp; Quill: No. {{ $issue->volnum() }}
 @section('content')
 <header id="header">
   <div><a class="image" href="/"><img src="/img/cnq-logo.png" alt="Claw &amp; Quill"></a></div>
-  <h1>No. {{ $issue->volnum() }} &middot; {{ $issue->pub_date->toFormattedDateString() }} @if ($issue->title) <br><span>{{ $issue->title }}</span> @endif </h1>
+  <h1>No. {{ $issue->volnum() }} &middot; {{ $issue->pub_date->toFormattedDateString() }}</h1>
 </header>
 
 <article class="toc">
+@if ($issue->title)
+<h1>{{ $issue->title }}</h1>
+@endif
 @foreach ($issue->storiesSorted() as $story)
 <h2>{{ HTML::linkAction('IssueController@showStory', $story->title, [$issue->id, $story->slug]) }} <span class="author">{{ $story->author->getPreferredName() }}</span></h2>
 {{ $story->getBlurb() }}
