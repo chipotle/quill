@@ -84,6 +84,20 @@ article.toc {
   p {
     margin-top: 0.5em;
   }
+  ul {
+    margin-left: 0.884em;
+    padding-left: 0;
+    margin-top: 0.25em;
+  }
+  ul li {
+    display: inline;
+    list-style-type: none;
+    font-family: $altFont;
+    font-weight: normal;
+    &:before {
+      content: '§ ';
+    }
+  }
 }
 
 footer.toc {
