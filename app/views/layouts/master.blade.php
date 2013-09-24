@@ -27,6 +27,7 @@
 
     @yield('content')
   </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   {{ HTML::script('js/cnq.js') }}
 </body>
 </html>
