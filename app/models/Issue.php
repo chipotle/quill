@@ -54,13 +54,13 @@ class Issue extends BaseModel {
 	 */
 	public function getCurrentVolNum()
 	{
-		$vol = \DB::table('issues')->max('volume');
+		$vol = \DB::table('issues')->remember(60)->max('volume');
 		if (empty($vol)) {
 			$vol = $num = 0;
 		}
 		else {
 			$num = \DB::table('issues')->where('volume', $vol)->
-				max('number');
+				remember(60)->max('number');
 			if (empty($num)) $num = 0;
 		}
 		return [$vol, $num];
@@ -78,6 +78,7 @@ class Issue extends BaseModel {
 		return $this->where('volume', $vol)->
 			where('number', $num)->
 			where('is_published', true)->
+			remember(60)->
 			first();
 	}
 
