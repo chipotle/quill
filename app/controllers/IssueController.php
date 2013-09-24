@@ -20,8 +20,7 @@ class IssueController extends BaseController {
 	public function showIssue($id)
 	{
 		$issue = $this->issue->findOrFail($id);
-		$stories = $this->story->inIssue($issue->id)->with('author')->get();
-		return View::make('issues.toc')->with(['issue' => $issue, 'stories' => $stories]);
+		return View::make('issues.toc')->with('issue', $issue);
 	}
 
 	public function showStory($id, $slug)
