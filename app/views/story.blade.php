@@ -3,12 +3,13 @@
 @section('title')C&amp;Q #{{ $volnum}}: {{ $title }}@endsection
 
 @section('head')
-<header class="story">
-  <p>Claw &amp; Quill &middot; Issue #{{ $volnum }} &middot; {{ $date }}</p>
-</header>
 @endsection
 
 @section('content')
+<header class="story">
+  <p>Claw &amp; Quill &middot; Issue #{{ $volnum }} &middot; {{ $date }}</p>
+</header>
+
 <article>
   <h1>{{ $title }}</h1>
 
