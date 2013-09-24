@@ -31,6 +31,4 @@
   <p>{{ HTML::linkAction('IssueController@showIssue', "Return to Issue #$volnum &rarr;", [$issue_id]) }}</p>
 </footer>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-{{ HTML::script('js/footnote.js') }}
 @endsection
