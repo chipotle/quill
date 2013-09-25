@@ -24,7 +24,10 @@ class AuthorController extends BaseController {
 
 	function showBio($id)
 	{
-		$author = $this->author->with('stories')->findOrFail($id);
+		// $author = $this->author->with('stories.issue')->findOrFail($id);
+		$author = $this->author->with(['stories.issue', 'stories' => function($q) {
+			$q->where('issue_id', '>', 0);
+		}])->findOrFail($id);
 		return View::make('authors.bio')->with('author', $author);
 	}
 }

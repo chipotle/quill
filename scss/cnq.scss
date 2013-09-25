@@ -106,6 +106,14 @@ article.toc {
   }
 }
 
+article.author {
+  font-family: $textFont;
+  h1 {
+    text-align: left;
+    font-size: 1.414em;
+  }
+}
+
 footer.toc {
   border-top: 1px solid $textColor;
   padding-top: 1em;
