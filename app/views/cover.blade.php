@@ -21,7 +21,8 @@ Claw &amp; Quill
 </article>
 
 <footer class="toc">
+  <p class="pull-right"><a href="http://twitter.com/clawandquill">Twitter</a></p>
   <p>{{ HTML::linkRoute('page', 'About C&amp;Q', ['about']) }} &middot; {{ HTML::linkRoute('page', 'Submission Guidelines', ['guidelines']) }} &middot; {{ HTML::linkAction('IssueController@getIndex', 'Issue Index') }} &middot; {{ HTML::linkRoute('page', 'Colophon', ['colophon']) }}</p>
-  <p>Copyright 2013 Claw &amp; Quill</p>
+  <p>Copyright 2013 Claw &amp; Quill &middot; <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" title="Creative Commons Attribution-NonCommercial-ShareAlike 3.0">CC BY-NC-SA</a></p>
 </footer>
 @endsection
