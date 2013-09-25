@@ -13,19 +13,19 @@ class IssueController extends BaseController {
 
 	public function getIndex()
 	{
-		$issues = $this->issue->orderBy('number', 'desc')->paginate(15);
+		$issues = $this->issue->where('is_published', true)->orderBy('number', 'desc')->paginate(15);
 		return View::make('issues.index')->with('issues', $issues);
 	}
 
 	public function showIssue($id)
 	{
-		$issue = $this->issue->findOrFail($id);
+		$issue = $this->issue->where('is_published', true)->findOrFail($id);
 		return View::make('issues.toc')->with('issue', $issue);
 	}
 
 	public function showStory($id, $slug)
 	{
-		$story = $this->story->where('issue_id', $id)->where('slug', $slug)->first();
+		$story = $this->story->where('issue_id', $id)->where('slug', $slug)->where('is_published', true)->first();
 		if ($story) {
 			return View::make('issues.story')->with($story->getContent());
 		}
