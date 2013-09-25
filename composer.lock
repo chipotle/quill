@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4eefe4c646aacb86b8d304dc24e35227",
+    "hash": "013adf85c556701ce65177be3748d9b1",
     "packages": [
         {
             "name": "chipotle/php-smartypants",
@@ -930,12 +930,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "65fb44410157839a012e9a9b8c11d38598484a0e"
+                "reference": "ca18e81f79484c552b6bac0e40e4ee3fd0161000"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/65fb44410157839a012e9a9b8c11d38598484a0e",
-                "reference": "65fb44410157839a012e9a9b8c11d38598484a0e",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/ca18e81f79484c552b6bac0e40e4ee3fd0161000",
+                "reference": "ca18e81f79484c552b6bac0e40e4ee3fd0161000",
                 "shasum": ""
             },
             "require": {
@@ -985,7 +985,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-09-17 13:26:34"
+            "time": "2013-09-24 08:48:58"
         },
         {
             "name": "nesbot/carbon",
@@ -1203,6 +1203,49 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "roumen/feed",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RoumenDamianoff/laravel4-feed.git",
+                "reference": "bcd020c0f58f8e8ca1e78bcc28381808a9e43241"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RoumenDamianoff/laravel4-feed/zipball/bcd020c0f58f8e8ca1e78bcc28381808a9e43241",
+                "reference": "bcd020c0f58f8e8ca1e78bcc28381808a9e43241",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.0.x",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Roumen\\Feed": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roumen Damianoff",
+                    "email": "roumen@dawebs.com",
+                    "homepage": "http://roumen.it/projects/laravel4-feed",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple feed generator for Laravel 4.",
+            "keywords": [
+                "feed",
+                "laravel"
+            ],
+            "time": "2013-09-06 18:58:05"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1775,12 +1818,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "272eda47de6a5e05263c945c97332f41efecad3d"
+                "reference": "6ef21e31b845f33b500bacad3f349350eafabdd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/272eda47de6a5e05263c945c97332f41efecad3d",
-                "reference": "272eda47de6a5e05263c945c97332f41efecad3d",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/6ef21e31b845f33b500bacad3f349350eafabdd2",
+                "reference": "6ef21e31b845f33b500bacad3f349350eafabdd2",
                 "shasum": ""
             },
             "require": {
@@ -1837,7 +1880,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2013-09-19 10:49:28"
+            "time": "2013-09-23 15:56:30"
         },
         {
             "name": "symfony/process",
@@ -2007,12 +2050,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "b6fe71cbc1909927b5574219ff6d50e3b264abdb"
+                "reference": "f0e6b1a184acd6dd9f33da7d7f552e71c4167e64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/b6fe71cbc1909927b5574219ff6d50e3b264abdb",
-                "reference": "b6fe71cbc1909927b5574219ff6d50e3b264abdb",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/f0e6b1a184acd6dd9f33da7d7f552e71c4167e64",
+                "reference": "f0e6b1a184acd6dd9f33da7d7f552e71c4167e64",
                 "shasum": ""
             },
             "require": {
@@ -2053,7 +2096,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2013-08-21 19:34:19"
+            "time": "2013-09-24 18:54:55"
         },
         {
             "name": "mustache/mustache",
@@ -2205,6 +2248,7 @@
         "chipotle/php-smartypants": 20,
         "iron-io/iron_mq": 20,
         "sybio/image-workshop": 20,
+        "roumen/feed": 20,
         "way/generators": 20,
         "way/laravel-test-helpers": 20,
         "mockery/mockery": 20
