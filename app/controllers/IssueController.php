@@ -25,8 +25,8 @@ class IssueController extends BaseController {
 
 	public function showStory($id, $slug)
 	{
-		$story = $this->story->where('issue_id', $id)->where('slug', $slug)->where('is_published', true)->first();
-		if ($story) {
+		$story = $this->story->where('issue_id', $id)->where('slug', $slug)->first();
+		if ($story && $story->issue->is_published) {
 			return View::make('issues.story')->with($story->getContent());
 		}
 		return Response::make('Page not found', 404);
