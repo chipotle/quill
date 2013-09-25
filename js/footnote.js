@@ -72,5 +72,7 @@ var Footnotes = {
 };
 
 $(document).ready(function() {
-	Footnotes.setup();
+	if (window.screen.width > 568) {
+		Footnotes.setup();
+	}
 });
