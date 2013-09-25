@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Issue {{ $issue->volnum() }}
+Issue {{ $issue->number }}
 @endsection
 
 @section('content')

@@ -43,9 +43,7 @@ class IssuesController extends \BaseController {
 	public function create()
 	{
 		$issue = $this->issue;
-		list($vol, $num) = $issue->getCurrentVolNum();
-		if ( ! $vol) $vol = 1;
-		$issue->volume = $vol;
+		$num = $issue->getCurrentNum();
 		$issue->number = $num + 1;
 		return \View::make('admin.issues.new')->with('issue', $issue);
 	}
@@ -60,7 +58,7 @@ class IssuesController extends \BaseController {
 		$issue = $this->issue->fill(\Input::all());
 		if ($issue->validate()) {
 			$issue->save();
-			return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->volume}.{$issue->number} created.");
+			return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->number} created.");
 		}
 		\Session::flashInput(\Input::all());
 		return \Redirect::route('sysop.issues.create')->with('error', $issue->errors);
@@ -91,7 +89,7 @@ class IssuesController extends \BaseController {
 		if (!\Input::has('is_published')) $issue->is_published = false;
 		if ($issue->validate()) {
 			$issue->save();
-			return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->volume}.{$issue->number} updated.");
+			return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->number} updated.");
 		}
 		\Session::flashInput(\Input::all());
 		return \Redirect::route('sysop.issues.edit', [$issue->id])->with('error', $issue->errors);

@@ -1,5 +1,5 @@
 <?php
-use Way\Tests\Factory;
+use Way\Tests\Factory, \Carbon\Carbon;
 
 class StoryTest extends TestCase {
 	use Way\Tests\ModelHelpers;
@@ -38,6 +38,9 @@ class StoryTest extends TestCase {
 			'blurb' => 'This is a "thing"',
 			'body' => "Lorem _ipsum_ dolor amet\n\nLorem--ipsum",
 			'title' => "Big 'thing'",
+			'volnum' => 1,
+			'issue_id' => 1,
+			'slug' => 'foo-bar'
 		]);
 		$return = [
 			'blurb' => "<p>This is a &#8220;thing&#8221;</p>\n",
@@ -45,7 +48,11 @@ class StoryTest extends TestCase {
 			'title' => "Big &#8216;thing&#8217;",
 			'author' => $author->nickname,
 			'subhead' => $story->subhead,
-			'id' => 'x'
+			'id' => 'x',
+			'volnum' => 1,
+			'issue_id' => 1,
+			'slug' => 'foo-bar',
+			'date' => 'Sep 20, 2013'
 		];
 		$this->assertEquals($return, $story->getContent());
 	}

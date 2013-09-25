@@ -16,7 +16,7 @@ Claw &amp; Quill: Issues
 @endif
 
 @foreach ($issues as $issue)
-  <h2>{{ HTML::linkAction('IssueController@showIssue', 'Issue #' . $issue->volnum(), [$issue->id]) }}</h2>
+  <h2>{{ HTML::linkAction('IssueController@showIssue', 'Issue #' . $issue->number, [$issue->id]) }}</h2>
   <ul>
   @foreach ($issue->storiesSorted() as $story)
     <li>{{ HTML::linkAction('IssueController@showStory', $story->title, [$issue->id, $story->slug]) }}</li>

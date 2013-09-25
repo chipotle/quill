@@ -17,11 +17,4 @@ class IssueTest extends TestCase {
 		$class->images();
 	}
 
-	public function testVolNum()
-	{
-		$issue = Factory::make('issue');
-		$expected = (Config::get('quill.use_volumes') ? "{$issue->volume}.{$issue->number}" : $issue->number);
-		$this->assertEquals($expected, $issue->volnum());
-	}
-
 }

@@ -88,7 +88,7 @@ class Story extends BaseModel {
 				'id' => $this->id,
 				'slug' => $this->slug,
 				'issue_id' => ($this->issue_id) ? $this->issue_id : 0,
-				'volnum' => ($this->issue_id) ? $this->issue->volnum() : 0,
+				'volnum' => ($this->issue_id) ? $this->issue->number : 0,
 				'date' => ($this->issue_id) ?
 					$this->issue->pub_date->toFormattedDateString() :
 					\Carbon\Carbon::now()->toFormattedDateString()

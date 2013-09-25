@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('title')
-Claw &amp; Quill: No. {{ $issue->volnum() }}
+Claw &amp; Quill: No. {{ $issue->number }}
 @endsection
 
 @section('content')
 <header id="header">
   <div><a class="image" href="/"><img src="/img/cnq-logo.png" alt="Claw &amp; Quill"></a></div>
-  <h1>No. {{ $issue->volnum() }} &middot; {{ $issue->pub_date->toFormattedDateString() }}</h1>
+  <h1>No. {{ $issue->number }} &middot; {{ $issue->pub_date->toFormattedDateString() }}</h1>
 </header>
 
 <article class="toc">

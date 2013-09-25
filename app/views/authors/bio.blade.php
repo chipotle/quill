@@ -32,7 +32,7 @@ C&amp;Q Author: {{ $author->getPreferredName() }}
 
 <ul>
 @foreach ($author->stories as $story)
-<li>{{ HTML::linkAction('IssueController@showStory', $story->title, [$story->issue_id, $story->slug]) }} (Issue #{{ $story->issue->volnum() }})</li>
+<li>{{ HTML::linkAction('IssueController@showStory', $story->title, [$story->issue_id, $story->slug]) }} (Issue #{{ $story->issue->number }})</li>
 @endforeach
 </ul>
 

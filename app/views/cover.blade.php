@@ -7,7 +7,7 @@ Claw &amp; Quill
 @section('content')
 <header id="header">
   <div><img src="/img/cnq-logo.png" alt="Claw &amp; Quill"></div>
-  <h1>No. {{ $issue->volnum() }} &middot; {{ $issue->pub_date->toFormattedDateString() }}</h1>
+  <h1>No. {{ $issue->number }} &middot; {{ $issue->pub_date->toFormattedDateString() }}</h1>
 </header>
 
 <article class="toc">

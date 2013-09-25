@@ -8,9 +8,6 @@ return array(
 		'email' => 'layotl+cq@gmail.com',
 	),
 
-	// use volumes?
-	'use_volumes' => false,
-
 	// image upload directory
 	'upload_dir' => public_path() . '/system/images/%s/',
 

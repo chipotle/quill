@@ -14,11 +14,6 @@
 </div>
 
 <div class="control-group">
-  <label for="volume" class="control-label">Volume</label>
-  <div class="controls">{{ Form::text('volume', null, ['class' => 'input-mini']) }}</div>
-</div>
-
-<div class="control-group">
   <label for="number" class="control-label">Number</label>
   <div class="controls">{{ Form::text('number', null, ['class' => 'input-mini']) }}</div>
 </div>

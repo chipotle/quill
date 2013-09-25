@@ -65,7 +65,7 @@ class AuthorTest extends TestCase {
 	{
 		$author = Factory::make('author');
 		$author->show = Author::SHOW_BOTH;
-		$expected = "{$author->nickname} ({$author->name})";
+		$expected = "{$author->name} ({$author->nickname})";
 		$this->assertEquals($expected, $author->getPreferredName());
 	}
 

@@ -26,7 +26,7 @@
           <td>{{ HTML::linkRoute('sysop.stories.show', $story->title, [$story->id]) }}</td>
           <td>
             @if ($story->issue_id)
-              {{ HTML::linkRoute('sysop.issues.show', 'Issue ' . $story->issue->volnum(), [$story->issue_id]) }}
+              {{ HTML::linkRoute('sysop.issues.show', 'Issue ' . $story->issue->number, [$story->issue_id]) }}
             @else
               &mdash;
             @endif
