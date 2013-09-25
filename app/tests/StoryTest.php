@@ -32,15 +32,18 @@ class StoryTest extends TestCase {
 		Cache::forget('story-x');
 		$author = Factory::make('author');
 		$author->show = Author::SHOW_NICK;
+		$issue = Factory::make('issue');
+		$issue->pub_date = Carbon::createFromDate(2013, 9, 15);
+		$issue->number = 1;
 		$story = Factory::make('story', [
 			'author' => $author,
 			'id' => 'x',
 			'blurb' => 'This is a "thing"',
 			'body' => "Lorem _ipsum_ dolor amet\n\nLorem--ipsum",
 			'title' => "Big 'thing'",
-			'volnum' => 1,
 			'issue_id' => 1,
-			'slug' => 'foo-bar'
+			'slug' => 'foo-bar',
+			'issue' => $issue
 		]);
 		$return = [
 			'blurb' => "<p>This is a &#8220;thing&#8221;</p>\n",
@@ -52,7 +55,7 @@ class StoryTest extends TestCase {
 			'volnum' => 1,
 			'issue_id' => 1,
 			'slug' => 'foo-bar',
-			'date' => 'Sep 20, 2013'
+			'date' => 'Sep 15, 2013'
 		];
 		$this->assertEquals($return, $story->getContent());
 	}
