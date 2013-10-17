@@ -63,7 +63,7 @@ Issue {{ $issue->number }}
 @endsection
 
 @section('scripts')
-@if ( ! $issue->is_published)
+@if (! $issue->is_published)
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script>
 $(function() {

@@ -23,7 +23,7 @@ class HomeController extends BaseController {
 	public function index()
 	{
 		$issue = $this->issue->getCurrent();
-		if ( ! $issue) {
+		if (! $issue) {
 			return $this->showPage('index');
 		}
 		return View::make('cover')->with('issue', $issue);

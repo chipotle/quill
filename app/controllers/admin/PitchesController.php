@@ -49,7 +49,7 @@ class PitchesController extends \BaseController {
 	{
 		$pitch = $this->pitch->findOrFail($id);
 		$menu = \Pitch::$statusList;
-		if ( ! in_array($pitch->status, [\Pitch::ACCEPTED, \Pitch::WAITING, \Pitch::PUBLISHED])) {
+		if (! in_array($pitch->status, [\Pitch::ACCEPTED, \Pitch::WAITING, \Pitch::PUBLISHED])) {
 			unset($menu[\Pitch::WAITING]);
 			unset($menu[\Pitch::PUBLISHED]);
 		}
@@ -85,13 +85,13 @@ class PitchesController extends \BaseController {
 		$msg = "Pitch #{$pitch->id} updated.";
 		$to_story = false;
 		if ($pitch->status == \Pitch::ACCEPTED) {
-			if ( ! $pitch->author_id) {
+			if (! $pitch->author_id) {
 				$a = \App::make('Author')->create(['name' => $pitch->name,
 					'email' => $pitch->email]);
 				$pitch->author_id = $a->id;
 				$msg .= " Author {$a->name} created.";
 			}
-			if ( ! $pitch->story_id) {
+			if (! $pitch->story_id) {
 				$s = \App::make('Story')->create([
 					'title' => "{$pitch->name}'s New Story",
 					'author_id' => $pitch->author_id,

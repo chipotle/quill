@@ -54,14 +54,14 @@ class Image extends BaseModel {
 	 */
 	public function updateFile(UploadedFile $file, $retina=false)
 	{
-		if ( ! $file->isValid()) {
+		if (! $file->isValid()) {
 			$err = $file->getError();
 			throw \RuntimeException("File $name invalid ($err)");
 		}
 		$this->name = strtolower($file->getClientOriginalName());
 		$name = $this->getName($retina);
 		$this->path = $this->path ?: sprintf(Config::get('quill.upload_dir'), date('Y'));
-		if ( ! is_dir($this->path)) {
+		if (! is_dir($this->path)) {
 			if (mkdir($this->path, 0777, true) === false) {
 				throw \RuntimeException("Directory {$this->path} could not be created");
 			}
