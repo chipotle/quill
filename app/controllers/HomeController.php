@@ -29,4 +29,32 @@ class HomeController extends BaseController {
 		return View::make('cover')->with('issue', $issue);
 	}
 
+	public function feed()
+	{
+		$issues = $this->issue->getPublishedIssues();
+
+		$feed = Feed::make();
+		$feed->title = 'Claw &amp; Quill';
+		$feed->description = 'The Furry/Anthropomorphic Review';
+		$feed->icon = 'http://clawandquill.net/cnq-icon-32.png';
+		$feed->logo = 'http://clawandquill.net/img/cnq-logo.png';
+		$feed->link = URL::action('HomeController@feed');
+		$feed->pubdate = $issues[0]->pub_date;
+		$feed->lang = 'en';
+
+		foreach ($issues as $issue) {
+			foreach ($issue->storiesSorted() as $story) {
+				$feed->add(
+					$story->title . ' (#' . $issue->number . ')',
+					$story->author->getPreferredName(),
+					URL::action('IssueController@showStory', [$issue->id, $story->slug]),
+					$issue->pub_date,
+					$story->getBlurb()
+				);
+			}
+		}
+
+		return $feed->render();
+	}
+
 }

@@ -39,6 +39,9 @@ Route::get('/issue', 'IssueController@getIndex');
 Route::get('/author/{id}', 'AuthorController@showBio');
 Route::get('/author', 'AuthorController@getIndex');
 
+// Atom feed
+Route::get('/feed', 'HomeController@feed');
+
 // "Pitch a story" form
 Route::controller('pitch', 'PitchController');
 
