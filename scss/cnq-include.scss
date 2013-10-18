@@ -129,6 +129,10 @@ article {
     margin-left: 1.414em;
     margin-right: -1.414em;
   }
+  img.nofloat {
+    float: none;
+    margin: auto;
+  }
   aside {
     width: 50%;
     float: right;
