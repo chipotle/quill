@@ -29,7 +29,7 @@ class IssueController extends BaseController {
 		if ($story && $story->issue->is_published) {
 			return View::make('issues.story')->with($story->getContent());
 		}
-		return Response::make('Page not found', 404);
+		return Response::view('404', [], 404);
 	}
 
 }

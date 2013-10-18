@@ -15,7 +15,7 @@ class HomeController extends BaseController {
 	{
 		$page = $this->page->where('slug', $slug)->first();
 		if (empty($page) || ! $page->is_visible) {
-			return Response::make('Page not found', 404);
+			return Response::view('404', [], 404);
 		}
 		return View::make('page')->with($page->getContent());
 	}
