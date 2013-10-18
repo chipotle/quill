@@ -117,7 +117,7 @@ article {
     line-height: 1em;
     font-size: 1.06em;
   }
-  img {
+  img.left {
     float: left;
     margin-left: -1.414em;
     margin-right: 1.414em;
@@ -128,10 +128,8 @@ article {
     float: right;
     margin-left: 1.414em;
     margin-right: -1.414em;
-  }
-  img.nofloat {
-    float: none;
-    margin: auto;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
   }
   aside {
     width: 50%;
