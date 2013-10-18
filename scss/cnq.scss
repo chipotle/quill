@@ -164,26 +164,37 @@ footer.toc {
 	}
 
 	article {
-      aside {
-        float: none;
-        width: 100% !important;
-        margin-left: inherit !important;
-        margin-right: inherit !important;
-        &.aboutbox {
-          border: none;
-          background-color: inherit;
-        }
+    aside {
+      float: none;
+      width: 100% !important;
+      margin-left: inherit !important;
+      margin-right: inherit !important;
+      &.aboutbox {
+        border: none;
+        background-color: inherit;
       }
-      img {
-        margin-left: -0.707em;
-        margin-right: 0.707em;
-        max-width: 50% !important;
-        max-height: 50% !important;
+    }
+    img {
+      margin-left: -0.707em;
+      margin-right: 0.707em;
+      max-width: 50% !important;
+      max-height: 50% !important;
+    }
+    img.right {
+      margin-left: 0.707em;
+      margin-right: -0.707em;
+    }
+  }
+
+  footer {
+    text-align: left;
+    p.share {
+      float: none;
+      margin: inherit;
+      span a {
+        margin-left: 0.25em;
       }
-      img.right {
-        margin-left: 0.707em;
-        margin-right: -0.707em;
-      }
+    }
   }
 
 }
