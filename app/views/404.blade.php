@@ -15,7 +15,11 @@
     width: 302px;
     height: 86px;
   }
-  p { font-style: italic; margin: 0.201em auto; }
+  p { margin: 0.201em auto; }
+  h1 {
+    font-weight: 700;
+    font-size: 1.25em;
+  }
 </style>
 @endsection
 
@@ -23,8 +27,8 @@
 <div id="logo">
   <img src="/img/cnq-logo.png" alt="Claw &amp; Quill">
 
-  <p><strong>Page Not Found</strong></p>
-  <p>We’re not sure what you were looking for, but this isn’t it.</p>
+  <h1>Page Not Found</h1>
+  <p><em>We’re not sure what you were looking for,<br>but we’re sure this isn’t it.</em></p>
   <p>&#10086;</p>
   <p><a href="/">Home</a></p>
 </div>
