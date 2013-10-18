@@ -1,6 +1,6 @@
 $(function() {
 	$('p.share span').hide();
-	$('p.share').hover(function() {
+	$('p.share').on('mouseenter mouseleave click', function() {
 		$('p.share span').fadeToggle();
 	});
 	$('p.share span a').click(function() {
