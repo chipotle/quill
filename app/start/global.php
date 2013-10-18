@@ -83,11 +83,19 @@ App::down(function()
 
 require app_path().'/filters.php';
 
-/**
- * View macros
- */
+/*
+|--------------------------------------------------------------------------
+| Register Quill-Specific Features
+|--------------------------------------------------------------------------
+|
+| Stuff that needs to happen and doesn't have anywhere else to be.
+*/
 
 HTML::macro('truncate', function($t, $len=50) {
 	if (strlen($t) < $len) return($t);
 	return substr($t, 0, $len) . "&hellip;";
+});
+
+App::missing(function($e) {
+	return Response::view('404', [], 404);
 });
