@@ -39,6 +39,18 @@ footer {
   margin-top: 2.827em;
   font-family: $altFont;
   text-align: right;
+  margin-bottom: 1.768em;
+  p.share {
+    float: left;
+    margin-top: 0;
+    padding-top: 0;
+    cursor: pointer;
+    span {
+      a {
+        margin: 0 0.5em;
+      }
+    }
+  }
 }
 
 nav {
