@@ -15,7 +15,7 @@ class StoriesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$stories = \DB::table('stories')->join('authors', 'authors.id', '=', 'stories.author_id')->leftJoin('issues', 'issues.id', '=', 'stories.issue_id')->select('stories.id', 'stories.title', 'issues.volume', 'issues.number', 'authors.email', 'authors.name', 'author_id', 'issue_id')->orderBy('authors.name', 'asc')->paginate(30);
+		$stories = \DB::table('stories')->join('authors', 'authors.id', '=', 'stories.author_id')->leftJoin('issues', 'issues.id', '=', 'stories.issue_id')->select('stories.id', 'stories.title', 'issues.number', 'authors.email', 'authors.name', 'author_id', 'issue_id')->orderBy('authors.name', 'asc')->paginate(30);
 		return \View::make('admin.stories.index')->with('stories', $stories);
 	}
 
