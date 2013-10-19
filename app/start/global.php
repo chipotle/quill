@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,5 +98,9 @@ HTML::macro('truncate', function($t, $len=50) {
 });
 
 App::missing(function($e) {
+	return Response::view('404', [], 404);
+});
+
+App::error(function(ModelNotFoundException $e) {
 	return Response::view('404', [], 404);
 });
