@@ -20,7 +20,7 @@
   <p class="subhead">{{ $subhead }}</p>
   @endif
 
-  <p class="author" itemprop="author">{{ $author }}</p>
+  <p class="author" itemprop="author">{{ HTML::linkAction('AuthorController@showBio', $author, [$author_id]) }}</p>
 
   <div class="excerpt" itemprop="description">
     {{ $blurb }}
