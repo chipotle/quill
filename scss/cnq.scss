@@ -117,6 +117,9 @@ article.author {
 
 .pull-right {
   float: right;
+  p {
+    text-align: right !important;
+  }
 }
 
 footer.toc {
