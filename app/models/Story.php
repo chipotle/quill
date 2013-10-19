@@ -84,6 +84,7 @@ class Story extends BaseModel {
 				'body' => $body,
 				'blurb' => $blurb,
 				'author' => $this->author->getPreferredName(),
+				'author_id' => $this->author_id,
 				'subhead' => $this->subhead,
 				'id' => $this->id,
 				'slug' => $this->slug,

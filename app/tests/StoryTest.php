@@ -50,6 +50,7 @@ class StoryTest extends TestCase {
 			'body' => "<p>Lorem <em>ipsum</em> dolor amet</p>\n\n<p>Lorem&#8212;ipsum</p>\n",
 			'title' => "Big &#8216;thing&#8217;",
 			'author' => $author->nickname,
+			'author_id' => $story->author_id,
 			'subhead' => $story->subhead,
 			'id' => 'x',
 			'volnum' => 1,
