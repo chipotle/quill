@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "013adf85c556701ce65177be3748d9b1",
+    "hash": "af4ef46b62b25ae0270b39a525f2a595",
     "packages": [
         {
             "name": "chipotle/php-smartypants",
@@ -815,12 +815,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "03563aad714d5cc7c4309ae16ab2e21565435638"
+                "reference": "2a549d0dfe583a6f0e1a0d6585e7757469f72cb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/03563aad714d5cc7c4309ae16ab2e21565435638",
-                "reference": "03563aad714d5cc7c4309ae16ab2e21565435638",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2a549d0dfe583a6f0e1a0d6585e7757469f72cb8",
+                "reference": "2a549d0dfe583a6f0e1a0d6585e7757469f72cb8",
                 "shasum": ""
             },
             "require": {
@@ -878,10 +878,10 @@
                 "illuminate/workbench": "self.version"
             },
             "require-dev": {
-                "aws/aws-sdk-php": "2.2.*",
-                "iron-io/iron_mq": "1.4.4",
+                "aws/aws-sdk-php": "2.4.*",
+                "iron-io/iron_mq": "1.4.*",
                 "mockery/mockery": "0.8.0",
-                "pda/pheanstalk": "2.0.*",
+                "pda/pheanstalk": "2.1.*",
                 "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
@@ -920,7 +920,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-10-16 13:26:55"
+            "time": "2013-10-20 18:36:57"
         },
         {
             "name": "michelf/php-markdown",
@@ -1824,12 +1824,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "29e539f49621ca8bf641709c5362ebf2aa95c9a1"
+                "reference": "8f383fa5e4b66b66ba2d09e502e8bf73bdd04901"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/29e539f49621ca8bf641709c5362ebf2aa95c9a1",
-                "reference": "29e539f49621ca8bf641709c5362ebf2aa95c9a1",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/8f383fa5e4b66b66ba2d09e502e8bf73bdd04901",
+                "reference": "8f383fa5e4b66b66ba2d09e502e8bf73bdd04901",
                 "shasum": ""
             },
             "require": {
@@ -1865,7 +1865,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2013-10-16 15:16:00"
+            "time": "2013-10-17 11:48:01"
         },
         {
             "name": "symfony/http-kernel",
@@ -2106,12 +2106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "1e1e189dabda8bf47de0a64371987e7a80db581f"
+                "reference": "09ab879a09def2a658d6e8030f88432cc479f5a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/1e1e189dabda8bf47de0a64371987e7a80db581f",
-                "reference": "1e1e189dabda8bf47de0a64371987e7a80db581f",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/09ab879a09def2a658d6e8030f88432cc479f5a8",
+                "reference": "09ab879a09def2a658d6e8030f88432cc479f5a8",
                 "shasum": ""
             },
             "require": {
@@ -2152,7 +2152,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2013-10-02 19:52:52"
+            "time": "2013-10-18 15:18:30"
         },
         {
             "name": "mustache/mustache",
