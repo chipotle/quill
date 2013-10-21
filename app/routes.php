@@ -5,6 +5,13 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 {
 	Route::get('/', 'Admin\PitchesController@index');
 
+	// special callbacks
+	Route::get('authors/search', 'Admin\AuthorsController@search');
+	Route::get('issues/publish/{id}', ['uses'=>'Admin\IssuesController@publish', 'as'=>'sysop.issues.publish']);
+	Route::post('issues/commit', ['uses'=>'Admin\IssuesController@commit', 'as'=>'sysop.issues.commit']);
+	Route::get('stories/createby/{author_id}', ['uses'=>'Admin\StoriesController@createWithAuthor', 'as'=>'sysop.stories.createwith']);
+
+	// resource routes
 	Route::resource('pages', 'Admin\PagesController');
 	Route::resource('authors', 'Admin\AuthorsController');
 	Route::resource('stories', 'Admin\StoriesController');
@@ -17,11 +24,6 @@ Route::group(['prefix' => 'sysop', 'before' => 'auth.basic'], function()
 	Route::get('pitches/edit/{id}', ['uses'=>'Admin\PitchesController@edit', 'as'=>'sysop.pitches.edit']);
 	Route::put('pitches/update/{id}', ['uses'=>'Admin\PitchesController@update', 'as'=>'sysop.pitches.update']);
 
-	// special callbacks
-	Route::get('authors/search', 'Admin\AuthorsController@search');
-	Route::get('issues/publish/{id}', ['uses'=>'Admin\IssuesController@publish', 'as'=>'sysop.issues.publish']);
-	Route::post('issues/commit', ['uses'=>'Admin\IssuesController@commit', 'as'=>'sysop.issues.commit']);
-	Route::get('stories/createby/{author_id}', ['uses'=>'Admin\StoriesController@createWithAuthor', 'as'=>'sysop.stories.createwith']);
 });
 
 // Home page display
