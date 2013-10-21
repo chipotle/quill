@@ -9,6 +9,6 @@ return array(
 	),
 
 	// image upload directory
-	'upload_dir' => public_path() . '/system/images/%s/',
+	'upload_dir' => (App::environment() == 'production') ? '/opt/nginx/sites/quill/shared/system/images/%s/' : public_path() . '/system/images/%s/',
 
 );
