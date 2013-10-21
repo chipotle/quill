@@ -114,7 +114,17 @@ class ImagesController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$image = $this->image->findOrFail($id);
+		$del_retina = @unlink($image->getFilePath(true));
+		$ok = @unlink($image->getFilePath());
+		if (! $ok) {
+			\Session::flash('error', "File for {$image->name} cannot be found on disk!");
+			$response = ['reload'=>\URL::route('sysop.images.index')];
+		}
+		$image->delete();
+		\Session::flash('msg', "{$image->name} deleted!");
+		$response = ['redirect'=>\URL::route('sysop.images.index')];
+		return \Response::json($response);
 	}
 
 }

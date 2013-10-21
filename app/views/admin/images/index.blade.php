@@ -17,6 +17,7 @@
     <tr>
       <td style="width:10%;white-space:nowrap">
         <a href='{{ URL::route("sysop.images.edit", [$image->id]) }}' title="Edit Info" class="btn"><i class="icon-edit"></i></a>
+        <a href='{{ URL::route("sysop.images.destroy", [$image->id]) }}' title="Delete" class="btn btn-danger delete" data-name="{{ $image->name }}"><i class="icon-remove icon-white"></i></a>
       </td>
       <td>{{ HTML::linkRoute('sysop.images.show', $image->name, [$image->id]) }}</td>
       <td>{{ $image->alt_text }}</td>
