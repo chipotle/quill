@@ -18,6 +18,9 @@
     <tr>
       <td style="width:10%;white-space:nowrap">
         <a href='{{ URL::route("sysop.stories.edit", [$story->id]) }}' title="Edit" class="btn"><i class="icon-edit"></i></a>
+        @if (!$story->issue_id)
+        <a href='{{ URL::route("sysop.stories.destroy", [$story->id]) }}' title="Delete" class="btn btn-danger delete" data-name="{{ $story->title }}"><i class="icon-remove icon-white"></i></a>
+        @endif
       </td>
       @if ($story->issue_id)
         <td>{{ HTML::linkRoute('sysop.issues.show', $story->number, [$story->issue_id]) }}</td>

@@ -112,12 +112,12 @@ class StoriesController extends \BaseController {
 	public function destroy($id)
 	{
 		$story = $this->story->find($id);
-		if (count($story->stories) > 0) {
-			\Session::flash('error', "{$story->name} has stories in the database and cannot be deleted.");
+		if ($story->issue_id) {
+			\Session::flash('error', 'A story assigned to an issue cannot be deleted.');
 			$response = ['reload'=>\URL::route('sysop.stories.index')];
 		}
 		$story->delete();
-		\Session::flash('msg', "{$story->name} deleted!");
+		\Session::flash('msg', "'{$story->title}' deleted!");
 		$response = ['redirect'=>\URL::route('sysop.stories.index')];
 		return \Response::json($response);
 	}
