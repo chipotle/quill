@@ -32,6 +32,9 @@ class HomeController extends BaseController {
 	public function feed()
 	{
 		$issues = $this->issue->getPublishedIssues();
+		if (count($issues) == 0) {
+			return Response::make('No articles available', 500);
+		}
 
 		$feed = Feed::make();
 		$feed->title = 'Claw &amp; Quill';
