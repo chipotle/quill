@@ -15,7 +15,7 @@ C&amp;Q Author: {{ $author->getPreferredName() }}
 <h1>{{ $author->getPreferredName() }}</h1>
 
 @if ($author->bio)
-<p>{{ $author->bio }}</p>
+<p>{{ $author->getBio() }}</p>
 @else
 <p><em>(We haven’t been provided an author bio yet!)</em></p>
 @endif
@@ -39,7 +39,7 @@ C&amp;Q Author: {{ $author->getPreferredName() }}
 </article>
 
 <footer class="toc">
-  <p>{{ HTML::link('/', 'Home') }} &middot; {{ HTML::linkAction('AuthorController@getIndex', 'Back to Index') }}</p>
+  <p>{{ HTML::link('/', 'Home') }} &middot; {{ HTML::linkAction('AuthorController@getIndex', 'Author Index') }}</p>
 </footer>
 
 @endsection

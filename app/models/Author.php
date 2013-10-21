@@ -1,4 +1,5 @@
 <?php
+use Michelf\MarkdownExtra, Chipotle\Smartypants;
 
 class Author extends BaseModel {
 
@@ -74,6 +75,12 @@ class Author extends BaseModel {
 	public function getFormName()
 	{
 		return ($this->nickname) ? "{$this->name} ({$this->nickname})" : $this->name;
+	}
+
+	public function getBio()
+	{
+		$bio = MarkdownExtra::defaultTransform($this->bio);
+		return Smartypants::defaultTransform($bio);
 	}
 
 }
