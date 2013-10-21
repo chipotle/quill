@@ -38,7 +38,7 @@
     <a data-width="626" data=height="436" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::action('IssueController@showStory', [$issue_id, $slug])) }}" target="_blank">Facebook</a>
     <a href="https://plus.google.com/share?url={{ urlencode(URL::action('IssueController@showStory', [$issue_id, $slug])) }}">Google+</a></span>
   </p>
-  <p class="back">{{ HTML::linkAction('IssueController@showIssue', "Return to Issue #$volnum &rarr;", [$issue_id]) }}</p>
+  <p class="back">{{ HTML::linkAction('IssueController@showIssue', "Return to Issue #$volnum", [$issue_id]) }}</p>
 </footer>
 
 @endsection
