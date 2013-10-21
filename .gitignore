@@ -4,3 +4,5 @@ composer.phar
 .DS_Store
 .tags*
 /public/system
+js/gauges.js
+public/js/cnq.js
