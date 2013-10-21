@@ -104,11 +104,11 @@ class AuthorsController extends \BaseController {
 		$author = $this->author->find($id);
 		if (count($author->stories) > 0) {
 			\Session::flash('error', "{$author->name} has stories in the database and cannot be deleted.");
-			$response = ['reload'=>\URL::route('admin.authors.index')];
+			$response = ['reload'=>\URL::route('sysop.authors.index')];
 		}
 		$author->delete();
 		\Session::flash('msg', "{$author->name} deleted!");
-		$response = ['redirect'=>\URL::route('admin.authors.index')];
+		$response = ['redirect'=>\URL::route('sysop.authors.index')];
 		return \Response::json($response);
 	}
 
