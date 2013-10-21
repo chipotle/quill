@@ -4,8 +4,8 @@
 
 $paperColor: #FCFAF8;
 $textColor: darken($paperColor, 70%);
-$textFont: 'freight-text-pro', 'Palatino', 'Liberation Serif', serif;
-$altFont: 'freight-sans-pro', 'Helvetica Neue', 'Liberation Sans', 'Arial', sans-serif;
+$textFont: 'freight-text-pro', 'Cambria', 'Liberation Serif', serif;
+$altFont: 'freight-sans-pro', 'Calibri', 'Liberation Sans', 'Arial', sans-serif;
 $linkColor: scale-color($textColor, $blue: 50%);
 
 html {
