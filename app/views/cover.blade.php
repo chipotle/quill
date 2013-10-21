@@ -19,7 +19,7 @@ Claw &amp; Quill
 <h1>{{ $issue->title }}</h1>
 @endif
 @foreach ($issue->storiesSorted() as $story)
-<h2>{{ HTML::linkAction('IssueController@showStory', $story->title, [$issue->id, $story->slug]) }} <span class="author">{{ $story->author->getPreferredName() }}</span></h2>
+<h2>{{ HTML::linkAction('IssueController@showStory', $story->title, [$issue->id, $story->slug]) }} <span class="author">{{ HTML::linkAction('AuthorController@showBio', $story->author->getPreferredName(), [$story->author_id]) }}</span></h2>
 {{ $story->getBlurb() }}
 @endforeach
 </article>
@@ -29,7 +29,7 @@ Claw &amp; Quill
     <p>{{ HTML::linkAction('IssueController@getIndex', 'Issue Index') }} &middot; {{ HTML::linkAction('AuthorController@getIndex', 'Author Index') }}</p>
     <p><a href="http://twitter.com/clawandquill">Twitter</a> &middot; {{ HTML::linkAction('HomeController@feed', 'Feed') }}</p>
   </div>
-  <p>{{ HTML::linkRoute('page', 'About C&amp;Q', ['about']) }} &middot; {{ HTML::linkRoute('page', 'Submission Guidelines', ['guidelines']) }} &middot; {{ HTML::linkRoute('page', 'Colophon', ['colophon']) }}</p>
-  <p>{{ HTML::linkRoute('page', 'Copyright', ['copyright']) }} 2013 Claw &amp; Quill &middot; <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" title="Creative Commons Attribution-NonCommercial-ShareAlike 3.0">CC BY-NC-SA</a></p>
+  <p>{{ HTML::linkRoute('page', 'About', ['about']) }} &middot; {{ HTML::linkRoute('page', 'FAQ', ['faq']) }} &middot; {{ HTML::linkRoute('page', 'License/Colophon', ['colophon']) }}</p>
+  <p>&copy; 2013 Claw &amp; Quill &middot; <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" title="Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported" target="_blank">CC BY-NC-SA</a></p>
 </footer>
 @endsection
