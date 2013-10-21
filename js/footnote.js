@@ -71,8 +71,12 @@ var Footnotes = {
 	}
 };
 
+function supportsTouch() {
+	return (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
+}
+
 $(document).ready(function() {
-	if (window.screen.width > 568) {
+	if (! supportsTouch()) {
 		Footnotes.setup();
 	}
 });
