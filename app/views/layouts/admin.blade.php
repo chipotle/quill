@@ -17,7 +17,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        {{ HTML::link('sysop', 'Claw &amp; Quill', ['class'=>'brand']) }}
+        {{ HTML::link('/', 'Claw &amp; Quill', ['class'=>'brand', 'target' => '_blank']) }}
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li>{{ HTML::linkRoute('sysop.pages.index', 'Pages') }}</li>
