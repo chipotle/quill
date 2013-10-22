@@ -65,6 +65,7 @@ class Story extends BaseModel {
 
 	public function getBlurb()
 	{
+		if (empty($this->blurb)) return '';
 		$blurb = MarkdownExtra::defaultTransform($this->blurb);
 		return Smartypants::defaultTransform($blurb);
 	}
