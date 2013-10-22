@@ -67,7 +67,7 @@ class StoriesController extends \BaseController {
 		$story->sort = $story->whereNull('issue_id')->max('sort') ?: 1;
 		if ($story->validate()) {
 			$story->save();
-			return \Redirect::route('sysop.stories.index')->with('msg', "Story '{$story->name}' created.");
+			return \Redirect::route('sysop.stories.index')->with('msg', "Story '{$story->title}' created.");
 		}
 		\Session::flashInput(\Input::all());
 		return \Redirect::route('sysop.stories.create')->with('error', $story->errors);
