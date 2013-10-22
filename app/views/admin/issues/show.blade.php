@@ -10,7 +10,7 @@ Issue {{ $issue->number }}
 
 <p class="alert alert-info">This issue&rsquo;s contents are frozen. If you need to change the contents, {{ HTML::linkRoute('sysop.issues.edit', 'edit the metadata', [$issue->id]) }} and uncheck &ldquo;Published.&rdquo;</p>
 
-<h2>Stories</h2>
+<h2>Table of Contents</h2>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -41,7 +41,7 @@ Issue {{ $issue->number }}
 
 <div class="row">
   <div class="span6">
-    <h2>Stories</h2>
+    <h2>Contents</h2>
     <ul id="toc" class="connectedSortable">
       @foreach ($issue->stories as $story)
       <li class="draggable" data-id="{{ $story->id }}"><b>{{ $story->title }}</b> {{ $story->author->name }}</li>
@@ -49,7 +49,7 @@ Issue {{ $issue->number }}
     </ul>
   </div>
   <div class="span6">
-    <h2>Unassigned Stories</h2>
+    <h2>Unassigned</h2>
     <ul id="unassigned" class="connectedSortable">
       @foreach ($unassigned as $story)
       <li class="draggable" data-id="{{ $story->id }}"><b>{{ $story->title }}</b> {{ $story->author->name }}</li>
