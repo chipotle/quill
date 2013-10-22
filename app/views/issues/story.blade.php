@@ -22,9 +22,11 @@
 
   <p class="author" itemprop="author">{{ HTML::linkAction('AuthorController@showBio', $author, [$author_id]) }}</p>
 
+  @if ($blurb)
   <div class="excerpt" itemprop="description">
     {{ $blurb }}
   </div>
+  @endif
 
   <div itemprop="articleBody">
   {{ $body }}

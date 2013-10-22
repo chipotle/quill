@@ -19,9 +19,11 @@
 
     <p class="author">{{ $author }}</p>
 
+    @if ($blurb)
     <div class="excerpt">
       {{ $blurb }}
     </div>
+    @endif
 
     {{ $body }}
   </article>
