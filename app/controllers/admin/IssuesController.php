@@ -122,7 +122,7 @@ class IssuesController extends \BaseController {
 		$issue->is_published = true;
 		if (! $issue->pub_date) $issue->pub_date = date('Y-m-d');
 		$issue->save();
-		return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->volume}.{$issue->number} published!");
+		return \Redirect::route('sysop.issues.index')->with('msg', "Issue {$issue->number} published!");
 	}
 
 	/**
