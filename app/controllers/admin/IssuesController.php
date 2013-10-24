@@ -3,10 +3,12 @@
 class IssuesController extends \BaseController {
 
 	protected $issue;
+	protected $story;
 
-	function __construct(\Issue $issue)
+	function __construct(\Issue $issue, \Story $story)
 	{
 		$this->issue = $issue;
+		$this->story = $story;
 	}
 	/**
 	 * Display a listing of the issues.
@@ -31,7 +33,7 @@ class IssuesController extends \BaseController {
 			$q->orderBy('sort');
 		}])->findOrFail($id);
 		$issue->stories->load('author');
-		$unassigned = \App::make('story')->whereNull('issue_id')->with('author')->get();
+		$unassigned = $this->story->whereNull('issue_id')->with('author')->get();
 		return \View::make('admin.issues.show')->with(['issue' => $issue, 'unassigned' => $unassigned]);
 	}
 
@@ -135,18 +137,17 @@ class IssuesController extends \BaseController {
 		$contents = \Input::get('contents') ?: array();
 		$issue_id = \Input::get('issue');
 		$issue = $this->issue->findOrFail($issue_id);
-		$story = \App::make('story');
-		$current = $story->where('issue_id', $issue_id)->lists('id');
+		$current = $this->story->where('issue_id', $issue_id)->lists('id');
 		$removed = array_diff($current, $contents);
 		$order = 1;
 		foreach ($contents as $story_id) {
-			$item = $story->findOrFail($story_id);
+			$item = $this->story->findOrFail($story_id);
 			$item->sort = $order++;
 			$item->issue()->associate($issue);
 			$item->save();
 		}
 		foreach ($removed as $story_id) {
-			$item = $story->findOrFail($story_id);
+			$item = $this->story->findOrFail($story_id);
 			$item->sort = null;
 			$item->issue_id = null;
 			$item->save();
