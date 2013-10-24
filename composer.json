@@ -2,7 +2,7 @@
   "name": "chipotle/quill",
   "description": "Quill online magazine platform",
   "type": "project",
-  "version": "0.9.1",
+  "version": "0.9.3",
   "license": "BSD-2-Clause",
   "authors": [
     {
