@@ -11,6 +11,12 @@ class HomeController extends BaseController {
 		$this->issue = $issue;
 	}
 
+	/**
+	 * Show a static page.
+	 *
+	 * @param  string $slug
+	 * @return View response object
+	 */
 	public function showPage($slug)
 	{
 		$page = $this->page->where('slug', $slug)->first();
@@ -20,6 +26,12 @@ class HomeController extends BaseController {
 		return View::make('page')->with($page->getContent());
 	}
 
+	/**
+	 * Show the Quill index page. If a current issue exists, this returns the
+	 * cover view; otherwise it returns the static page named 'index'.
+	 *
+	 * @return View response object
+	 */
 	public function index()
 	{
 		$issue = $this->issue->getCurrent();
@@ -29,6 +41,11 @@ class HomeController extends BaseController {
 		return View::make('cover')->with('issue', $issue);
 	}
 
+	/**
+	 * Generate the Atom feed for the last three issues.
+	 *
+	 * @return View response object
+	 */
 	public function feed()
 	{
 		$issues = $this->issue->getPublishedIssues();

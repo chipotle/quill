@@ -12,6 +12,11 @@ class Issue extends BaseModel {
 		'pub_date' => 'required',
 	];
 
+	/**
+	 * Add 'pub_date' field to the list of fields to be converted to Carbon
+	 *
+	 * @return array
+	 */
 	public function getDates()
 	{
 		return array_merge(parent::getDates(), ['pub_date']);
@@ -56,7 +61,7 @@ class Issue extends BaseModel {
 
 	/**
 	 * Get a list of most recent published issues
-	 * @param int $limit # of issues to return
+	 * @param integer $limit # of issues to return
 	 * @return Array of Issue objects
 	 */
 	public function getPublishedIssues($limit=3)

@@ -9,7 +9,7 @@ class PitchesController extends \BaseController {
 		$this->pitch = $pitch;
 	}
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of pitches.
 	 *
 	 * @return Response
 	 */
@@ -28,7 +28,7 @@ class PitchesController extends \BaseController {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display a pitch.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -40,7 +40,7 @@ class PitchesController extends \BaseController {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing a pitch.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -60,7 +60,9 @@ class PitchesController extends \BaseController {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified pitch in storage. This also creates or assigns
+	 * an author object to a pitch and turns the pitch into a new story
+	 * object.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -109,7 +111,7 @@ class PitchesController extends \BaseController {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified pitch from storage.
 	 *
 	 * @param  int  $id
 	 * @return Response

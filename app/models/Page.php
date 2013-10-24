@@ -8,6 +8,9 @@ class Page extends BaseModel {
 	 */
 	protected $table = 'pages';
 
+	/**
+	 * Validation rules
+	 */
 	public static $rules = [
 		'title' => 'required',
 		'slug' => 'required:size:4|alpha_dash',

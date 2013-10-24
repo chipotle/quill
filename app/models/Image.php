@@ -78,6 +78,12 @@ class Image extends BaseModel {
 		return $ok;
 	}
 
+	/**
+	 * Return the filename associated with this instance
+	 *
+	 * @param  boolean $retina
+	 * @return string filename
+	 */
 	public function getName($retina=false)
 	{
 		if ($retina) {
@@ -90,30 +96,54 @@ class Image extends BaseModel {
 	/**
 	 * Get the file system path for the associated image
 	 *
-	 * @param boolean $retina true to return path to retina imageable
+	 * @param boolean $retina true to return path to retina image
+	 * @return string file path
 	 */
 	public function getFilePath($retina=false)
 	{
 		return $this->path . $this->getName($retina);
 	}
 
+	/**
+	 * Get the URL for the associated image
+	 * @param  boolean $retina true to return path to retina image
+	 * @return string URL
+	 */
 	public function getFileURL($retina=false)
 	{
 		$public_pos = strpos($this->path, '/public');
 		return substr($this->path, $public_pos + 7) . $this->getName($retina);
 	}
 
+	/**
+	 * Get the ImageWorkshop layer for this image
+	 *
+	 * @param  boolean $retina
+	 * @return ImageWorkshopLayer
+	 */
 	public function getLayer($retina=false)
 	{
 		return ImageWorkshop::initFromPath($this->getFilePath($retina));
 	}
 
-	public function getSize()
+	/**
+	 * Get the dimensions of the associated image
+	 *
+	 * @param  boolean $retina
+	 * @return array(width, height)
+	 */
+	public function getSize($retina=false)
 	{
-		$layer = $this->getLayer();
+		$layer = $this->getLayer($retina);
 		return [$layer->getWidth(), $tlayer->getHeight()];
 	}
 
+	/**
+	 * Make a thumbnail from the associated image, saving it to the image's
+	 * path + "/thumb/"
+	 *
+	 * @param  integer $size of thumbnail (default 64)
+	 */
 	public function makeThumb($size=64)
 	{
 		$layer = $this->getLayer();

@@ -4,12 +4,18 @@ class Pitch extends BaseModel {
 
 	protected $table = 'pitches';
 
+	/**
+	 * Validatation rules
+	 */
 	public static $rules = [
 		'email' => 'required|email',
 		'name' => 'required',
 		'blurb' => 'required'
 	];
 
+	/**
+	 * Custom error message
+	 */
 	public static $messages = [
 		'blurb.required' => 'The story idea is required.'
 	];
@@ -49,6 +55,11 @@ class Pitch extends BaseModel {
 		return $this->belongsTo('Story');
 	}
 
+	/**
+	 * Query scope to return only pending pitches
+	 * @param  \Illuminate\Database\Query\Builder $query
+	 * @return \Illuminate\Database\Query\Builder
+	 */
 	public function scopePending($query)
 	{
 		return $query->whereIn('status', [

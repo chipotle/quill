@@ -1,6 +1,4 @@
-/*  Originally by Lukas Mathis
-	http://ignorethecode.net/blog/2010/04/20/footnotes/
-*/
+// Original by Lukas Mathis <http://ignorethecode.net/blog/2010/04/20/footnotes/>
 
 var Footnotes = {
 	footnotetimeout: false,

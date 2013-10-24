@@ -3,6 +3,8 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
+// N.B.: This is currently just an unused stub in Quill!
+
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**

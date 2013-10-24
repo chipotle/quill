@@ -10,6 +10,11 @@ class AuthorController extends BaseController {
 		$this->story = $story;
 	}
 
+	/**
+	 * Present the paginated list of authors.
+	 *
+	 * @return View response
+	 */
 	function getIndex()
 	{
 		$authors = DB::table('authors')->select('authors.id', 'authors.name', 'authors.show', 'authors.nickname', 'authors.email', DB::raw('count(stories.id) as story_count'), DB::raw('CASE WHEN `show`='.Author::SHOW_NICK.' THEN nickname ELSE name END as \'preferred\''))->join('stories', 'authors.id', '=', 'stories.author_id')->where('stories.issue_id', '>', '0')->orderBy('preferred', 'asc')->paginate(30);
@@ -22,9 +27,14 @@ class AuthorController extends BaseController {
 		return View::make('authors.index')->with(['authors'=>$authors, 'stories'=>$stories, 'names'=>$names]);
 	}
 
+	/**
+	 * Show an author biography.
+	 *
+	 * @param  int $id
+	 * @return View response
+	 */
 	function showBio($id)
 	{
-		// $author = $this->author->with('stories.issue')->findOrFail($id);
 		$author = $this->author->with(['stories.issue', 'stories' => function($q) {
 			$q->where('issue_id', '>', 0);
 		}])->findOrFail($id);

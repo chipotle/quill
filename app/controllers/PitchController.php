@@ -9,11 +9,21 @@ class PitchController extends BaseController {
 		$this->pitch = $pitch;
 	}
 
+	/**
+	 * Get the "pitch us" template.
+	 *
+	 * @return View response object
+	 */
 	public function getIndex()
 	{
 		return View::make('pitch')->with('pitch', $this->pitch);
 	}
 
+	/**
+	 * Save a pitch returned via POST.
+	 *
+	 * @return View response object
+	 */
 	public function postIndex()
 	{
 		$pitch = $this->pitch->fill(Input::all());

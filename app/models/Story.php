@@ -63,6 +63,11 @@ class Story extends BaseModel {
 		});
 	}
 
+	/**
+	 * Retrieve Markdownified blurb
+	 *
+	 * @return string
+	 */
 	public function getBlurb()
 	{
 		if (empty($this->blurb)) return '';
@@ -72,6 +77,8 @@ class Story extends BaseModel {
 
 	/**
 	 * Retrieve Markdownified content, from cache if appropriate
+	 *
+	 * @return string
 	 */
 	public function getContent()
 	{

@@ -48,6 +48,13 @@ class Author extends BaseModel {
 		return $this->hasMany('Pitch');
 	}
 
+	/**
+	 * Return the preferred name for an author object. Note that this is a
+	 * static class method, not an instance method.
+	 *
+	 * @param  Author $author
+	 * @return string
+	 */
 	static public function selectPreferredName($author)
 	{
 		switch ($author->show) {
@@ -67,16 +74,32 @@ class Author extends BaseModel {
 		return $name;
 	}
 
+	/**
+	 * Return the preferred name for an author object. This is the instance
+	 * method equivalent of selectPreferredName().
+	 *
+	 * @return string
+	 */
 	public function getPreferredName()
 	{
 		return self::selectPreferredName($this);
 	}
 
+	/**
+	 * Return the author name in the form used by the story creation form.
+	 *
+	 * @return string
+	 */
 	public function getFormName()
 	{
 		return ($this->nickname) ? "{$this->name} ({$this->nickname})" : $this->name;
 	}
 
+	/**
+	 * Get the HTML-ized bio field from the instance.
+	 *
+	 * @return string
+	 */
 	public function getBio()
 	{
 		$bio = MarkdownExtra::defaultTransform($this->bio);
