@@ -29,7 +29,7 @@ Claw &amp; Quill
     <p>{{ HTML::linkAction('IssueController@getIndex', 'Issue Index') }} &middot; {{ HTML::linkAction('AuthorController@getIndex', 'Author Index') }}</p>
     <p><a href="http://twitter.com/clawandquill">Twitter</a> &middot; {{ HTML::linkAction('HomeController@feed', 'Feed') }}</p>
   </div>
-  <p>{{ HTML::linkRoute('page', 'About', ['about']) }} &middot; {{ HTML::linkRoute('page', 'FAQ', ['faq']) }} &middot; {{ HTML::linkRoute('page', 'License/Colophon', ['colophon']) }}</p>
-  <p>&copy; 2013 Claw &amp; Quill &middot; <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" title="Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported" target="_blank">CC BY-NC-SA</a></p>
+  <p>{{ HTML::linkRoute('page', 'About', ['about']) }} &middot; {{ HTML::linkRoute('page', 'FAQ', ['faq']) }} &middot; {{ HTML::linkRoute('page', 'Colophon', ['colophon']) }}</p>
+  <p>&copy; 2013 Claw &amp; Quill &middot; {{ HTML::linkRoute('page', 'CC BY-NC-SA', ['colophon']) }}</p>
 </footer>
 @endsection

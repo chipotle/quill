@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title') New Page @endsection
+@section('title') Edit Page @endsection
 
 @section('content')
 
