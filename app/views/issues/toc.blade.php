@@ -21,7 +21,11 @@ Claw &amp; Quill: No. {{ $issue->number }}
 </article>
 
 <footer class="toc">
-  <p>{{ HTML::link('/', 'Home') }} &middot; {{ HTML::linkAction('IssueController@getIndex', 'Issue Index') }}</p>
-  <p>Copyright 2013 Claw &amp; Quill</p>
+  <div class="pull-right">
+    <p>{{ HTML::linkAction('IssueController@getIndex', 'Issue Index') }} &middot; {{ HTML::linkAction('AuthorController@getIndex', 'Author Index') }}</p>
+    <p><a href="http://twitter.com/clawandquill">Twitter</a> &middot; {{ HTML::linkAction('HomeController@feed', 'Feed') }}</p>
+  </div>
+  <p>{{ HTML::link('/', 'Home') }}</p>
+  <p>&copy; 2013 Claw &amp; Quill &middot; {{ HTML::linkRoute('page', 'CC BY-NC-SA', ['colophon']) }}</p>
 </footer>
 @endsection
