@@ -27,6 +27,20 @@ class StoryTest extends TestCase {
 		$class->images();
 	}
 
+	public function testGetBlurb()
+	{
+		$story = Factory::make('story', ['blurb' => 'Lorem ipsum dolor sit amet']);
+		$return = "<p>Lorem ipsum dolor sit amet</p>\n";
+		$this->assertEquals($return, $story->getBlurb());
+	}
+
+	public function testGetBody()
+	{
+		$story = Factory::make('story', ['body' => 'Lorem ipsum dolor sit amet']);
+		$return = "<p>Lorem ipsum dolor sit amet</p>\n";
+		$this->assertEquals($return, $story->getBody());
+	}
+
 	public function testGetContent()
 	{
 		Cache::forget('story-x');
@@ -59,6 +73,15 @@ class StoryTest extends TestCase {
 			'date' => 'Sep 15, 2013'
 		];
 		$this->assertEquals($return, $story->getContent());
+	}
+
+	public function testAutoBlurb()
+	{
+		$story = Factory::make('story', [
+			'body' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Itaque sensibus rationem adiunxit et ratione effecta sensus non reliquit. Tum mihi Piso: Quid ergo? Nihil ad rem! Ne sit sane; Tum Piso: Quoniam igitur aliquid omnes, quid Lucius noster?\n\nIllud mihi a te nimium festinanter dictum videtur, sapientis omnis esse semper beatos; Memini vero, inquam; Eaedem enim utilitates poterunt eas labefactare atque pervertere. At certe gravius. Stoicos roga. Hic ambiguo ludimur. Nam de isto magna dissensio est. Huius, Lyco, oratione locuples, rebus ipsis ielunior.\n\nDuo Reges: constructio interrete. Nosti, credo, illud: Nemo pius est, qui pietatem-; Praeclare enim Plato: Beatum, cui etiam in senectute contigerit, ut sapientiam verasque opiniones assequi possit. Quam ob rem tandem, inquit, non satisfacit? Expectoque quid ad id, quod quaerebam, respondeas. Nunc haec primum fortasse audientis servire debemus."
+		]);
+		$return = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Itaque sensibus rationem adiunxit et ratione effecta sensus non reliquit. Tum mihi Piso: Quid ergo? Nihil ad rem! Ne sit sane; Tum Piso: Quoniam igitur aliquid omnes, quid Lucius noster?</p>\n";
+		$this->assertEquals($return, $story->autoBlurb());
 	}
 
 }
