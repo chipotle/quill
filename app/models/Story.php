@@ -76,6 +76,17 @@ class Story extends BaseModel {
 	}
 
 	/**
+	 * Retrieve Markdownified body
+	 *
+	 * @return string
+	 */
+	public function getBody()
+	{
+		if (empty($this->body)) return '';
+		$body = MarkdownExtra::defaultTransform($this->body);
+		return Smartypants::defaultTransform($body);
+	}
+
 	 * Retrieve Markdownified content, from cache if appropriate
 	 *
 	 * @return string
@@ -84,8 +95,7 @@ class Story extends BaseModel {
 	{
 		$content = Cache::rememberForever("story-{$this->id}", function() {
 			$blurb = $this->getBlurb();
-			$body = MarkdownExtra::defaultTransform($this->body);
-			$body = Smartypants::defaultTransform($body);
+			$body = $this->getBody();
 			$title = Smartypants::defaultTransform($this->title);
 			return [
 				'title' => $title,
