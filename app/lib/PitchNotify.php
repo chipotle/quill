@@ -9,7 +9,7 @@ class PitchNotify {
 			{
 				$m->to(Config::get('quill.pitch.email'),Config::get('quill.pitch.name'))
 					->subject("[cnq] Pitch #{$pitch->id}")
-					->from('noreply@clawandquill.net', 'Claw & Quill')
+					->from(Config::get('quill.send.email'), Config::get('quill.send.name'))
 					->replyTo($pitch->email);
 			});
 		}
