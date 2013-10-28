@@ -47,6 +47,9 @@ Route::get('/feed', 'HomeController@feed');
 // "Pitch a story" form
 Route::controller('pitch', 'PitchController');
 
+// Contact form
+Route::controller('contact', 'ContactController');
+
 // Queue postback URL (for iron.io)
 Route::post('cnq-queue', function()
 {
