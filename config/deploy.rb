@@ -18,9 +18,9 @@ set :repository,  "git@github.com:chipotle/quill.git"
 set :scm, :git
 set :scm_username, "chipotle"
 
-role :web, "clawandquill.net"
-role :app, "clawandquill.net"
-role :db,  "clawandquill.net", :primary => true
+role :web, "ssh.clawandquill.net"
+role :app, "ssh.clawandquill.net"
+role :db,  "ssh.clawandquill.net", :primary => true
 
 set :deploy_to, "/opt/nginx/sites/quill"
 set :deploy_via, :remote_cache
