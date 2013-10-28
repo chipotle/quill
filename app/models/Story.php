@@ -95,9 +95,7 @@ class Story extends BaseModel {
 	public function autoBlurb()
 	{
 		$body = $this->getBody();
-		$paragraphs = explode("\n", $body);
-		$blurb = reset($paragraphs);
-		return $blurb . "\n";
+		return strstr($body, "\n", true) . "\n";
 	}
 
 	/**
