@@ -64,12 +64,13 @@ class HomeController extends BaseController {
 
 		foreach ($issues as $issue) {
 			foreach ($issue->storiesSorted() as $story) {
+				$blurb = $story->getBlurb() ?: HTML::truncate($story->body, 255);
 				$feed->add(
 					$story->title . ' (#' . $issue->number . ')',
 					$story->author->getPreferredName(),
 					URL::action('IssueController@showStory', [$issue->id, $story->slug]),
 					$issue->pub_date,
-					$story->getBlurb()
+					$blurb
 				);
 			}
 		}
