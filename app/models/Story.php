@@ -87,6 +87,20 @@ class Story extends BaseModel {
 		return Smartypants::defaultTransform($body);
 	}
 
+	/**
+	 * Create a "blurb" from the article body if necessary.
+	 *
+	 * @return string blurb text
+	 */
+	public function autoBlurb()
+	{
+		$body = $this->getBody();
+		$paragraphs = explode("\n", $body);
+		$blurb = reset($paragraphs);
+		return $blurb . "\n";
+	}
+
+	/**
 	 * Retrieve Markdownified content, from cache if appropriate
 	 *
 	 * @return string

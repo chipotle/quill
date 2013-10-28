@@ -64,7 +64,7 @@ class HomeController extends BaseController {
 
 		foreach ($issues as $issue) {
 			foreach ($issue->storiesSorted() as $story) {
-				$blurb = $story->getBlurb() ?: HTML::truncate($story->body, 255);
+				$blurb = $story->getBlurb() ?: $story->autoBlurb();
 				$feed->add(
 					$story->title . ' (#' . $issue->number . ')',
 					$story->author->getPreferredName(),
