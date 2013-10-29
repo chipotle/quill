@@ -19,7 +19,7 @@ Claw &amp; Quill: Authors
   <h2>{{ HTML::linkAction('AuthorController@showBio', $names[$author->id], [$author->id]) }}</h2>
   <ul>
   @foreach ($stories[$author->id] as $story)
-    <li>{{ HTML::linkAction('IssueController@showStory', $story->title, [$story->issue_id, $story->slug]) }}</li>
+    <li>&sect; {{ HTML::linkAction('IssueController@showStory', $story->title, [$story->issue_id, $story->slug]) }}</li>
   @endforeach
   </ul>
 @endforeach

@@ -10,7 +10,10 @@
 
 @section('content')
 <header class="story">
-  <p>{{ HTML::link('/', 'Claw &amp; Quill') }} &middot; {{ HTML::linkAction('IssueController@showIssue', "Issue #$volnum", [$issue_id]) }} &middot; {{ $date }}</p>
+  <p>
+    {{ HTML::linkAction('IssueController@showIssue', "Issue #$volnum", [$issue_id]) }} &middot; {{ $date }}
+    <span class="pull-right">{{ HTML::link('/', 'Claw &amp; Quill') }}</span>
+  </p>
 </header>
 
 <article itemscope itemtype="http://schema.org/Article">

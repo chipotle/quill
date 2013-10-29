@@ -102,9 +102,6 @@ article.toc {
     font-family: $altFont;
     font-size: 0.884em;
     font-weight: normal;
-    &:before {
-      content: '§ ';
-    }
   }
 }
 
