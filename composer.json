@@ -28,7 +28,8 @@
 	"require-dev": {
 		"way/generators": "dev-master",
 		"way/laravel-test-helpers": "dev-master",
-		"mockery/mockery": "dev-master"
+		"mockery/mockery": "dev-master",
+		"doctrine/dbal": "2.4.*"
 	},
 	"autoload": {
 		"classmap": [
