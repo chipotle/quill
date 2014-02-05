@@ -6,3 +6,6 @@ composer.phar
 /public/system
 js/gauges.js
 Thumbs.db
+.env.local.php
+.env.php
+.DS_Store
