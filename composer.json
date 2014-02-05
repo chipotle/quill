@@ -20,7 +20,7 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"michelf/php-markdown": "1.4.*@dev",
-		"chipotle/php-smartypants": "dev-master",
+		"michelf/php-smartypants": "1.6.*@dev",
 		"iron-io/iron_mq": "dev-master",
 		"sybio/image-workshop": "dev-master",
 		"roumen/feed": "dev-master"

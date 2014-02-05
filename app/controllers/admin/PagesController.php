@@ -1,6 +1,6 @@
 <?php namespace Admin;
 
-use Michelf\MarkdownExtra, Chipotle\Smartypants;
+use Michelf\MarkdownExtra, Michelf\SmartyPants;
 
 class PagesController extends \BaseController {
 
@@ -60,8 +60,8 @@ class PagesController extends \BaseController {
 		$page = $this->page->find($id);
 		$body = MarkdownExtra::defaultTransform($page->body);
 		$content = [
-			'body' => Smartypants::defaultTransform($body),
-			'title' => Smartypants::defaultTransform($page->title),
+			'body' => SmartyPants::defaultTransform($body),
+			'title' => SmartyPants::defaultTransform($page->title),
 			'id' => $page->id
 		];
 		return \View::make('admin.pages.show')->with($content);

@@ -1,5 +1,5 @@
 <?php
-use Michelf\MarkdownExtra, Chipotle\Smartypants;
+use Michelf\MarkdownExtra, Michelf\SmartyPants;
 
 class Page extends BaseModel {
 
@@ -36,8 +36,8 @@ class Page extends BaseModel {
 	{
 		$content = Cache::rememberForever("page-{$this->id}", function() {
 			$body = MarkdownExtra::defaultTransform($this->body);
-			$body = Smartypants::defaultTransform($body);
-			$title = Smartypants::defaultTransform($this->title);
+			$body = SmartyPants::defaultTransform($body);
+			$title = SmartyPants::defaultTransform($this->title);
 			return ['title' => $title, 'body' => $body,
 					'head' => $this->head];
 		});

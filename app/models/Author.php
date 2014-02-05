@@ -1,5 +1,5 @@
 <?php
-use Michelf\MarkdownExtra, Chipotle\Smartypants;
+use Michelf\MarkdownExtra, Michelf\SmartyPants;
 
 class Author extends BaseModel {
 
@@ -103,7 +103,7 @@ class Author extends BaseModel {
 	public function getBio()
 	{
 		$bio = MarkdownExtra::defaultTransform($this->bio);
-		return Smartypants::defaultTransform($bio);
+		return SmartyPants::defaultTransform($bio);
 	}
 
 }

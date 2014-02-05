@@ -1,5 +1,5 @@
 <?php
-use Michelf\MarkdownExtra, Chipotle\Smartypants;
+use Michelf\MarkdownExtra, Michelf\SmartyPants;
 
 class Story extends BaseModel {
 
@@ -72,7 +72,7 @@ class Story extends BaseModel {
 	{
 		if (empty($this->blurb)) return '';
 		$blurb = MarkdownExtra::defaultTransform($this->blurb);
-		return Smartypants::defaultTransform($blurb);
+		return SmartyPants::defaultTransform($blurb);
 	}
 
 	/**
@@ -84,7 +84,7 @@ class Story extends BaseModel {
 	{
 		if (empty($this->body)) return '';
 		$body = MarkdownExtra::defaultTransform($this->body);
-		return Smartypants::defaultTransform($body);
+		return SmartyPants::defaultTransform($body);
 	}
 
 	/**
@@ -108,7 +108,7 @@ class Story extends BaseModel {
 		$content = Cache::rememberForever("story-{$this->id}", function() {
 			$blurb = $this->getBlurb();
 			$body = $this->getBody();
-			$title = Smartypants::defaultTransform($this->title);
+			$title = SmartyPants::defaultTransform($this->title);
 			return [
 				'title' => $title,
 				'body' => $body,
