@@ -89,4 +89,12 @@ class AuthorTest extends TestCase {
 		$this->assertEquals($expected, $author->getFormName());
 	}
 
+	public function testGetBio()
+	{
+		$author = Factory::make('author', [
+			'bio' => 'Lorem ipsum--blah *blah* blah']);
+		$expected =  "<p>Lorem ipsum&#8212;blah <em>blah</em> blah</p>\n";
+		$this->assertEquals($expected, $author->getBio());
+	}
+
 }
