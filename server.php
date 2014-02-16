@@ -2,6 +2,8 @@
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+if ($uri === false) $uri = '/';
+
 $uri = urldecode($uri);
 
 $paths = require __DIR__.'/bootstrap/paths.php';
