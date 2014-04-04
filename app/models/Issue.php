@@ -55,7 +55,9 @@ class Issue extends BaseModel {
 	public function getCurrentNum()
 	{
 		$num = \DB::table('issues')->remember(60)->max('number');
-		if (empty($num)) $num = 0;
+		if (empty($num)) {
+			$num = 0;
+		}
 		return $num;
 	}
 

@@ -54,12 +54,12 @@ class Image extends BaseModel {
 	 */
 	public function updateFile(UploadedFile $file, $retina=false)
 	{
+		$name = $this->getName($retina);
 		if (! $file->isValid()) {
 			$err = $file->getError();
 			throw \RuntimeException("File $name invalid ($err)");
 		}
 		$this->name = strtolower($file->getClientOriginalName());
-		$name = $this->getName($retina);
 		$this->path = $this->path ?: sprintf(Config::get('quill.upload_dir'), date('Y'));
 		if (! is_dir($this->path)) {
 			if (mkdir($this->path, 0777, true) === false) {
@@ -135,7 +135,7 @@ class Image extends BaseModel {
 	public function getSize($retina=false)
 	{
 		$layer = $this->getLayer($retina);
-		return [$layer->getWidth(), $tlayer->getHeight()];
+		return [$layer->getWidth(), $layer->getHeight()];
 	}
 
 	/**

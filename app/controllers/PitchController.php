@@ -29,7 +29,9 @@ class PitchController extends BaseController {
 		$pitch = $this->pitch->fill(Input::all());
 		if ($pitch->validate()) {
 			$author = Author::where('email', $pitch->email)->first();
-			if ($author) $pitch->author_id = $author->id;
+			if ($author) {
+				$pitch->author_id = $author->id;
+			}
 			$pitch->save();
 			Queue::push('PitchNotify', ['pitch' => $pitch->id]);
 			return View::make('gotpitch')->with('pitch', $pitch);

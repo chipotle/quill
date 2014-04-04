@@ -2,6 +2,13 @@
 
 class ContactNotify {
 
+	/**
+	 * Queue consumer for sending contact email
+	 * @param  mixed $job  unused (always sent by Laravel)
+	 * @param  array $data data from queue
+	 * @return void
+	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+	 */
 	public function fire($job, $data)
 	{
 		Mail::send(['text' => 'emails.contact'], $data, function($m) use ($data) {

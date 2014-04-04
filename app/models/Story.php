@@ -82,7 +82,9 @@ class Story extends BaseModel {
 	 */
 	public function getBody()
 	{
-		if (empty($this->body)) return '';
+		if (empty($this->body)) {
+			return '';
+		}
 		$body = MarkdownExtra::defaultTransform($this->body);
 		return SmartyPants::defaultTransform($body);
 	}

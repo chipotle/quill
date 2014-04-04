@@ -19,9 +19,12 @@ class BaseModel extends Eloquent {
 	 */
 	public function validate()
 	{
-		$v = Validator::make($this->attributes, static::$rules, static::$messages);
-		if ($v->passes()) return true;
-		$this->errors = $v->messages();
+		$valid = Validator::make($this->attributes, static::$rules,
+			static::$messages);
+		if ($valid->passes()) {
+			return true;
+		}
+		$this->errors = $valid->messages();
 		return false;
 	}
 
