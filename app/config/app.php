@@ -107,7 +107,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Roumen\Feed\FeedServiceProvider',
-		'Way\Generators\GeneratorsServiceProvider'
+		'Way\Generators\GeneratorsServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider'
 
 	),
 

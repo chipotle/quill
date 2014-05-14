@@ -11,12 +11,6 @@
 			"role": "developer"
 		}
 	],
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/chipotle/php-smartypants"
-		}
-	],
 	"require": {
 		"laravel/framework": "4.1.*",
 		"michelf/php-markdown": "1.4.*@dev",
@@ -29,7 +23,8 @@
 		"way/generators": "dev-master",
 		"way/laravel-test-helpers": "dev-master",
 		"mockery/mockery": "dev-master",
-		"doctrine/dbal": "2.4.*"
+		"doctrine/dbal": "2.4.*",
+        "barryvdh/laravel-ide-helper": "1.*"
 	},
 	"autoload": {
 		"classmap": [

@@ -48,13 +48,14 @@ class Author extends BaseModel {
 		return $this->hasMany('Pitch');
 	}
 
-	/**
-	 * Return the preferred name for an author object. Note that this is a
-	 * static class method, not an instance method.
-	 *
-	 * @param  Author $author
-	 * @return string
-	 */
+    /**
+     * Return the preferred name for an author object. Note that this is a
+     * static class method, not an instance method.
+     *
+     * @param  Author $author
+     * @throws UnexpectedValueException
+     * @return string
+     */
 	static public function selectPreferredName($author)
 	{
 		switch ($author->show) {

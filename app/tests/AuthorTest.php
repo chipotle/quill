@@ -1,6 +1,10 @@
 <?php
 use Way\Tests\Factory;
 
+/**
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+ */
 class AuthorTest extends TestCase {
 	use Way\Tests\ModelHelpers;
 
